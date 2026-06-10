@@ -162,8 +162,9 @@ def _short_label(s: str, max_chars: int = 24) -> str:
 def _layout_components(G: nx.Graph) -> dict:
     """Spring-layout per connected component, with the giant one centred
     and any small components tucked into the right margin (dynamic offset
-    based on the giant's bounding box). Tuned for readability — high `k`
-    and many iterations push leaves outward so hubs don't overlap them.
+    based on the giant's bounding box). Tuned for readability — very
+    high `k` + `scale` so leaves push out far away from hubs and labels
+    don't overlap.
     """
     comps = sorted(nx.connected_components(G), key=len, reverse=True)
 
@@ -171,10 +172,10 @@ def _layout_components(G: nx.Graph) -> dict:
     n_giant = max(giant_sub.number_of_nodes(), 1)
     pos = nx.spring_layout(
         giant_sub,
-        k=3.0 / math.sqrt(n_giant),   # strong repulsion -> wider spread
-        iterations=500,
+        k=6.0 / math.sqrt(n_giant),   # very high repulsion -> wide spread
+        iterations=800,
         seed=42,
-        scale=2.0,
+        scale=4.0,
     )
     if len(comps) == 1:
         return pos
@@ -182,21 +183,21 @@ def _layout_components(G: nx.Graph) -> dict:
     # Anchor extra components to the right of the giant's bounding box
     xs = [p[0] for p in pos.values()]
     ys = [p[1] for p in pos.values()]
-    x_right = max(xs) + 0.6
+    x_right = max(xs) + 1.2
     y_mid = (max(ys) + min(ys)) / 2
-    y_off = y_mid + 0.8
+    y_off = y_mid + 1.5
     for comp in comps[1:]:
         sub = G.subgraph(comp)
-        sub_pos = nx.spring_layout(sub, k=0.5, iterations=300,
-                                   seed=42, scale=0.55)
+        sub_pos = nx.spring_layout(sub, k=0.7, iterations=400,
+                                   seed=42, scale=0.9)
         for n, (x, y) in sub_pos.items():
             pos[n] = (x_right + x, y_off + y)
-        y_off -= 1.6
+        y_off -= 2.6
     return pos
 
 
 def draw_static(G: nx.Graph, out: Path) -> None:
-    fig, ax = plt.subplots(figsize=(28, 26))
+    fig, ax = plt.subplots(figsize=(32, 28))
 
     # Layout: spring per component so disconnected clusters don't drift.
     pos = _layout_components(G)
@@ -206,12 +207,12 @@ def draw_static(G: nx.Graph, out: Path) -> None:
 
     deg = dict(G.degree())
 
-    # Edges — thinner + more transparent so they don't crowd the hubs
+    # Edges — medium grey for easier path-tracing without overwhelming hubs
     weights = [G.edges[e]["weight"] for e in G.edges]
     nx.draw_networkx_edges(
         G, pos, ax=ax,
-        edge_color="#cccccc", alpha=0.35,
-        width=[0.3 + 0.025 * w for w in weights],
+        edge_color="#888888", alpha=0.45,
+        width=[0.25 + 0.02 * w for w in weights],
     )
 
     # Company nodes: coloured by sector. Degree caps at 5 (top-5 holders)
