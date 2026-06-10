@@ -16,16 +16,34 @@ import streamlit.components.v1 as components
 from pyvis.network import Network
 
 
-def _configure_thai_font() -> str:
-    """Pick the first matplotlib-known font that supports Thai glyphs.
+HERE = Path(__file__).parent
+CSV = HERE / "set50_stakeholders.csv"
 
-    Tries common candidates across Windows, macOS, and Linux (Streamlit
-    Cloud — needs `fonts-thai-tlwg` from `packages.txt`). Without this,
-    Thai characters render as tofu (boxes) on the static figure.
+
+def _configure_thai_font() -> str:
+    """Pick a font that supports Thai glyphs.
+
+    Preference order:
+      1. **Bundled** `fonts/Sarabun-Regular.ttf` in the repo — works on
+         every platform (Windows, macOS, Linux, Streamlit Cloud) because
+         we register it with matplotlib directly. This is the only way
+         to be sure Thai renders on the deployed app, where system-font
+         discovery via `fonts-thai-tlwg` is unreliable.
+      2. **System** fonts (Tahoma on Windows, TLWG on Linux, etc.) as
+         a fallback for environments without the bundle.
 
     Returns the chosen font name so callers can pass it explicitly to
     `nx.draw_networkx_labels`, which otherwise overrides our rcParams.
     """
+    bundled = HERE / "fonts" / "Sarabun-Regular.ttf"
+    if bundled.exists():
+        matplotlib.font_manager.fontManager.addfont(str(bundled))
+        plt.rcParams["font.family"] = ["Sarabun", "DejaVu Sans"]
+        plt.rcParams["font.sans-serif"] = (
+            ["Sarabun"] + plt.rcParams["font.sans-serif"]
+        )
+        return "Sarabun"
+
     candidates = [
         "Tahoma",             # Windows
         "Leelawadee UI", "Leelawadee",
@@ -41,10 +59,6 @@ def _configure_thai_font() -> str:
 
 
 THAI_FONT = _configure_thai_font()
-
-
-HERE = Path(__file__).parent
-CSV = HERE / "set50_stakeholders.csv"
 
 # Official SET sector palette (matches SET50 H1 2026 industry classification).
 SECTOR_COLOR = {

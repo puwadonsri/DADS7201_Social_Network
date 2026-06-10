@@ -24,13 +24,26 @@ from matplotlib.lines import Line2D
 from pyvis.network import Network
 
 
-def _configure_thai_font() -> str:
-    """Pick a matplotlib-known font that supports Thai glyphs (else tofu).
+HERE = Path(__file__).parent
+CSV = HERE / "set50_stakeholders.csv"
 
-    Returns the font name chosen, so callers can pass it explicitly to
-    networkx draw functions (which override rcParams with their own
-    `font_family='sans-serif'` default).
+
+def _configure_thai_font() -> str:
+    """Pick a font that supports Thai glyphs.
+
+    Prefers a bundled `fonts/Sarabun-Regular.ttf` (registered directly with
+    matplotlib so it works on every platform). Falls back to system fonts
+    if the bundle isn't present.
     """
+    bundled = HERE / "fonts" / "Sarabun-Regular.ttf"
+    if bundled.exists():
+        matplotlib.font_manager.fontManager.addfont(str(bundled))
+        plt.rcParams["font.family"] = ["Sarabun", "DejaVu Sans"]
+        plt.rcParams["font.sans-serif"] = (
+            ["Sarabun"] + plt.rcParams["font.sans-serif"]
+        )
+        return "Sarabun"
+
     candidates = [
         "Tahoma", "Leelawadee UI", "Leelawadee",
         "Sukhumvit Set", "Krungthep",
@@ -39,18 +52,12 @@ def _configure_thai_font() -> str:
     ]
     installed = {f.name for f in matplotlib.font_manager.fontManager.ttflist}
     chosen = next((n for n in candidates if n in installed), "DejaVu Sans")
-    # Override both the family and the sans-serif lookup chain so any
-    # downstream consumer that resolves "sans-serif" gets a Thai-capable face.
     plt.rcParams["font.family"] = [chosen, "DejaVu Sans"]
     plt.rcParams["font.sans-serif"] = [chosen] + plt.rcParams["font.sans-serif"]
     return chosen
 
 
 THAI_FONT = _configure_thai_font()
-
-
-HERE = Path(__file__).parent
-CSV = HERE / "set50_stakeholders.csv"
 
 
 # Official SET sector palette (matches SET50 H1 2026 industry classification).
