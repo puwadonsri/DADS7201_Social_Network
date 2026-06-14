@@ -9,8 +9,9 @@ introduced in the Ch2 lecture.
 
 ![Conflict news graph in Neo4j Aura](visualisation.svg)
 
-> Exported snapshot from the Aura console — interactive version is
-> regenerated locally with `python visualize.py` (writes `graph.html`).
+> Exported snapshot from the Aura console.
+> **Live interactive version**: <https://puwadonsri.github.io/DADS7201_Social_Network/Week2/graph.html>
+> (served via GitHub Pages — regenerate locally with `python visualize.py`).
 
 ## Lecture topic — Centrality
 

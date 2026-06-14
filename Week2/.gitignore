@@ -2,5 +2,5 @@
 Slide/
 
 # Generated artifacts (regenerable from the scripts)
-graph.html
+# Note: graph.html is committed so it can be served via GitHub Pages
 centrality.csv
