@@ -9,7 +9,7 @@ data, dependencies, and deploy configuration.
 | Week | Topic | Folder | Status |
 |---|---|---|---|
 | 1 | Bipartite network: SET50 companies ↔ top-5 major shareholders | [`Week1/`](Week1/) | ✅ deployed |
-| 2 | _(coming soon)_ | `Week2/` | — |
+| 2 | Centrality on a conflict-news graph in Neo4j Aura (Degree / Closeness / Betweenness / Eigenvector / Katz) | [`Week2/`](Week2/) | ✅ done |
 | 3 | _(coming soon)_ | `Week3/` | — |
 
 ## How this repo is organised

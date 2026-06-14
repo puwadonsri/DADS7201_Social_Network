@@ -1,0 +1,18 @@
+id,name,label,role,country
+US,United States,Country,ฝ่ายโจมตีอิหร่าน,United States
+IR,Iran,Country,ฝ่ายตอบโต้สหรัฐ,Iran
+IL,Israel,Country,ฝ่ายโจมตีเลบานอน/ฮิซบอลเลาะห์,Israel
+LB,Lebanon,Country,พื้นที่ถูกโจมตี,Lebanon
+BH,Bahrain,Country,ที่ตั้งฐานทัพสหรัฐ ถูกอิหร่านโจมตี,Bahrain
+KW,Kuwait,Country,ที่ตั้งฐานทัพสหรัฐ ถูกอิหร่านโจมตี,Kuwait
+JO,Jordan,Country,ที่ตั้งฐานทัพสหรัฐ ถูกอิหร่านโจมตี,Jordan
+TRUMP,Donald Trump,Person,ประธานาธิบดีสหรัฐ ประกาศโจมตีอิหร่านต่อ,United States
+HEGSETH,Pete Hegseth,Person,รัฐมนตรีกลาโหมสหรัฐ ยืนยันโจมตีสถานที่สำคัญ,United States
+CENTCOM,U.S. Central Command,Organization,กองบัญชาการกลางสหรัฐ ปฏิบัติการเพิ่มเติม,United States
+PEZESHKIAN,Masoud Pezeshkian,Person,ประธานาธิบดีอิหร่าน ประกาศต้านทานสหรัฐ,Iran
+IRGC,Revolutionary Guards,Organization,กองกำลังพิทักษ์การปฏิวัติอิหร่าน ขู่โจมตีเพิ่ม,Iran
+IR_MFA,Iran Foreign Ministry,Organization,กระทรวงต่างประเทศอิหร่าน,Iran
+HEZB,Hezbollah,Organization,กลุ่มติดอาวุธในเลบานอน เป้าหมายโจมตีของอิสราเอล,Lebanon
+UN,United Nations,Organization,สหประชาชาติ เตือนสงครามขยายวง,International
+GUTERRES,Antonio Guterres,Person,เลขาธิการ UN เตือนความเสี่ยงสงครามเต็มรูปแบบ,International
+TURK,Volker Turk,Person,ข้าหลวงสิทธิมนุษยชน UN ส่งทีมสอบสวนเลบานอน,International

@@ -17,5 +17,9 @@ env/
 Thumbs.db
 desktop.ini
 
+# Secrets / credentials
+Neo4j-*.txt
+.env
+
 # Per-week .gitignore files add their own ignores
 # (e.g. Week1/.gitignore drops large regenerated artifacts like *_network.html)

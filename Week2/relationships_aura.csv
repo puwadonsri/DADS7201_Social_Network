@@ -1,0 +1,30 @@
+start_id,end_id,type,description
+TRUMP,US,LEADS,ประธานาธิบดีสหรัฐ
+HEGSETH,US,MEMBER_OF,รัฐมนตรีกลาโหม
+CENTCOM,US,PART_OF,หน่วยบัญชาการของสหรัฐ
+PEZESHKIAN,IR,LEADS,ประธานาธิบดีอิหร่าน
+IRGC,IR,PART_OF,กองกำลังของรัฐอิหร่าน
+IR_MFA,IR,PART_OF,กระทรวงของรัฐบาลอิหร่าน
+HEZB,LB,BASED_IN,กลุ่มติดอาวุธในเลบานอน
+GUTERRES,UN,LEADS,เลขาธิการสหประชาชาติ
+TURK,UN,MEMBER_OF,ข้าหลวงสิทธิมนุษยชน UN
+US,IR,ATTACKED,สหรัฐโจมตีสถานที่สำคัญในอิหร่าน
+TRUMP,IR,THREATENS,ประกาศโจมตีอิหร่านต่อเนื่อง
+HEGSETH,IR,ATTACKED,ยืนยันการโจมตีอิหร่าน
+CENTCOM,IR,ATTACKED,ปฏิบัติการป้องกันเพิ่มเติมต่ออิหร่าน
+IR,US,RETALIATED,อิหร่านตอบโต้สหรัฐ
+IR,BH,ATTACKED,โจมตีฐานทัพสหรัฐในบาห์เรน
+IR,KW,ATTACKED,โจมตีฐานทัพสหรัฐในคูเวต
+IR,JO,ATTACKED,โจมตีฐานทัพสหรัฐในจอร์แดน
+PEZESHKIAN,US,OPPOSES,ประกาศต้านทานสหรัฐอย่างหนักแน่น
+IRGC,US,THREATENS,ขู่โจมตีผลประโยชน์สหรัฐในภูมิภาคเพิ่ม
+IR_MFA,IR,DEFENDS,แถลงปกป้องประเทศโดยไม่ลังเล
+IL,LB,ATTACKED,ทิ้งระเบิดเป้าหมายในเลบานอน
+IL,HEZB,ATTACKED,โจมตีโครงสร้างพื้นฐานฮิซบอลเลาะห์ สังหารนักรบกว่า 20 คน
+HEZB,IL,OPPOSES,ฝ่ายตรงข้ามอิสราเอล
+UN,US,WARNS,เตือนความเสี่ยงสงครามเต็มรูปแบบ
+UN,IR,WARNS,เตือนความเสี่ยงสงครามเต็มรูปแบบ
+GUTERRES,US,WARNS,เตือนสงครามเต็มรูปแบบ
+GUTERRES,IR,WARNS,เตือนสงครามเต็มรูปแบบ
+TURK,LB,INVESTIGATES,ส่งทีมสอบสวนสถานการณ์ในเลบานอน
+UN,LB,INVESTIGATES,ส่งทีมสอบสวนด้านสิทธิมนุษยชน

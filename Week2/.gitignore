@@ -1,0 +1,6 @@
+# Lecture slides — kept local, not pushed
+Slide/
+
+# Generated artifacts (regenerable from the scripts)
+graph.html
+centrality.csv
