@@ -48,7 +48,7 @@ def main() -> None:
                 "n.role AS role, n.country AS country, "
                 "n.degree AS degree, n.closeness AS closeness, "
                 "n.betweenness AS betweenness, n.eigenvector AS eigenvector, "
-                "n.katz AS katz"
+                "n.katz AS katz, n.pagerank AS pagerank"
             )
         )
         edges = list(
@@ -84,7 +84,8 @@ def main() -> None:
             f"closeness: {r['closeness']:.4f}<br>"
             f"betweenness: {r['betweenness']:.4f}<br>"
             f"eigenvector: {r['eigenvector']:.4f}<br>"
-            f"katz: {r['katz']:.4f}"
+            f"katz: {r['katz']:.4f}<br>"
+            f"pagerank: {r['pagerank']:.4f}"
         )
         net.add_node(
             r["id"],

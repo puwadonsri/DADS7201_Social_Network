@@ -1,0 +1,5 @@
+neo4j>=5.20
+pandas>=2.0
+networkx>=3.2
+scipy>=1.11
+pyvis>=0.3.2

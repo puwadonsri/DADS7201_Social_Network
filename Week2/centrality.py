@@ -1,4 +1,4 @@
-"""Compute 5 centrality measures on the Aura graph using NetworkX,
+"""Compute 6 centrality measures on the Aura graph using NetworkX,
 print a ranked table, and write values back as node properties.
 
 Centralities:
@@ -7,6 +7,7 @@ Centralities:
 - Betweenness
 - Eigenvector
 - Katz
+- PageRank
 """
 
 from __future__ import annotations
@@ -67,6 +68,9 @@ def compute_centralities(G: nx.DiGraph) -> pd.DataFrame:
     except nx.PowerIterationFailedConvergence:
         katz = nx.katz_centrality_numpy(G, alpha=0.1, beta=1.0)
 
+    # PageRank — random-walk based, handles disconnected graphs natively.
+    pagerank = nx.pagerank(G, alpha=0.85)
+
     df = pd.DataFrame(
         {
             "id": list(G.nodes()),
@@ -79,6 +83,7 @@ def compute_centralities(G: nx.DiGraph) -> pd.DataFrame:
             "betweenness": [betweenness[n] for n in G.nodes()],
             "eigenvector": [eigenvector[n] for n in G.nodes()],
             "katz": [katz[n] for n in G.nodes()],
+            "pagerank": [pagerank[n] for n in G.nodes()],
         }
     )
     return df
@@ -95,6 +100,7 @@ def write_back(session, df: pd.DataFrame) -> None:
             "betweenness",
             "eigenvector",
             "katz",
+            "pagerank",
         ]
     ].to_dict(orient="records")
     session.run(
@@ -106,7 +112,8 @@ def write_back(session, df: pd.DataFrame) -> None:
         "    n.closeness = row.closeness, "
         "    n.betweenness = row.betweenness, "
         "    n.eigenvector = row.eigenvector, "
-        "    n.katz = row.katz",
+        "    n.katz = row.katz, "
+        "    n.pagerank = row.pagerank",
         rows=rows,
     )
 
@@ -141,6 +148,8 @@ def main() -> None:
     print(df.sort_values("eigenvector", ascending=False).head(10).to_string(index=False))
     print("\n=== Top 10 by Katz ===")
     print(df.sort_values("katz", ascending=False).head(10).to_string(index=False))
+    print("\n=== Top 10 by PageRank ===")
+    print(df.sort_values("pagerank", ascending=False).head(10).to_string(index=False))
 
     out_csv = HERE / "centrality.csv"
     df.to_csv(out_csv, index=False, encoding="utf-8-sig")

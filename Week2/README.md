@@ -15,7 +15,7 @@ introduced in the Ch2 lecture.
 
 ## Lecture topic — Centrality
 
-From `Slide/ch2-nw-models-student.pdf`:
+From `Slide/ch2-nw-models-student.pdf` and `Slide/GraphHelpSession.pdf`:
 
 | Measure | Idea | Best at finding |
 |---|---|---|
@@ -24,9 +24,7 @@ From `Slide/ch2-nw-models-student.pdf`:
 | **Betweenness** | How often on shortest paths between others? | Bridges / brokers |
 | **Eigenvector** | Connected to other important nodes? | Influential "inner circle" |
 | **Katz** | Eigenvector + a baseline so isolated nodes still get a score | Influence with distance attenuation |
-
-The companion `Slide/GraphHelpSession.pdf` covers **PageRank** in depth — same
-family as Eigenvector but with a damping factor and explicit sink handling.
+| **PageRank** | Random-walk steady state with damping (α = 0.85) | Robust hubs, handles sinks |
 
 ## What was built
 
@@ -36,8 +34,8 @@ family as Eigenvector but with a damping factor and explicit sink handling.
    **29 relationships** (`ATTACKED`, `WARNS`, `LEADS`, `PART_OF`, etc.) into CSVs.
 3. Loaded them into **Neo4j Aura** (free tier) via the official Python driver
    — no GDS / APOC required.
-4. Computed Degree, Closeness, Betweenness, Eigenvector, and Katz with
-   **NetworkX** and wrote each score back as a node property in Aura.
+4. Computed Degree, Closeness, Betweenness, Eigenvector, Katz, and PageRank
+   with **NetworkX** and wrote each score back as a node property in Aura.
 5. Built an interactive **PyVis** graph: node size = betweenness, colour =
    entity type, hover = role + all centrality scores.
 
@@ -50,13 +48,14 @@ family as Eigenvector but with a damping factor and explicit sink handling.
 | `import_to_aura.py` | Push both CSVs into Aura via UNWIND batches |
 | `centrality.py` | Pull graph → compute 5 centralities → write back → export `centrality.csv` |
 | `visualize.py` | Build `graph.html` (PyVis interactive view) |
+| `requirements.txt` | Pinned dependencies for reproducibility |
 | `Neo4j-*.txt` | Aura credentials — **gitignored at repo root** |
 | `Slide/` | Lecture slides — **gitignored** (kept local only) |
 
 ## How to reproduce
 
 ```powershell
-pip install neo4j pandas networkx scipy pyvis
+pip install -r requirements.txt
 
 # put your Aura credentials text file in this folder as Neo4j-*.txt
 python import_to_aura.py   # CSV -> Aura
@@ -77,6 +76,7 @@ The graph collapses to 28 unique directed edges (not 29) because
 | Closeness | **Iran (0.57)**, US (0.52) | Closest to the conflict core |
 | Eigenvector | **Iran ≈ US (0.44)** | Both central and connected to each other |
 | Katz | **Iran (0.39)**, US (0.38) | Confirms Iran as overall influence hub |
+| PageRank | **Iran (0.24)**, US (0.14), Lebanon (0.08) | Random-walk hub view; Lebanon ranks 3rd as the most-pointed-at victim of `ATTACKED`/`INVESTIGATES` |
 
 ## Cypher patterns used
 
@@ -92,6 +92,7 @@ for the full grammar.
 | `UNWIND $rows AS row MATCH (a:Entity {id: row.start}), (b:Entity {id: row.end}) CREATE (a)-[r:ATTACKED]->(b)` | Batch edge creation |
 | `MATCH (n:Entity) RETURN n.id, n.name, labels(n)` | Read graph back for NetworkX |
 | `MATCH (a)-[r]->(b) RETURN type(r), count(*)` | Verify counts |
+| `MATCH (n:Entity) RETURN n.name, n.degree, n.betweenness, n.pagerank ORDER BY n.betweenness DESC LIMIT 10` | Inspect centrality results after `centrality.py` writes them back |
 
 ## Notes
 
@@ -99,8 +100,22 @@ for the full grammar.
   NetworkX. With Aura DS you can call `gds.degree.stream`,
   `gds.pageRank.stream`, etc. directly.
 - **Directed graph.** Closeness and betweenness honour edge direction.
-  Eigenvector / Katz here use the in-degree formulation, i.e. "influence
-  flowing in".
+  Eigenvector / Katz / PageRank here use the in-degree formulation,
+  i.e. "influence flowing in".
+- **Directed-closeness caveat.** `nx.closeness_centrality(G)` on a DiGraph
+  measures *incoming* shortest-path distance, so source-only nodes
+  (Trump, Pezeshkian, Hegseth, ...) have **closeness = 0**. Only nodes
+  that *receive* edges are scored.
+- **Eigenvector quirk.** Bahrain, Kuwait, and Jordan score
+  ≈ 0.4448 — almost the same as Iran — even though they each have only
+  *one* in-edge. Eigenvector propagates a fraction of a hub's score to
+  every node it points at (`eig(v) = (1/λ) · Σ eig(u)`), so a leaf
+  attached to a high-scoring hub inherits that prestige. Katz and
+  PageRank dampen this effect.
+- **Switching eigenvector to `_numpy`** doesn't work here: the directed
+  graph is not strongly connected (most Persons/Orgs are sources only),
+  so `nx.eigenvector_centrality_numpy` raises `AmbiguousSolution`. The
+  power-iteration variant converges fine — keep it.
 - **Thai characters** render fine in Aura UI and PyVis. `visualize.py` sets
   `font.face = "Sarabun, Tahoma, Arial"` for vis-network.
 - **Credentials**: `Neo4j-*.txt` is `.gitignore`'d at the repo root.
