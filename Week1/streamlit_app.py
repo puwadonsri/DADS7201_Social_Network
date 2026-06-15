@@ -145,40 +145,118 @@ def build_graph(df: pd.DataFrame) -> nx.Graph:
     return G
 
 
+# Centrality definitions — Thai + English explanations shown in the
+# Centrality tab. Order is the display order in the radio selector.
+CENTRALITY_DEFS = {
+    "Degree": {
+        "en": ("Number of direct neighbours. A pure local measure — "
+               "how many edges touch this node."),
+        "th": ("จำนวน edge ที่ออกจาก node นี้โดยตรง — "
+               "วัด \"การมีเพื่อน\" แบบไม่สนใจว่าเพื่อนเป็นใคร"),
+        "col": "degree",
+    },
+    "Closeness": {
+        "en": ("Inverse of the average shortest-path distance to all "
+               "reachable nodes. High = sits near the centre of the graph."),
+        "th": ("ส่วนกลับของระยะทางเฉลี่ยไปยัง node อื่นทุกตัวที่เดินถึง — "
+               "ค่าสูง = อยู่ \"ใจกลาง\" กราฟ"),
+        "col": "closeness",
+    },
+    "Betweenness": {
+        "en": ("Fraction of all shortest paths that pass through this node. "
+               "High = acts as a bridge / gatekeeper."),
+        "th": ("สัดส่วนของเส้นทางสั้นสุดทั้งหมดที่ \"ผ่าน\" node นี้ — "
+               "ค่าสูง = เป็น สะพาน/ผู้รักษาประตู ของกราฟ"),
+        "col": "betweenness",
+    },
+    "Eigenvector": {
+        "en": ("Recursive importance: connected to nodes that are themselves "
+               "important. Computed on the giant connected component only."),
+        "th": ("ความสำคัญแบบ recursive: เชื่อมกับ node \"คนสำคัญ\" คนอื่น "
+               "(คำนวณบน giant component เท่านั้น — DELTA cluster จะเป็น NaN)"),
+        "col": "eigenvector",
+    },
+    "Katz": {
+        "en": ("Like eigenvector but every node gets a base prestige, so it "
+               "works on disconnected graphs."),
+        "th": ("คล้าย Eigenvector แต่ทุก node มีค่าฐานเริ่มต้น "
+               "ทำให้คำนวณได้แม้กราฟไม่เชื่อมต่อ"),
+        "col": "katz",
+    },
+    "PageRank": {
+        "en": ("Steady-state probability of a random walker (with damping) "
+               "landing on this node. Google's original ranking idea."),
+        "th": ("ความน่าจะเป็นที่ random walker (มี damping) "
+               "จะมาหยุดอยู่ที่ node นี้ในระยะยาว — algorithm ตั้งต้นของ Google"),
+        "col": "pagerank",
+    },
+}
+
+
 @st.cache_data
-def compute_metrics(_G: nx.Graph) -> pd.DataFrame:
-    deg = dict(_G.degree())
+def compute_all_centralities(_G: nx.Graph) -> pd.DataFrame:
+    """Compute six centrality measures for every node.
+
+    Disconnected-graph handling:
+    - Degree, Closeness, Betweenness, Katz, PageRank — work on the full
+      graph (closeness uses the Wasserman-Faust correction).
+    - Eigenvector — computed on the giant connected component only.
+      Nodes in other components get NaN.
+    """
+    nodes = list(_G.nodes)
+    deg_raw = dict(_G.degree())
     wdeg = dict(_G.degree(weight="weight"))
-    # Eigenvector centrality only defined on a connected graph; with real
-    # data the SET50 bipartite often splits into several components, so
-    # compute on the giant component and leave outliers as NaN.
-    if nx.is_connected(_G):
-        try:
-            eig = nx.eigenvector_centrality_numpy(_G)
-        except Exception:
-            eig = {n: float("nan") for n in _G.nodes}
-    else:
-        try:
-            giant = max(nx.connected_components(_G), key=len)
-            eig_sub = nx.eigenvector_centrality_numpy(_G.subgraph(giant))
-            eig = {n: eig_sub.get(n, float("nan")) for n in _G.nodes}
-        except Exception:
-            eig = {n: float("nan") for n in _G.nodes}
+
+    # Normalised degree centrality (NetworkX convention).
+    deg_c = nx.degree_centrality(_G)
+    # Closeness with Wasserman-Faust correction → handles disconnected.
+    clo = nx.closeness_centrality(_G, wf_improved=True)
     btw = nx.betweenness_centrality(_G)
+
+    # Eigenvector — giant component only.
+    if nx.is_connected(_G):
+        sub = _G
+    else:
+        sub = _G.subgraph(max(nx.connected_components(_G), key=len))
+    try:
+        eig_sub = nx.eigenvector_centrality_numpy(sub)
+        eig = {n: eig_sub.get(n, float("nan")) for n in nodes}
+    except Exception:
+        eig = {n: float("nan") for n in nodes}
+
+    # Katz needs alpha < 1 / lambda_max — pick a safe alpha.
+    try:
+        import numpy as np
+        A = nx.adjacency_matrix(_G).astype(float).todense()
+        lam = float(np.max(np.abs(np.linalg.eigvals(A))).real)
+        alpha = 1.0 / (lam + 1.0)
+        katz = nx.katz_centrality_numpy(_G, alpha=alpha, beta=1.0)
+    except Exception:
+        katz = {n: float("nan") for n in nodes}
+
+    pr = nx.pagerank(_G, alpha=0.85)
+
     rows = []
     for n, d in _G.nodes(data=True):
         rows.append({
             "node": n,
             "kind": d["kind"],
             "sector": d.get("sector", ""),
-            "degree": deg[n],
+            "degree_raw": deg_raw[n],
             "weighted_degree": round(wdeg[n], 2),
+            "degree": round(deg_c[n], 5),
+            "closeness": round(clo[n], 5),
             "betweenness": round(btw[n], 5),
-            "eigenvector": round(eig[n], 5),
+            "eigenvector": (round(eig[n], 5)
+                            if not pd.isna(eig[n]) else float("nan")),
+            "katz": round(katz[n], 5),
+            "pagerank": round(pr[n], 5),
         })
-    return pd.DataFrame(rows).sort_values(
-        ["kind", "degree", "weighted_degree"], ascending=[True, False, False]
-    )
+    return pd.DataFrame(rows)
+
+
+# Backwards-compatible alias for any code that still references compute_metrics.
+compute_metrics = compute_all_centralities
 
 
 # ----------------------------------------------------------- static viz --
@@ -431,8 +509,8 @@ c4.metric("Density", f"{nx.density(G):.4f}")
 c5.metric("Components", nx.number_connected_components(G))
 
 # -------- tabs
-tab_net, tab_static, tab_metrics, tab_data, tab_about = st.tabs(
-    ["🕸 Interactive", "🖼 Static", "📊 Metrics", "📄 Data", "ℹ️ About"]
+tab_net, tab_static, tab_centrality, tab_data, tab_about = st.tabs(
+    ["🕸 Interactive", "🖼 Static", "🏆 Centrality", "📄 Data", "ℹ️ About"]
 )
 
 with tab_net:
@@ -448,49 +526,174 @@ with tab_static:
     fig = draw_static(G)
     st.pyplot(fig, width="stretch")
 
-with tab_metrics:
-    metrics = compute_metrics(G)
+with tab_centrality:
+    metrics = compute_all_centralities(G)
 
-    st.subheader("Top stakeholder hubs")
-    st.caption(
-        "Degree = number of SET50 companies the stakeholder appears in. "
-        "Weighted degree = sum of ownership percentages across those companies."
-    )
-    hubs = (metrics[metrics["kind"] == "stakeholder"]
-            .sort_values("degree", ascending=False)
-            .head(15))
-    st.dataframe(hubs[["node", "degree", "weighted_degree",
-                       "betweenness", "eigenvector"]],
-                 width="stretch", hide_index=True)
+    # ---- Controls -----------------------------------------------------
+    ctl1, ctl2, ctl3 = st.columns([2, 1, 1])
+    with ctl1:
+        measure_name = st.radio(
+            "Centrality measure",
+            options=list(CENTRALITY_DEFS.keys()),
+            horizontal=True,
+            help="Each measure ranks nodes by a different definition of 'importance'.",
+        )
+    with ctl2:
+        combine_kinds = st.checkbox(
+            "Combine Companies + Stakeholders",
+            value=False,
+            help=("Default: rank Companies and Stakeholders separately "
+                  "(recommended — companies cap at degree=5 because we "
+                  "only scrape top-5 holders). Tick to rank all 170 nodes "
+                  "in one list."),
+        )
+    with ctl3:
+        top_n = st.slider("Top N", min_value=5, max_value=30, value=15, step=5)
 
-    st.subheader("Company centrality")
-    st.caption(
-        "Higher betweenness = the company sits on more shareholder-shareholder paths. "
-        "Click the **Verify** link to open the official SET 'Major Shareholders' page "
-        "for the latest book-closing-date figures."
+    info = CENTRALITY_DEFS[measure_name]
+    col = info["col"]
+
+    # ---- Definition box ----------------------------------------------
+    st.info(
+        f"**📐 {measure_name} centrality**\n\n"
+        f"🇬🇧  *{info['en']}*\n\n"
+        f"🇹🇭  {info['th']}"
     )
-    comp = (metrics[metrics["kind"] == "company"]
-            .sort_values("betweenness", ascending=False)
-            .head(15)
-            .assign(verify=lambda d: d["node"].map(set_url))
-            .rename(columns={"node": "company"}))
-    st.dataframe(
-        comp[["company", "sector", "degree", "weighted_degree",
-              "betweenness", "eigenvector", "verify"]],
-        width="stretch", hide_index=True,
-        column_config={
-            "verify": st.column_config.LinkColumn(
+
+    # ---- Helper: render one ranked table ------------------------------
+    def render_ranking(df_sub: pd.DataFrame, title: str, *,
+                       show_verify: bool, show_sector: bool):
+        ranked = (df_sub.sort_values(col, ascending=False, na_position="last")
+                  .head(top_n)
+                  .reset_index(drop=True))
+        ranked.insert(0, "rank", ranked.index + 1)
+        ranked["score"] = ranked[col]
+
+        cols_show = ["rank", "node"]
+        if show_sector:
+            cols_show.append("sector")
+        cols_show += ["degree_raw", "weighted_degree", "score"]
+
+        col_cfg = {
+            "rank": st.column_config.NumberColumn("#", width="small"),
+            "node": st.column_config.TextColumn("Node"),
+            "degree_raw": st.column_config.NumberColumn(
+                "Degree", help="Raw degree (number of neighbours)",
+                width="small"),
+            "weighted_degree": st.column_config.NumberColumn(
+                "W-Degree", help="Sum of ownership % on adjacent edges",
+                format="%.1f", width="small"),
+            "score": st.column_config.ProgressColumn(
+                f"{measure_name} score",
+                help=f"{measure_name} centrality value",
+                format="%.4f",
+                min_value=0.0,
+                max_value=float(ranked["score"].max()) if not ranked["score"].isna().all() else 1.0,
+            ),
+        }
+        if show_sector:
+            col_cfg["sector"] = st.column_config.TextColumn("Sector")
+        if show_verify:
+            ranked = ranked.assign(verify=ranked["node"].map(set_url))
+            cols_show.append("verify")
+            col_cfg["verify"] = st.column_config.LinkColumn(
                 "Verify on SET",
                 display_text="🔗 set.or.th",
                 help="Open the official Major Shareholders page on set.or.th",
-            ),
-        },
-    )
+            )
 
+        st.markdown(f"**{title}**")
+        st.dataframe(ranked[cols_show], width="stretch",
+                     hide_index=True, column_config=col_cfg)
+
+    # ---- Main ranking display ----------------------------------------
+    if combine_kinds:
+        render_ranking(
+            metrics,
+            title=f"Top {top_n} nodes — {measure_name}  "
+                  f"(Companies + Stakeholders combined)",
+            show_verify=False,
+            show_sector=False,
+        )
+        st.caption("ℹ️  Mixed ranking — Stakeholders usually dominate "
+                   "degree-based measures because Companies are capped at degree = 5.")
+    else:
+        col_a, col_b = st.columns(2)
+        with col_a:
+            render_ranking(
+                metrics[metrics["kind"] == "company"],
+                title=f"🏢 Top {top_n} Companies — {measure_name}",
+                show_verify=True,
+                show_sector=True,
+            )
+        with col_b:
+            render_ranking(
+                metrics[metrics["kind"] == "stakeholder"],
+                title=f"🟥 Top {top_n} Stakeholders — {measure_name}",
+                show_verify=False,
+                show_sector=False,
+            )
+
+    # ---- Cross-measure comparison ------------------------------------
+    st.markdown("---")
+    with st.expander("🔄 Cross-measure ranking — who ranks high in *every* measure?",
+                     expanded=False):
+        st.caption(
+            "For each centrality, we rank nodes 1, 2, 3, ... "
+            "Cells show the rank of that node in that measure "
+            "(green = good rank, red = poor). Look for rows that are "
+            "**all green** — those are the 'consensus hubs' that matter "
+            "no matter which definition of importance you pick."
+        )
+        kind_choice = st.radio(
+            "Show ranks for:",
+            ["🏢 Companies", "🟥 Stakeholders"],
+            horizontal=True,
+            key="cross_kind",
+        )
+        target_kind = "company" if kind_choice.startswith("🏢") else "stakeholder"
+
+        measures = list(CENTRALITY_DEFS.keys())
+        cols_map = [CENTRALITY_DEFS[m]["col"] for m in measures]
+
+        sub = metrics[metrics["kind"] == target_kind].copy()
+        for m, c in zip(measures, cols_map):
+            sub[f"r_{m}"] = sub[c].rank(ascending=False,
+                                        method="min",
+                                        na_option="bottom").astype("Int64")
+
+        # Union of top-10 across all measures
+        keep_idx = set()
+        for m in measures:
+            keep_idx.update(sub.nsmallest(10, f"r_{m}").index)
+        cross = sub.loc[list(keep_idx)].copy()
+        cross["best_rank"] = cross[[f"r_{m}" for m in measures]].min(axis=1)
+        cross = cross.sort_values("best_rank")
+
+        display_cols = ["node"] + [f"r_{m}" for m in measures]
+        styled = cross[display_cols].rename(
+            columns={f"r_{m}": m for m in measures} | {"node": "Node"}
+        )
+
+        col_cfg2 = {"Node": st.column_config.TextColumn("Node")}
+        for m in measures:
+            col_cfg2[m] = st.column_config.NumberColumn(
+                m, format="%d",
+                help=f"Rank in {m} centrality (1 = best)",
+                width="small",
+            )
+        st.dataframe(styled, width="stretch", hide_index=True,
+                     column_config=col_cfg2)
+
+        st.caption("💡  Nodes in the top rows score top-10 across most "
+                   "measures — they are robustly central regardless of "
+                   "which definition you trust.")
+
+    # ---- Download ----------------------------------------------------
     st.download_button(
-        "⬇ Download all metrics (CSV)",
+        "⬇ Download all centralities (CSV)",
         data=metrics.to_csv(index=False).encode("utf-8"),
-        file_name="set50_metrics.csv",
+        file_name="set50_centralities.csv",
         mime="text/csv",
     )
 
