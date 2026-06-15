@@ -556,8 +556,8 @@ with tab_centrality:
     # ---- Definition box ----------------------------------------------
     st.info(
         f"**📐 {measure_name} centrality**\n\n"
-        f"🇬🇧  *{info['en']}*\n\n"
-        f"🇹🇭  {info['th']}"
+        f"**EN:**  *{info['en']}*\n\n"
+        f"**TH:**  {info['th']}"
     )
 
     # ---- Helper: render one ranked table ------------------------------
