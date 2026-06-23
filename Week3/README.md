@@ -84,34 +84,212 @@ python scripts/louvain_community.py      # Louvain vs K-Means + NMI/ARI
 python scripts/karate_louvain.py         # Louvain บน Karate Club
 ```
 
-## ผลลัพธ์หลัก
+## ตัวอย่างกราฟ + Cypher ที่รันได้
 
-### Bridges (edges_rows.csv)
-**0 bridges** — graph มี 2 components ที่แยกอยู่แล้ว (16 + 8) และ edges
-ที่เหลือทั้งหมดอยู่ใน cycle (รวมถึง parallel edges จากการเขียน a→b
-และ b→a ใน CSV)
+ทุกตัวอย่างด้านล่างนี้รันได้จริงใน **Neo4j Browser** (`http://localhost:7474/`)
+หลัง start container + import ข้อมูลแล้ว สำหรับ interactive HTML
+ดูได้ที่ลิงก์ GitHub Pages ในแต่ละหัวข้อ
 
-### Centrality — Top 1 ของแต่ละตัว
-| Metric | Node | Score |
+### Step 0 — Project graph (ทำก่อนทุกอย่าง)
+
+ต้อง project เป็น **undirected** เพราะ Bridges / Closeness / Betweenness /
+Eigenvector ต้องการ undirected ทั้งหมด:
+
+```cypher
+CALL gds.graph.drop('myGraph', false);
+MATCH (s:Person)-[r:KNOWS]->(t:Person)
+RETURN gds.graph.project(
+  'myGraph', s, t, {},
+  { undirectedRelationshipTypes: ['*'] }
+);
+```
+ผลที่ได้: 24 nodes, 168 relationships (= 84 KNOWS × 2 ทิศทาง)
+
+---
+
+### 1. Centrality 6 ตัว + Bridges (6-panel)
+
+![Centrality 6-panel](outputs/images/centrality_plot_gds.png)
+
+**Interactive:** <https://puwadonsri.github.io/DADS7201_Social_Network/Week3/outputs/html/centrality_pyvis.html>
+
+**คำอธิบาย:** วงกลม = Person node, ขนาด+สี = score ของ metric (เข้ม/ใหญ่
+= score สูง) เส้นเทา = KNOWS, แดง = bridge edge (ในแผง Bridges)
+
+**Cypher ที่ผลิตข้อมูล:**
+```cypher
+// Bridges (panel แรก)
+CALL gds.bridges.stream('myGraph')
+YIELD from, to, remainingSizes
+RETURN gds.util.asNode(from).name AS f,
+       gds.util.asNode(to).name   AS t,
+       remainingSizes;
+// → 0 rows (no bridges)
+
+// Betweenness
+CALL gds.betweenness.stream('myGraph')
+YIELD nodeId, score
+RETURN gds.util.asNode(nodeId).name AS name, score
+ORDER BY score DESC LIMIT 5;
+// 1. Supitcha Kaewplengsrisakul  34.6467
+// 2. Noppawat                    16.4064
+// 3. Siriwat                     13.8593
+// 4. Kritsada                    12.1823
+// 5. Krittanut                   10.4838
+
+// PageRank
+CALL gds.pageRank.stream('myGraph')
+YIELD nodeId, score
+RETURN gds.util.asNode(nodeId).name AS name, score
+ORDER BY score DESC LIMIT 5;
+// 1. Noppawat   1.5681
+// 2. Suphawan   1.5084
+// 3. Siriwat    1.4750
+// 4. Khemasiri  1.3654
+// 5. Yutthanasiri 1.1774
+```
+
+**สรุปคน "เด่น" แต่ละมุม:**
+
+| Metric | Top 1 | Score | ตีความ |
+|---|---|---|---|
+| Betweenness | Supitcha Kaewplengsrisakul | 34.6467 | สะพานเชื่อมระหว่างกลุ่ม |
+| Closeness | Suphawan / Khemasiri | 0.7778 | อยู่ใน cluster หนาแน่น |
+| Degree | Noppawat | 15 | คนรู้จักเยอะที่สุด |
+| Eigenvector | Noppawat | 0.4484 | รู้จัก "คนสำคัญ" เยอะ |
+| PageRank | Noppawat | 1.5681 | ดารา hub หลักของเครือข่าย |
+
+### 2. Bridges — ทำไมได้ 0?
+
+**ผล:** `gds.bridges.stream('myGraph')` คืน **0 rows**
+ทั้ง ๆ ที่ graph มี 84 edges
+
+**สาเหตุเชิงโครงสร้าง:**
+
+```cypher
+// 1) Graph แตกเป็น 2 components (ไม่ได้ต่อถึงกันอยู่แล้ว)
+CALL gds.wcc.stream('myGraph')
+YIELD nodeId, componentId
+RETURN componentId, count(*) AS size
+ORDER BY size DESC;
+// componentId=0  size=16   ← กลุ่มใหญ่ (Noppawat & co)
+// componentId=9  size=8    ← กลุ่ม Khemasiri/Suphawan
+
+// 2) CSV มี edge ซ้ำสองทิศ (21 จาก 63 unique pair)
+MATCH (a:Person)-[:KNOWS]-(b:Person) WHERE id(a) < id(b)
+WITH a, b, count(*) AS multiplicity
+RETURN multiplicity, count(*) AS pairs;
+// multiplicity=2  pairs=21  ← project แล้วกลายเป็น parallel edges
+// multiplicity=1  pairs=42
+
+// 3) แม้จะ dedupe ก่อน project ก็ยังได้ 0 bridges
+MATCH (a:Person)-[:KNOWS]-(b:Person) WHERE id(a) < id(b)
+WITH DISTINCT a, b
+RETURN gds.graph.project(
+  'dedupG', a, b, {}, { undirectedRelationshipTypes: ['*'] }
+);
+CALL gds.bridges.stream('dedupG');
+// → ยัง 0 rows — edge เดี่ยวที่เหลืออยู่ใน triangle ทั้งหมด
+```
+
+→ ยืนยันว่า graph นี้ **ไม่มี bridge** ตามนิยาม
+
+### 3. Community Detection — Louvain vs K-Means
+
+![Louvain vs K-Means](outputs/images/community_louvain_vs_kmeans.png)
+
+**Interactive:** <https://puwadonsri.github.io/DADS7201_Social_Network/Week3/outputs/html/community_louvain_vs_kmeans.html>
+
+**คำอธิบาย:** สีเดียวกัน = อยู่ community เดียวกัน เส้นทึบ
+= edge ภายในชุมชน เส้นเทาประ = edge ข้ามชุมชน
+
+**Cypher:**
+
+```cypher
+// (A) Louvain — modularity-based, ไม่ต้องสร้าง embedding ก่อน
+CALL gds.louvain.stats('myGraph')
+YIELD modularity, communityCount, communityDistribution
+RETURN modularity, communityCount, communityDistribution;
+// modularity = 0.5318, communityCount = 3
+
+CALL gds.louvain.stream('myGraph')
+YIELD nodeId, communityId
+RETURN communityId, collect(gds.util.asNode(nodeId).name) AS members
+ORDER BY size(members) DESC;
+// c=8  (11): Kritsada, Natdanai, Noppawat, Piriya, Siriwat, Sumonsiri,
+//            Supitcha Kaewplengsrisakul, Tanin, Yingphan, Yutthanasiri, sahaphum
+// c=19 (8):  Freddie, Khemasiri, Krich, Napob, Suphawan, Tirawat, Worawat, Wuttichai
+// c=15 (5):  Krittanut, Phetcharee, Pimkanit, Poonyanood, Somruedee
+
+// (B) K-Means — ต้องสร้าง FastRP embedding 128-dim ก่อน
+CALL gds.fastRP.mutate('myGraph', {
+  embeddingDimension: 128, randomSeed: 42, mutateProperty: 'embedding'
+});
+
+CALL gds.kmeans.stream('myGraph', {
+  nodeProperty: 'embedding', k: 4, randomSeed: 42,
+  computeSilhouette: true, concurrency: 1
+})
+YIELD nodeId, communityId, silhouette
+RETURN communityId, count(*) AS size, avg(silhouette) AS sil
+ORDER BY size DESC;
+// silhouette เฉลี่ย = 0.7840  (sizes: 11, 5, 5, 3)
+```
+
+**สรุปเทียบ:**
+
+| Method | จำนวน community | Metric ภายใน | ข้อสังเกต |
+|---|---|---|---|
+| **Louvain** | 3 | modularity 0.5318 | รวมกลุ่ม Khemasiri (5) + Krich/Napob/Suphawan (3) เป็นกลุ่มเดียว (8) ตามโครงสร้าง edge จริง |
+| **K-Means k=4** | 4 | silhouette 0.7840 | แยกกลุ่ม Krich/Napob/Suphawan ออกเป็นชุมชนย่อย |
+| **Agreement** | — | NMI 0.9091, ARI 0.8733 | ผลตรงกันสูงมาก แค่ K-Means ละเอียดกว่า |
+
+### 4. Karate Club — Louvain vs K-Means vs Ground Truth
+
+![Karate Club 3-panel](outputs/images/karate_louvain_vs_kmeans.png)
+
+**Cypher (ผ่าน Python GDS client เพราะ `load_karate_club` ไม่มีใน Cypher):**
+```python
+G = gds.graph.load_karate_club("karate", undirected=False)
+gds.louvain.stream(G)                              # modularity 0.3113, 5 communities
+gds.fastRP.mutate(G, embeddingDimension=128, ...)
+gds.kmeans.stream(G, nodeProperty="embedding", k=2)  # silhouette 0.6830
+```
+
+**Accuracy vs Ground Truth (2-faction, majority-vote alignment):**
+
+| Method | Accuracy |
+|---|---|
+| Louvain (5 communities) | **88.24%** (30/34) |
+| K-Means k=2 | 73.53% (25/34) |
+
+→ Louvain ชนะเพราะใช้โครงสร้าง edge ตรง ๆ ไม่ผ่าน embedding
+ที่อาจสูญเสียข้อมูลโครงสร้าง
+
+### 5. K-Means k-selection (silhouette elbow)
+
+![K-Means elbow](outputs/images/kmeans_elbow.png)
+
+ลอง k = 2..8 บน `edges_rows.csv` → silhouette สูงสุดที่ **k=4 (0.784)**
+
+```cypher
+// loop k=2..8 ใน script Python ก็ต่อ Cypher นี้แต่ละ k
+CALL gds.kmeans.stream('myGraph', {
+  nodeProperty: 'embedding', k: $k, randomSeed: 42,
+  computeSilhouette: true, concurrency: 1
+})
+YIELD silhouette
+RETURN avg(silhouette) AS avg_sil;
+```
+
+| k | avg silhouette | sizes |
 |---|---|---|
-| Betweenness | Supitcha Kaewplengsrisakul | 34.6467 |
-| Closeness | Suphawan / Khemasiri | 0.7778 |
-| Degree | Noppawat | 15 |
-| Eigenvector | Noppawat | 0.4484 |
-| PageRank | Noppawat | 1.5681 |
-
-→ **Noppawat** = central hub, **Supitcha** = betweenness leader (เชื่อมระหว่างกลุ่ม),
-**Suphawan/Khemasiri** = closeness leader (อยู่ใน cluster หนาแน่น)
-
-### Community Detection
-| Method | edges_rows.csv | Karate Club (vs 2-faction GT) |
-|---|---|---|
-| Louvain | 3 communities, modularity = 0.5318 | 5 communities, modularity = 0.3113, **accuracy 88.24%** |
-| K-Means (FastRP) | k=4, silhouette = 0.7840 | k=2, silhouette = 0.6830, accuracy 73.53% |
-| Agreement | NMI = 0.9091, ARI = 0.8733 | — |
-
-→ Louvain ดีกว่า K-Means บน Karate Club เพราะใช้โครงสร้าง edge โดยตรง
-ไม่ผ่าน embedding
+| 2 | 0.5451 | [16, 8] |
+| 3 | 0.5657 | [16, 5, 3] |
+| **4** | **0.7840** | **[11, 5, 5, 3]** ← optimal |
+| 5–6 | NaN | (cluster ว่าง) |
+| 7 | 0.4734 | [6, 5, 5, 3, 2, 2, 1] |
+| 8 | 0.4421 | [6, 5, 5, 3, 2, 1, 1, 1] |
 
 ## เอกสารอ้างอิง
 
