@@ -1,0 +1,127 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        
+            <script src="lib/bindings/utils.js"></script>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/dist/vis-network.min.css" integrity="sha512-WgxfT5LWjfszlPHXRmBWHkV2eceiWTOBvrKCNbdgDYTHrT2AeLCGbF4sZlZw3UMN3WtL0tGUoIAKsu8mllg/XA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/vis-network.min.js" integrity="sha512-LnvoEWDFrqGHlHmDD2101OrLcbsfkrzoSpvtSQtxK3RMnRV0eOkhhBN2dXHKRrUU8p2DGRTk35n4O8nWSVe1mQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+            
+        
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+        <link
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6"
+          crossorigin="anonymous"
+        />
+        <script
+          src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
+          crossorigin="anonymous"
+        ></script>
+
+
+        <center>
+          <h1></h1>
+        </center>
+        <style type="text/css">
+
+             #mynetwork {
+                 width: 100%;
+                 height: 800px;
+                 background-color: #ffffff;
+                 border: 1px solid lightgray;
+                 position: relative;
+                 float: left;
+             }
+
+             
+
+             
+
+             
+        </style>
+    </head>
+
+
+    <body>
+        <div class="card" style="width: 100%">
+            
+            
+            <div id="mynetwork" class="card-body"></div>
+        </div>
+
+        
+        
+
+        <script type="text/javascript">
+
+              // initialize global variables.
+              var edges;
+              var nodes;
+              var allNodes;
+              var allEdges;
+              var nodeColors;
+              var originalNodes;
+              var network;
+              var container;
+              var options, data;
+              var filter = {
+                  item : '',
+                  property : '',
+                  value : []
+              };
+
+              
+
+              
+
+              // This method is responsible for drawing the graph, returns the drawn network
+              function drawGraph() {
+                  var container = document.getElementById('mynetwork');
+
+                  
+
+                  // parsing and collecting nodes and edges from the python
+                  nodes = new vis.DataSet([{"group": 1, "id": "Freddie", "label": "Freddie", "shape": "dot", "size": 16.333333333333332, "title": "\u003cb\u003eFreddie\u003c/b\u003e\u003cbr\u003eBetweenness: 1.3333\u003cbr\u003eCloseness: 0.7000\u003cbr\u003eDegree: 5.0000\u003cbr\u003eEigenvector: 0.0000\u003cbr\u003ePagerank: 1.0047\u003cbr\u003e"}, {"group": 1, "id": "Khemasiri", "label": "Khemasiri", "shape": "dot", "size": 19.833333333333332, "title": "\u003cb\u003eKhemasiri\u003c/b\u003e\u003cbr\u003eBetweenness: 4.8333\u003cbr\u003eCloseness: 0.7778\u003cbr\u003eDegree: 7.0000\u003cbr\u003eEigenvector: 0.0000\u003cbr\u003ePagerank: 1.3654\u003cbr\u003e"}, {"group": 0, "id": "Krich", "label": "Krich", "shape": "dot", "size": 15.0, "title": "\u003cb\u003eKrich\u003c/b\u003e\u003cbr\u003eBetweenness: 0.0000\u003cbr\u003eCloseness: 0.5000\u003cbr\u003eDegree: 4.0000\u003cbr\u003eEigenvector: 0.0000\u003cbr\u003ePagerank: 0.8098\u003cbr\u003e"}, {"group": 1, "id": "Kritsada", "label": "Kritsada", "shape": "dot", "size": 27.18230341743473, "title": "\u003cb\u003eKritsada\u003c/b\u003e\u003cbr\u003eBetweenness: 12.1823\u003cbr\u003eCloseness: 0.6000\u003cbr\u003eDegree: 6.0000\u003cbr\u003eEigenvector: 0.1907\u003cbr\u003ePagerank: 0.7248\u003cbr\u003e"}, {"group": 1, "id": "Krittanut", "label": "Krittanut", "shape": "dot", "size": 25.483802079008655, "title": "\u003cb\u003eKrittanut\u003c/b\u003e\u003cbr\u003eBetweenness: 10.4838\u003cbr\u003eCloseness: 0.5172\u003cbr\u003eDegree: 7.0000\u003cbr\u003eEigenvector: 0.0504\u003cbr\u003ePagerank: 0.9707\u003cbr\u003e"}, {"group": 0, "id": "Napob", "label": "Napob", "shape": "dot", "size": 15.0, "title": "\u003cb\u003eNapob\u003c/b\u003e\u003cbr\u003eBetweenness: 0.0000\u003cbr\u003eCloseness: 0.5000\u003cbr\u003eDegree: 4.0000\u003cbr\u003eEigenvector: 0.0000\u003cbr\u003ePagerank: 0.8098\u003cbr\u003e"}, {"group": 1, "id": "Natdanai", "label": "Natdanai", "shape": "dot", "size": 15.1, "title": "\u003cb\u003eNatdanai\u003c/b\u003e\u003cbr\u003eBetweenness: 0.1000\u003cbr\u003eCloseness: 0.4839\u003cbr\u003eDegree: 7.0000\u003cbr\u003eEigenvector: 0.2358\u003cbr\u003ePagerank: 0.7958\u003cbr\u003e"}, {"group": 1, "id": "Noppawat", "label": "Noppawat", "shape": "dot", "size": 31.406444681119073, "title": "\u003cb\u003eNoppawat\u003c/b\u003e\u003cbr\u003eBetweenness: 16.4064\u003cbr\u003eCloseness: 0.6818\u003cbr\u003eDegree: 15.0000\u003cbr\u003eEigenvector: 0.4484\u003cbr\u003ePagerank: 1.5681\u003cbr\u003e"}, {"group": 0, "id": "Phetcharee", "label": "Phetcharee", "shape": "dot", "size": 15.0, "title": "\u003cb\u003ePhetcharee\u003c/b\u003e\u003cbr\u003eBetweenness: 0.0000\u003cbr\u003eCloseness: 0.3846\u003cbr\u003eDegree: 7.0000\u003cbr\u003eEigenvector: 0.0276\u003cbr\u003ePagerank: 0.9954\u003cbr\u003e"}, {"group": 1, "id": "Pimkanit", "label": "Pimkanit", "shape": "dot", "size": 21.80730341743473, "title": "\u003cb\u003ePimkanit\u003c/b\u003e\u003cbr\u003eBetweenness: 6.8073\u003cbr\u003eCloseness: 0.4839\u003cbr\u003eDegree: 7.0000\u003cbr\u003eEigenvector: 0.0422\u003cbr\u003ePagerank: 0.9757\u003cbr\u003e"}, {"group": 0, "id": "Piriya", "label": "Piriya", "shape": "dot", "size": 15.0, "title": "\u003cb\u003ePiriya\u003c/b\u003e\u003cbr\u003eBetweenness: 0.0000\u003cbr\u003eCloseness: 0.4688\u003cbr\u003eDegree: 7.0000\u003cbr\u003eEigenvector: 0.2590\u003cbr\u003ePagerank: 0.7891\u003cbr\u003e"}, {"group": 0, "id": "Poonyanood", "label": "Poonyanood", "shape": "dot", "size": 15.0, "title": "\u003cb\u003ePoonyanood\u003c/b\u003e\u003cbr\u003eBetweenness: 0.0000\u003cbr\u003eCloseness: 0.3846\u003cbr\u003eDegree: 5.0000\u003cbr\u003eEigenvector: 0.0197\u003cbr\u003ePagerank: 0.7479\u003cbr\u003e"}, {"group": 1, "id": "Siriwat", "label": "Siriwat", "shape": "dot", "size": 28.85927321826089, "title": "\u003cb\u003eSiriwat\u003c/b\u003e\u003cbr\u003eBetweenness: 13.8593\u003cbr\u003eCloseness: 0.6818\u003cbr\u003eDegree: 14.0000\u003cbr\u003eEigenvector: 0.4170\u003cbr\u003ePagerank: 1.4750\u003cbr\u003e"}, {"group": 1, "id": "Somruedee", "label": "Somruedee", "shape": "dot", "size": 22.333894503556614, "title": "\u003cb\u003eSomruedee\u003c/b\u003e\u003cbr\u003eBetweenness: 7.3339\u003cbr\u003eCloseness: 0.5172\u003cbr\u003eDegree: 5.0000\u003cbr\u003eEigenvector: 0.0439\u003cbr\u003ePagerank: 0.7271\u003cbr\u003e"}, {"group": 1, "id": "Sumonsiri", "label": "Sumonsiri", "shape": "dot", "size": 16.348412698412698, "title": "\u003cb\u003eSumonsiri\u003c/b\u003e\u003cbr\u003eBetweenness: 1.3484\u003cbr\u003eCloseness: 0.5769\u003cbr\u003eDegree: 10.0000\u003cbr\u003eEigenvector: 0.3305\u003cbr\u003ePagerank: 1.0925\u003cbr\u003e"}, {"group": 1, "id": "Suphawan", "label": "Suphawan", "shape": "dot", "size": 25.0, "title": "\u003cb\u003eSuphawan\u003c/b\u003e\u003cbr\u003eBetweenness: 10.0000\u003cbr\u003eCloseness: 0.7778\u003cbr\u003eDegree: 8.0000\u003cbr\u003eEigenvector: 0.0000\u003cbr\u003ePagerank: 1.5084\u003cbr\u003e"}, {"group": 1, "id": "Supitcha Kaewplengsrisakul", "label": "Supitcha Kaewplengsrisakul", "shape": "dot", "size": 49.646664836533525, "title": "\u003cb\u003eSupitcha Kaewplengsrisakul\u003c/b\u003e\u003cbr\u003eBetweenness: 34.6467\u003cbr\u003eCloseness: 0.6818\u003cbr\u003eDegree: 10.0000\u003cbr\u003eEigenvector: 0.2867\u003cbr\u003ePagerank: 1.1346\u003cbr\u003e"}, {"group": 1, "id": "Tanin", "label": "Tanin", "shape": "dot", "size": 15.952380952380953, "title": "\u003cb\u003eTanin\u003c/b\u003e\u003cbr\u003eBetweenness: 0.9524\u003cbr\u003eCloseness: 0.4839\u003cbr\u003eDegree: 8.0000\u003cbr\u003eEigenvector: 0.2673\u003cbr\u003ePagerank: 0.8940\u003cbr\u003e"}, {"group": 1, "id": "Tirawat", "label": "Tirawat", "shape": "dot", "size": 15.25, "title": "\u003cb\u003eTirawat\u003c/b\u003e\u003cbr\u003eBetweenness: 0.2500\u003cbr\u003eCloseness: 0.5385\u003cbr\u003eDegree: 3.0000\u003cbr\u003eEigenvector: 0.0000\u003cbr\u003ePagerank: 0.6759\u003cbr\u003e"}, {"group": 1, "id": "Worawat", "label": "Worawat", "shape": "dot", "size": 15.333333333333334, "title": "\u003cb\u003eWorawat\u003c/b\u003e\u003cbr\u003eBetweenness: 0.3333\u003cbr\u003eCloseness: 0.5385\u003cbr\u003eDegree: 3.0000\u003cbr\u003eEigenvector: 0.0000\u003cbr\u003ePagerank: 0.6811\u003cbr\u003e"}, {"group": 1, "id": "Wuttichai", "label": "Wuttichai", "shape": "dot", "size": 16.25, "title": "\u003cb\u003eWuttichai\u003c/b\u003e\u003cbr\u003eBetweenness: 1.2500\u003cbr\u003eCloseness: 0.7000\u003cbr\u003eDegree: 4.0000\u003cbr\u003eEigenvector: 0.0000\u003cbr\u003ePagerank: 0.8349\u003cbr\u003e"}, {"group": 1, "id": "Yingphan", "label": "Yingphan", "shape": "dot", "size": 15.1, "title": "\u003cb\u003eYingphan\u003c/b\u003e\u003cbr\u003eBetweenness: 0.1000\u003cbr\u003eCloseness: 0.4839\u003cbr\u003eDegree: 6.0000\u003cbr\u003eEigenvector: 0.2032\u003cbr\u003ePagerank: 0.7026\u003cbr\u003e"}, {"group": 1, "id": "Yutthanasiri", "label": "Yutthanasiri", "shape": "dot", "size": 21.01107948624096, "title": "\u003cb\u003eYutthanasiri\u003c/b\u003e\u003cbr\u003eBetweenness: 6.0111\u003cbr\u003eCloseness: 0.6000\u003cbr\u003eDegree: 11.0000\u003cbr\u003eEigenvector: 0.3494\u003cbr\u003ePagerank: 1.1774\u003cbr\u003e"}, {"group": 1, "id": "sahaphum", "label": "sahaphum", "shape": "dot", "size": 15.768440709617181, "title": "\u003cb\u003esahaphum\u003c/b\u003e\u003cbr\u003eBetweenness: 0.7684\u003cbr\u003eCloseness: 0.5357\u003cbr\u003eDegree: 5.0000\u003cbr\u003eEigenvector: 0.1799\u003cbr\u003ePagerank: 0.6092\u003cbr\u003e"}]);
+                  edges = new vis.DataSet([{"color": "#aaaaaa", "dashes": true, "from": "Tanin", "title": "", "to": "Yingphan", "width": 1}, {"color": "#aaaaaa", "dashes": true, "from": "Siriwat", "title": "", "to": "Yingphan", "width": 1}, {"color": "#aaaaaa", "dashes": true, "from": "Piriya", "title": "", "to": "Yingphan", "width": 1}, {"color": "#aaaaaa", "dashes": true, "from": "Noppawat", "title": "", "to": "Yingphan", "width": 1}, {"color": "#aaaaaa", "dashes": true, "from": "Siriwat", "title": "", "to": "Sumonsiri", "width": 1}, {"color": "#aaaaaa", "dashes": true, "from": "Yutthanasiri", "title": "", "to": "Sumonsiri", "width": 1}, {"color": "#aaaaaa", "dashes": true, "from": "Supitcha Kaewplengsrisakul", "title": "", "to": "Sumonsiri", "width": 1}, {"color": "#aaaaaa", "dashes": true, "from": "Kritsada", "title": "", "to": "Sumonsiri", "width": 1}, {"color": "#aaaaaa", "dashes": true, "from": "Noppawat", "title": "", "to": "Sumonsiri", "width": 1}, {"color": "#aaaaaa", "dashes": true, "from": "Suphawan", "title": "", "to": "Krich", "width": 1}, {"color": "#aaaaaa", "dashes": true, "from": "Napob", "title": "", "to": "Krich", "width": 1}, {"color": "#aaaaaa", "dashes": true, "from": "Suphawan", "title": "", "to": "Napob", "width": 1}, {"color": "#aaaaaa", "dashes": true, "from": "Krittanut", "title": "", "to": "Poonyanood", "width": 1}, {"color": "#aaaaaa", "dashes": true, "from": "Pimkanit", "title": "", "to": "Poonyanood", "width": 1}, {"color": "#aaaaaa", "dashes": true, "from": "Phetcharee", "title": "", "to": "Poonyanood", "width": 1}, {"color": "#aaaaaa", "dashes": true, "from": "Pimkanit", "title": "", "to": "Phetcharee", "width": 1}, {"color": "#aaaaaa", "dashes": true, "from": "Krittanut", "title": "", "to": "Phetcharee", "width": 1}, {"color": "#aaaaaa", "dashes": true, "from": "Siriwat", "title": "", "to": "Noppawat", "width": 1}, {"color": "#aaaaaa", "dashes": true, "from": "Supitcha Kaewplengsrisakul", "title": "", "to": "Noppawat", "width": 1}, {"color": "#aaaaaa", "dashes": true, "from": "Tanin", "title": "", "to": "Noppawat", "width": 1}, {"color": "#aaaaaa", "dashes": true, "from": "Yutthanasiri", "title": "", "to": "Noppawat", "width": 1}, {"color": "#aaaaaa", "dashes": true, "from": "Piriya", "title": "", "to": "Noppawat", "width": 1}, {"color": "#aaaaaa", "dashes": true, "from": "Siriwat", "title": "", "to": "Piriya", "width": 1}, {"color": "#aaaaaa", "dashes": true, "from": "Siriwat", "title": "", "to": "Kritsada", "width": 1}, {"color": "#aaaaaa", "dashes": true, "from": "Pimkanit", "title": "", "to": "Kritsada", "width": 1}, {"color": "#aaaaaa", "dashes": true, "from": "Supitcha Kaewplengsrisakul", "title": "", "to": "Kritsada", "width": 1}, {"color": "#aaaaaa", "dashes": true, "from": "Noppawat", "title": "", "to": "Kritsada", "width": 1}, {"color": "#aaaaaa", "dashes": true, "from": "Pimkanit", "title": "", "to": "Krittanut", "width": 1}, {"color": "#aaaaaa", "dashes": true, "from": "Yutthanasiri", "title": "", "to": "Natdanai", "width": 1}, {"color": "#aaaaaa", "dashes": true, "from": "Tanin", "title": "", "to": "Natdanai", "width": 1}, {"color": "#aaaaaa", "dashes": true, "from": "Siriwat", "title": "", "to": "Natdanai", "width": 1}, {"color": "#aaaaaa", "dashes": true, "from": "Piriya", "title": "", "to": "Natdanai", "width": 1}, {"color": "#aaaaaa", "dashes": true, "from": "Noppawat", "title": "", "to": "Natdanai", "width": 1}, {"color": "#aaaaaa", "dashes": true, "from": "Yingphan", "title": "", "to": "Natdanai", "width": 1}, {"color": "#aaaaaa", "dashes": true, "from": "Tanin", "title": "", "to": "Yutthanasiri", "width": 1}, {"color": "#aaaaaa", "dashes": true, "from": "Supitcha Kaewplengsrisakul", "title": "", "to": "Yutthanasiri", "width": 1}, {"color": "#aaaaaa", "dashes": true, "from": "Piriya", "title": "", "to": "Yutthanasiri", "width": 1}, {"color": "#aaaaaa", "dashes": true, "from": "Yingphan", "title": "", "to": "Yutthanasiri", "width": 1}, {"color": "#aaaaaa", "dashes": true, "from": "Siriwat", "title": "", "to": "Supitcha Kaewplengsrisakul", "width": 1}, {"color": "#aaaaaa", "dashes": true, "from": "Krittanut", "title": "", "to": "Supitcha Kaewplengsrisakul", "width": 1}, {"color": "#aaaaaa", "dashes": true, "from": "Khemasiri", "title": "", "to": "Suphawan", "width": 1}, {"color": "#aaaaaa", "dashes": true, "from": "Siriwat", "title": "", "to": "Tanin", "width": 1}, {"color": "#aaaaaa", "dashes": true, "from": "Worawat", "title": "", "to": "Khemasiri", "width": 1}, {"color": "#aaaaaa", "dashes": true, "from": "Freddie", "title": "", "to": "Khemasiri", "width": 1}, {"color": "#aaaaaa", "dashes": true, "from": "Suphawan", "title": "", "to": "Freddie", "width": 1}, {"color": "#aaaaaa", "dashes": true, "from": "Yutthanasiri", "title": "", "to": "Siriwat", "width": 1}, {"color": "#aaaaaa", "dashes": true, "from": "Supitcha Kaewplengsrisakul", "title": "", "to": "sahaphum", "width": 1}, {"color": "#aaaaaa", "dashes": true, "from": "Siriwat", "title": "", "to": "sahaphum", "width": 1}, {"color": "#aaaaaa", "dashes": true, "from": "Tanin", "title": "", "to": "sahaphum", "width": 1}, {"color": "#aaaaaa", "dashes": true, "from": "Noppawat", "title": "", "to": "sahaphum", "width": 1}, {"color": "#aaaaaa", "dashes": true, "from": "Sumonsiri", "title": "", "to": "sahaphum", "width": 1}, {"color": "#aaaaaa", "dashes": true, "from": "Pimkanit", "title": "", "to": "Somruedee", "width": 1}, {"color": "#aaaaaa", "dashes": true, "from": "Krittanut", "title": "", "to": "Somruedee", "width": 1}, {"color": "#aaaaaa", "dashes": true, "from": "Supitcha Kaewplengsrisakul", "title": "", "to": "Somruedee", "width": 1}, {"color": "#aaaaaa", "dashes": true, "from": "Phetcharee", "title": "", "to": "Somruedee", "width": 1}, {"color": "#aaaaaa", "dashes": true, "from": "Poonyanood", "title": "", "to": "Somruedee", "width": 1}, {"color": "#aaaaaa", "dashes": true, "from": "Khemasiri", "title": "", "to": "Wuttichai", "width": 1}, {"color": "#aaaaaa", "dashes": true, "from": "Freddie", "title": "", "to": "Wuttichai", "width": 1}, {"color": "#aaaaaa", "dashes": true, "from": "Suphawan", "title": "", "to": "Wuttichai", "width": 1}, {"color": "#aaaaaa", "dashes": true, "from": "Worawat", "title": "", "to": "Wuttichai", "width": 1}, {"color": "#aaaaaa", "dashes": true, "from": "Worawat", "title": "", "to": "Tirawat", "width": 1}, {"color": "#aaaaaa", "dashes": true, "from": "Freddie", "title": "", "to": "Tirawat", "width": 1}, {"color": "#aaaaaa", "dashes": true, "from": "Khemasiri", "title": "", "to": "Tirawat", "width": 1}]);
+
+                  nodeColors = {};
+                  allNodes = nodes.get({ returnType: "Object" });
+                  for (nodeId in allNodes) {
+                    nodeColors[nodeId] = allNodes[nodeId].color;
+                  }
+                  allEdges = edges.get({ returnType: "Object" });
+                  // adding nodes and edges to the graph
+                  data = {nodes: nodes, edges: edges};
+
+                  var options = {"nodes": {"font": {"size": 14, "face": "Tahoma"}, "borderWidth": 1, "borderWidthSelected": 2}, "edges": {"color": {"color": "#cccccc", "highlight": "#ff0000"}, "width": 1, "smooth": {"enabled": true, "type": "continuous"}}, "physics": {"enabled": true, "solver": "forceAtlas2Based", "forceAtlas2Based": {"gravitationalConstant": -40, "springLength": 150}}, "interaction": {"hover": true, "tooltipDelay": 0}};
+
+                  
+
+
+                  
+
+                  network = new vis.Network(container, data, options);
+
+                  
+
+                  
+
+                  
+
+
+                  
+
+                  return network;
+
+              }
+              drawGraph();
+        </script>
+    </body>
+</html>

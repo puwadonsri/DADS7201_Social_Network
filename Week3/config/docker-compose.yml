@@ -1,0 +1,18 @@
+services:
+  neo4j-gds:
+    image: neo4j:latest
+    container_name: neo4j-gds
+    ports:
+      - "7474:7474"
+      - "7687:7687"
+    volumes:
+      - neo4j_data:/data
+      - ../neo4j-import:/import
+    environment:
+      - NEO4J_AUTH=neo4j/s3cureP@ssword
+      - NEO4J_PLUGINS=["graph-data-science"]
+      - NEO4J_dbms_security_procedures_unrestricted=gds.*
+    mem_limit: 4g
+
+volumes:
+  neo4j_data:
