@@ -11,13 +11,15 @@ Pipeline:
 import os
 import sys
 from collections import defaultdict
-from math import cos, sin, pi
 
 import matplotlib.pyplot as plt
 import numpy as np
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from neo4j_utils import get_driver, output_path
+from _viz_utils import (
+    PALETTE, draw_edges, draw_hull, draw_nodes, fr_layout, style_axes,
+)
 
 GRAPH_NAME = "louvainGraph"
 driver = get_driver()
@@ -152,45 +154,70 @@ edges_rows = run("MATCH (a:Person)-[:KNOWS]->(b:Person) RETURN a.name AS a, b.na
 all_edges = [(r["a"], r["b"]) for r in edges_rows]
 driver.close()
 
-# --- 6. Circular layout (no NetworkX) ---
-n = len(all_names)
-pos = {}
-for i, name in enumerate(all_names):
-    angle = 2 * pi * i / n - pi / 2
-    pos[name] = (cos(angle), sin(angle))
-
-PALETTE = [
-    "#66c2a5", "#fc8d62", "#8da0cb", "#e78ac3",
-    "#a6d854", "#ffd92f", "#e5c494", "#b3b3b3",
-]
+# --- 6. Shared FR layout so both panels are directly comparable ---
+print("==> Computing FR layout...")
+pos = fr_layout(all_names, all_edges, iterations=200, seed=7, k_scale=1.7)
 
 
-def draw(ax, label_map, title):
+def draw_panel(ax, label_map, title, subtitle):
     cids = sorted(set(label_map.values()))
     color_for = {cid: PALETTE[i % len(PALETTE)] for i, cid in enumerate(cids)}
+
+    # convex hull behind each community
+    groups: dict = defaultdict(list)
+    for name, cid in label_map.items():
+        groups[cid].append(pos[name])
+    for cid, pts in groups.items():
+        draw_hull(ax, pts, color=color_for[cid], alpha=0.16, lw=1.6)
+
+    # edges — coloured if within community, grey if across
     for a, b in all_edges:
+        if a not in pos or b not in pos:
+            continue
         x1, y1 = pos[a]
         x2, y2 = pos[b]
         same = label_map.get(a) == label_map.get(b)
         ax.plot(
             [x1, x2], [y1, y2],
-            color=color_for[label_map[a]] if same else "#cccccc",
-            linewidth=2.0 if same else 0.7,
-            alpha=0.75 if same else 0.4,
+            color=color_for[label_map[a]] if same else "#bbbbbb",
+            linewidth=2.0 if same else 0.6,
+            alpha=0.55 if same else 0.35,
             zorder=2,
         )
+
+    # nodes — bigger, with name annotated below
+    node_colors = [color_for[label_map[n]] for n in all_names]
+    draw_nodes(ax, pos, all_names, sizes=[520] * len(all_names), colors=node_colors,
+               edge_lw=0.7, alpha=0.95)
     for name, (x, y) in pos.items():
-        ax.scatter(x, y, c=color_for[label_map[name]], s=600, edgecolors="black", linewidths=0.5, zorder=5)
-        ax.text(x, y, name, ha="center", va="center", fontsize=7, zorder=6)
-    ax.set_title(title, fontsize=14, fontweight="bold")
-    ax.axis("off")
+        ax.text(x, y - 0.07, name, ha="center", va="top",
+                fontsize=8, color="#222", zorder=6)
+
+    style_axes(ax, title, subtitle)
 
 
-fig, axes = plt.subplots(1, 2, figsize=(20, 10))
-draw(axes[0], louvain, f"Louvain (modularity={modularity:.3f}, {n_comm} communities)")
-draw(axes[1], kmeans, f"K-Means k=4 (silhouette={avg_sil:.3f})")
-plt.suptitle("Community Detection — Louvain vs K-Means on edges_rows.csv", fontsize=16, fontweight="bold")
-plt.tight_layout()
+fig, axes = plt.subplots(1, 2, figsize=(22, 11), facecolor="#fafbfc")
+
+draw_panel(
+    axes[0], louvain,
+    "Louvain", f"{n_comm} communities · modularity = {modularity:.3f}",
+)
+draw_panel(
+    axes[1], kmeans,
+    "K-Means (k=4)", f"silhouette = {avg_sil:.3f}",
+)
+
+plt.suptitle(
+    "Community Detection — Louvain vs K-Means on edges_rows.csv",
+    fontsize=18, fontweight="bold", y=0.99, color="#222",
+)
+fig.text(
+    0.5, 0.02,
+    f"Agreement: NMI = {nmi(l_labels, k_labels):.3f}  ·  ARI = {ari(l_labels, k_labels):.3f}  "
+    "·  Layout: Fruchterman-Reingold, edges coloured when within-community.",
+    ha="center", fontsize=11, color="#666", style="italic",
+)
+plt.tight_layout(rect=(0, 0.03, 1, 0.97))
 
 img_path = output_path("images", "community_louvain_vs_kmeans.png")
 os.makedirs(os.path.dirname(img_path), exist_ok=True)

@@ -9,12 +9,14 @@ Pipeline:
 """
 import os
 import sys
+from collections import defaultdict
 
 import matplotlib.pyplot as plt
 import numpy as np
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from neo4j_utils import get_gds, output_path
+from _viz_utils import PALETTE, draw_hull, draw_nodes, fr_layout, style_axes
 
 # Zachary's Karate Club ground truth (Mr.Hi=0, Officer=1).
 # GDS load_karate_club uses 1-indexed node IDs (1..34).
@@ -74,67 +76,96 @@ print(f"    Louvain   accuracy = {lc}/{lt} = {lc / lt:.2%}  ({n_comm} clusters)"
 print(f"    K-Means   accuracy = {kc}/{kt} = {kc / kt:.2%}  (k=2)")
 
 
-# --- 5. 2D embedding for visualization ---
-print("\n==> Generating 2D layout (FastRP)...")
-try:
-    gds.run_cypher("CALL gds.graph.drop('karate2d', false)")
-except Exception:
-    pass
-G2 = gds.graph.load_karate_club("karate2d", undirected=False)
-gds.fastRP.mutate(G2, embeddingDimension=2, randomSeed=42, mutateProperty="emb2d")
-emb2d_df = gds.graph.streamNodeProperties(G2, ["emb2d"])
-prop_col = [c for c in emb2d_df.columns if c != "nodeId"][0]
-emb2d_df["x"] = emb2d_df[prop_col].apply(lambda v: v[0])
-emb2d_df["y"] = emb2d_df[prop_col].apply(lambda v: v[1])
-
-# Stream relationships from the in-memory karate graph (does NOT touch Neo4j DB).
-edges = gds.run_cypher(
-    "CALL gds.graph.relationships.stream('karate2d') YIELD sourceNodeId, targetNodeId "
+# --- 5. Edges (for drawing) — stream from in-memory graph ---
+print("\n==> Streaming edges + computing FR layout...")
+edges_df = gds.run_cypher(
+    "CALL gds.graph.relationships.stream('karate') YIELD sourceNodeId, targetNodeId "
     "RETURN sourceNodeId AS src, targetNodeId AS dst"
 )
+all_nodes = sorted(set(edges_df["src"]).union(set(edges_df["dst"])))
+all_edges = [(int(r["src"]), int(r["dst"])) for _, r in edges_df.iterrows()]
+pos = fr_layout(all_nodes, all_edges, iterations=200, seed=11, k_scale=1.5)
 
 # --- 6. plot ---
-fig, axes = plt.subplots(1, 3, figsize=(22, 7))
-PALETTE = ["#66c2a5", "#fc8d62", "#8da0cb", "#e78ac3", "#a6d854", "#ffd92f"]
 gt_palette = {0: "#66c2a5", 1: "#fc8d62"}
-
-# index for layout
-pos = {int(r["nodeId"]): (r["x"], r["y"]) for _, r in emb2d_df.iterrows()}
-
-
-def draw(ax, label_map, title, color_for):
-    for _, r in edges.iterrows():
-        s, t = int(r["src"]), int(r["dst"])
-        if s in pos and t in pos:
-            x1, y1 = pos[s]
-            x2, y2 = pos[t]
-            ax.plot([x1, x2], [y1, y2], color="#cccccc", linewidth=0.5, alpha=0.4, zorder=2)
-    for nid, (x, y) in pos.items():
-        c = color_for[label_map[nid]]
-        ax.scatter(x, y, c=c, s=350, edgecolors="black", linewidths=0.4, zorder=5)
-        ax.text(x, y, str(nid), fontsize=8, ha="center", va="center", fontweight="bold", zorder=6)
-    ax.set_title(title, fontsize=13, fontweight="bold")
-    ax.set_xlabel("FastRP dim-1")
-    ax.set_ylabel("FastRP dim-2")
-
-
 louvain_color = {cid: PALETTE[i % len(PALETTE)] for i, cid in enumerate(sorted(set(louvain.values())))}
 kmeans_color = {cid: PALETTE[i % len(PALETTE)] for i, cid in enumerate(sorted(set(kmeans.values())))}
 
-draw(axes[0], louvain,
-     f"Louvain ({n_comm} communities, mod={modularity:.3f})\nacc vs GT = {lc / lt:.0%}",
-     louvain_color)
-draw(axes[1], kmeans,
-     f"K-Means k=2 (sil={avg_sil:.3f})\nacc vs GT = {kc / kt:.0%}",
-     kmeans_color)
-draw(axes[2], GT, "Ground Truth (Mr.Hi vs Officer)", gt_palette)
 
-plt.suptitle("Karate Club — Louvain vs K-Means vs Ground Truth", fontsize=15, fontweight="bold")
-plt.tight_layout()
+def draw_panel(ax, label_map, color_for, title, subtitle, *, mistakes=None):
+    # convex hull background per community
+    groups = defaultdict(list)
+    for nid, cid in label_map.items():
+        if nid in pos:
+            groups[cid].append(pos[nid])
+    for cid, pts in groups.items():
+        draw_hull(ax, pts, color=color_for[cid], alpha=0.16, lw=1.6)
+
+    # edges — coloured if within community
+    for s, t in all_edges:
+        if s not in pos or t not in pos:
+            continue
+        x1, y1 = pos[s]
+        x2, y2 = pos[t]
+        same = label_map.get(s) == label_map.get(t)
+        ax.plot(
+            [x1, x2], [y1, y2],
+            color=color_for[label_map[s]] if same else "#bbbbbb",
+            linewidth=1.6 if same else 0.5,
+            alpha=0.5 if same else 0.3,
+            zorder=2,
+        )
+
+    # nodes — flag mistakes (vs ground truth) with red ring
+    mistakes = mistakes or set()
+    for nid in all_nodes:
+        x, y = pos[nid]
+        c = color_for[label_map[nid]]
+        edge = "#d62728" if nid in mistakes else "#222"
+        lw = 2.2 if nid in mistakes else 0.6
+        ax.scatter(x, y, c=c, s=520, edgecolors=edge, linewidths=lw, alpha=0.95, zorder=5)
+        ax.text(x, y, str(nid), fontsize=9, ha="center", va="center",
+                fontweight="bold", color="#111", zorder=6)
+
+    style_axes(ax, title, subtitle)
+
+
+# Mark mistakes (where predicted faction differs from ground truth)
+louvain_mistakes = {nid for nid, cid in louvain.items() if l_map[cid] != GT[nid]}
+kmeans_mistakes = {nid for nid, cid in kmeans.items() if k_map[cid] != GT[nid]}
+
+fig, axes = plt.subplots(1, 3, figsize=(24, 9), facecolor="#fafbfc")
+
+draw_panel(
+    axes[0], louvain, louvain_color,
+    "Louvain", f"{n_comm} communities · modularity = {modularity:.3f} · acc = {lc/lt:.0%}",
+    mistakes=louvain_mistakes,
+)
+draw_panel(
+    axes[1], kmeans, kmeans_color,
+    "K-Means (k=2)", f"silhouette = {avg_sil:.3f} · acc = {kc/kt:.0%}",
+    mistakes=kmeans_mistakes,
+)
+draw_panel(
+    axes[2], GT, gt_palette,
+    "Ground Truth", "Mr.Hi (teal) vs Officer (orange) — 2-faction split",
+)
+
+plt.suptitle(
+    "Zachary's Karate Club — Louvain vs K-Means vs Ground Truth",
+    fontsize=18, fontweight="bold", y=0.99, color="#222",
+)
+fig.text(
+    0.5, 0.02,
+    "Layout: Fruchterman-Reingold from KNOWS edges.  "
+    "Red-ringed nodes = mis-classified vs ground-truth faction (majority-vote alignment).",
+    ha="center", fontsize=10, color="#666", style="italic",
+)
+plt.tight_layout(rect=(0, 0.03, 1, 0.97))
 
 img_path = output_path("images", "karate_louvain_vs_kmeans.png")
 os.makedirs(os.path.dirname(img_path), exist_ok=True)
-plt.savefig(img_path, dpi=180, bbox_inches="tight")
+plt.savefig(img_path, dpi=180, bbox_inches="tight", facecolor=fig.get_facecolor())
 print(f"\n==> Saved: {img_path}")
 
 gds.close()
