@@ -1,0 +1,5174 @@
+{
+  "meta": {
+    "dataset": "Stanford MemeTracker quotes_2009-04.txt",
+    "raw_size_gb": 10.9,
+    "n_posts_streamed": 15312654,
+    "n_links_streamed": 26704274,
+    "n_domains_unique": 351260,
+    "top_k": 200,
+    "min_weight": 5,
+    "n_nodes_plotted": 128,
+    "n_edges_plotted": 601,
+    "n_bridges": 31,
+    "louvain_modularity": 0.2681428864148624,
+    "louvain_communities": 8
+  },
+  "nodes": [
+    {
+      "name": "abc.net.au",
+      "post_count": 8615,
+      "community": 10,
+      "x": -0.37945216077927135,
+      "y": 0.5309911415785622,
+      "betweenness": 5.2846257535684575,
+      "closeness": 0.396875,
+      "degree": 6.0,
+      "eigenvector": 0.04371336563876341,
+      "pagerank": 0.6085177963136663
+    },
+    {
+      "name": "alacrastore.com",
+      "post_count": 15285,
+      "community": 23,
+      "x": -0.7598799251468225,
+      "y": 0.40379484347252215,
+      "betweenness": 0.0,
+      "closeness": 0.327319587628866,
+      "degree": 1.0,
+      "eigenvector": 0.006257438248112406,
+      "pagerank": 0.2261063122543717
+    },
+    {
+      "name": "allafrica.com",
+      "post_count": 9463,
+      "community": 10,
+      "x": -0.7071773102319682,
+      "y": 0.5809604133990226,
+      "betweenness": 0.0,
+      "closeness": 0.33866666666666667,
+      "degree": 1.0,
+      "eigenvector": 0.0076406596381515994,
+      "pagerank": 0.22751535357729752
+    },
+    {
+      "name": "amazon.com",
+      "post_count": 20775,
+      "community": 75,
+      "x": -0.34837911299290053,
+      "y": 0.10989955025968792,
+      "betweenness": 2342.7656668492864,
+      "closeness": 0.5720720720720721,
+      "degree": 64.0,
+      "eigenvector": 0.25501488660628646,
+      "pagerank": 7.117673294843851
+    },
+    {
+      "name": "ameblo.jp",
+      "post_count": 98134,
+      "community": 75,
+      "x": 0.21661007477788466,
+      "y": 0.20770737328954272,
+      "betweenness": 212.78192529458516,
+      "closeness": 0.3518005540166205,
+      "degree": 7.0,
+      "eigenvector": 0.009806258010399005,
+      "pagerank": 1.0511486515980444
+    },
+    {
+      "name": "answerbag.com",
+      "post_count": 20607,
+      "community": 75,
+      "x": -0.5379728022904612,
+      "y": -0.004537029439372801,
+      "betweenness": 0.0,
+      "closeness": 0.39076923076923076,
+      "degree": 2.0,
+      "eigenvector": 0.019297618832682953,
+      "pagerank": 0.32241503490720846
+    },
+    {
+      "name": "answers.yahoo.com",
+      "post_count": 13027,
+      "community": 61,
+      "x": -0.5219020053050079,
+      "y": 0.18193045595153198,
+      "betweenness": 4.674023096092061,
+      "closeness": 0.3895705521472393,
+      "degree": 5.0,
+      "eigenvector": 0.033407843928172885,
+      "pagerank": 0.5526760163145581
+    },
+    {
+      "name": "articlesbase.com",
+      "post_count": 20771,
+      "community": 75,
+      "x": -0.5783297173458254,
+      "y": 0.03798512624119605,
+      "betweenness": 0.0,
+      "closeness": 0.39076923076923076,
+      "degree": 2.0,
+      "eigenvector": 0.019297618832682953,
+      "pagerank": 0.32241503490720846
+    },
+    {
+      "name": "aussie-nintendo.com",
+      "post_count": 18984,
+      "community": 75,
+      "x": -0.09753914959855943,
+      "y": -0.053943559736540046,
+      "betweenness": 3.35980762689908,
+      "closeness": 0.4031746031746032,
+      "degree": 2.0,
+      "eigenvector": 0.019787863968217287,
+      "pagerank": 0.3242300518547964
+    },
+    {
+      "name": "baltimoresun.com",
+      "post_count": 10707,
+      "community": 15,
+      "x": -0.3965134772384883,
+      "y": 0.3859934862992593,
+      "betweenness": 22.916968443494795,
+      "closeness": 0.4456140350877193,
+      "degree": 12.0,
+      "eigenvector": 0.08278153202249923,
+      "pagerank": 1.077940696560635
+    },
+    {
+      "name": "billboard.com",
+      "post_count": 10617,
+      "community": 61,
+      "x": -0.46630632283078194,
+      "y": 0.20254741903070322,
+      "betweenness": 0.4203073673763329,
+      "closeness": 0.4057507987220447,
+      "degree": 5.0,
+      "eigenvector": 0.04292906527959615,
+      "pagerank": 0.5208972720933007
+    },
+    {
+      "name": "bizjournals.com",
+      "post_count": 17199,
+      "community": 15,
+      "x": -0.281300550071208,
+      "y": 0.6118725658376332,
+      "betweenness": 1.420192623083629,
+      "closeness": 0.38484848484848483,
+      "degree": 4.0,
+      "eigenvector": 0.030534583485312183,
+      "pagerank": 0.45361923350656924
+    },
+    {
+      "name": "blog.livedoor.jp",
+      "post_count": 22771,
+      "community": 75,
+      "x": 0.32434286014092356,
+      "y": 0.19663880477217482,
+      "betweenness": 61.83791567909215,
+      "closeness": 0.31203931203931207,
+      "degree": 6.0,
+      "eigenvector": 0.0030654849346000977,
+      "pagerank": 0.9580272224977121
+    },
+    {
+      "name": "blogs.myspace.com",
+      "post_count": 111280,
+      "community": 61,
+      "x": -0.637181449634807,
+      "y": 0.0735905085100098,
+      "betweenness": 0.0,
+      "closeness": 0.3931888544891641,
+      "degree": 2.0,
+      "eigenvector": 0.0181484419408194,
+      "pagerank": 0.32642174317713474
+    },
+    {
+      "name": "boards.cruisecritic.com",
+      "post_count": 29506,
+      "community": 15,
+      "x": -0.07684110944826994,
+      "y": 0.6867031388274283,
+      "betweenness": 0.0,
+      "closeness": 0.3659942363112392,
+      "degree": 1.0,
+      "eigenvector": 0.011086788415153724,
+      "pagerank": 0.22462722373563837
+    },
+    {
+      "name": "bogleheads.org",
+      "post_count": 11104,
+      "community": 75,
+      "x": -0.3487159235765903,
+      "y": -0.09570247852988502,
+      "betweenness": 0.0,
+      "closeness": 0.37026239067055394,
+      "degree": 2.0,
+      "eigenvector": 0.018146860793924517,
+      "pagerank": 0.31740095275166486
+    },
+    {
+      "name": "boston.com",
+      "post_count": 19613,
+      "community": 15,
+      "x": -0.3296301104373363,
+      "y": 0.3286022197120535,
+      "betweenness": 202.28335077614304,
+      "closeness": 0.5059760956175299,
+      "degree": 26.0,
+      "eigenvector": 0.17783693096665806,
+      "pagerank": 2.1937392133585076
+    },
+    {
+      "name": "boston.craigslist.org",
+      "post_count": 96005,
+      "community": 61,
+      "x": -0.43588377553097524,
+      "y": -0.05840254613224,
+      "betweenness": 0.0,
+      "closeness": 0.3860182370820669,
+      "degree": 2.0,
+      "eigenvector": 0.018619364366464036,
+      "pagerank": 0.31733011721530335
+    },
+    {
+      "name": "breitbart.com",
+      "post_count": 11274,
+      "community": 23,
+      "x": -0.2089753808567755,
+      "y": 0.3199658325502744,
+      "betweenness": 7.96265819833183,
+      "closeness": 0.40445859872611467,
+      "degree": 9.0,
+      "eigenvector": 0.055723457929661394,
+      "pagerank": 0.8205561014893292
+    },
+    {
+      "name": "cbc.ca",
+      "post_count": 7635,
+      "community": 10,
+      "x": -0.3514439166846675,
+      "y": 0.45330219939305966,
+      "betweenness": 21.757466175072725,
+      "closeness": 0.40445859872611467,
+      "degree": 7.0,
+      "eigenvector": 0.04093021529352655,
+      "pagerank": 0.7316066425319927
+    },
+    {
+      "name": "chacha.com",
+      "post_count": 36743,
+      "community": 75,
+      "x": -0.36713178060931184,
+      "y": 0.23628339524460612,
+      "betweenness": 422.4212521130401,
+      "closeness": 0.5059760956175299,
+      "degree": 29.0,
+      "eigenvector": 0.16239408919787485,
+      "pagerank": 2.6990174999656222
+    },
+    {
+      "name": "chicago.craigslist.org",
+      "post_count": 118204,
+      "community": 75,
+      "x": -0.6114151819524185,
+      "y": -0.15833001777188144,
+      "betweenness": 0.0,
+      "closeness": 0.3649425287356322,
+      "degree": 1.0,
+      "eigenvector": 0.011789827721949616,
+      "pagerank": 0.2439190815511818
+    },
+    {
+      "name": "chicagotribune.com",
+      "post_count": 10635,
+      "community": 15,
+      "x": -0.2767395219378969,
+      "y": 0.3377689496451313,
+      "betweenness": 20.880384379676446,
+      "closeness": 0.4551971326164875,
+      "degree": 14.0,
+      "eigenvector": 0.10847786889624128,
+      "pagerank": 1.189724219862412
+    },
+    {
+      "name": "chron.com",
+      "post_count": 19429,
+      "community": 15,
+      "x": -0.43255373590327584,
+      "y": 0.4730279621987675,
+      "betweenness": 2.0375457437570024,
+      "closeness": 0.396875,
+      "degree": 6.0,
+      "eigenvector": 0.05193598335860486,
+      "pagerank": 0.5844163002749416
+    },
+    {
+      "name": "citeulike.org",
+      "post_count": 29516,
+      "community": 15,
+      "x": -0.3559345407528426,
+      "y": 0.8729380419759076,
+      "betweenness": 0.0,
+      "closeness": 0.2967289719626168,
+      "degree": 1.0,
+      "eigenvector": 0.0037583045190733833,
+      "pagerank": 0.23116001502283107
+    },
+    {
+      "name": "cnn.com",
+      "post_count": 8952,
+      "community": 23,
+      "x": -0.2946952885151268,
+      "y": 0.22156149143536422,
+      "betweenness": 398.2316227338655,
+      "closeness": 0.5100401606425703,
+      "degree": 34.0,
+      "eigenvector": 0.2007965656074642,
+      "pagerank": 2.9548348289108217
+    },
+    {
+      "name": "dailyherald.com",
+      "post_count": 7625,
+      "community": 15,
+      "x": -0.24627038752087727,
+      "y": 0.6742898543380133,
+      "betweenness": 0.1634544936502768,
+      "closeness": 0.37797619047619047,
+      "degree": 2.0,
+      "eigenvector": 0.02006791568741112,
+      "pagerank": 0.2996857685581678
+    },
+    {
+      "name": "dailymail.co.uk",
+      "post_count": 12375,
+      "community": 10,
+      "x": -0.17498641267707135,
+      "y": 0.30792800683595994,
+      "betweenness": 186.24073385244756,
+      "closeness": 0.4618181818181818,
+      "degree": 19.0,
+      "eigenvector": 0.11394352854561868,
+      "pagerank": 1.7287037597452852
+    },
+    {
+      "name": "desciclo.pedia.ws",
+      "post_count": 15277,
+      "community": 116,
+      "x": 0.580052770918511,
+      "y": -0.4782255273297452,
+      "betweenness": 250.0,
+      "closeness": 0.2662473794549266,
+      "degree": 3.0,
+      "eigenvector": 0.0012104460800379127,
+      "pagerank": 0.7247958048456866
+    },
+    {
+      "name": "digitalspy.co.uk",
+      "post_count": 40575,
+      "community": 61,
+      "x": -0.4500243529022791,
+      "y": 0.25984535992102525,
+      "betweenness": 475.2375738267767,
+      "closeness": 0.4980392156862745,
+      "degree": 25.0,
+      "eigenvector": 0.13753730839429626,
+      "pagerank": 2.4445723721021566
+    },
+    {
+      "name": "earthtimes.org",
+      "post_count": 19671,
+      "community": 15,
+      "x": -0.2162556441734064,
+      "y": 0.4563199147044904,
+      "betweenness": 20.355960276473883,
+      "closeness": 0.4334470989761092,
+      "degree": 8.0,
+      "eigenvector": 0.049640952190869864,
+      "pagerank": 0.8412567201370396
+    },
+    {
+      "name": "envirolink.org",
+      "post_count": 20366,
+      "community": 23,
+      "x": -0.10556260397811089,
+      "y": 0.031260062722999034,
+      "betweenness": 0.0,
+      "closeness": 0.36182336182336183,
+      "degree": 2.0,
+      "eigenvector": 0.021368803348550937,
+      "pagerank": 0.29300194978561
+    },
+    {
+      "name": "evga.com",
+      "post_count": 14015,
+      "community": 75,
+      "x": -0.5164658360988911,
+      "y": -0.2119704098778939,
+      "betweenness": 0.0,
+      "closeness": 0.3649425287356322,
+      "degree": 1.0,
+      "eigenvector": 0.011789827721949616,
+      "pagerank": 0.2439190815511818
+    },
+    {
+      "name": "financial.de",
+      "post_count": 8377,
+      "community": 10,
+      "x": -0.7447266604286292,
+      "y": 0.5144911026993237,
+      "betweenness": 0.0,
+      "closeness": 0.33866666666666667,
+      "degree": 1.0,
+      "eigenvector": 0.0076406596381515994,
+      "pagerank": 0.22751535357729752
+    },
+    {
+      "name": "fixya.com",
+      "post_count": 27095,
+      "community": 75,
+      "x": -0.7319314995138602,
+      "y": 0.1239809529033623,
+      "betweenness": 0.0,
+      "closeness": 0.33687002652519893,
+      "degree": 1.0,
+      "eigenvector": 0.007507791110733336,
+      "pagerank": 0.22849595335602665
+    },
+    {
+      "name": "forbes.com",
+      "post_count": 20628,
+      "community": 23,
+      "x": -0.30809357814706606,
+      "y": 0.1934633467522393,
+      "betweenness": 61.720025034783134,
+      "closeness": 0.46691176470588236,
+      "degree": 18.0,
+      "eigenvector": 0.13750315500020596,
+      "pagerank": 1.5690609860104097
+    },
+    {
+      "name": "forum.brighthand.com",
+      "post_count": 30717,
+      "community": 75,
+      "x": -0.5060565416639621,
+      "y": -0.07581156108510444,
+      "betweenness": 0.0,
+      "closeness": 0.37797619047619047,
+      "degree": 2.0,
+      "eigenvector": 0.01587794753302994,
+      "pagerank": 0.3231346383506825
+    },
+    {
+      "name": "forum.dvdtalk.com",
+      "post_count": 14718,
+      "community": 61,
+      "x": -0.3450426528723659,
+      "y": 0.21688546257889574,
+      "betweenness": 166.29059799032245,
+      "closeness": 0.4828897338403042,
+      "degree": 24.0,
+      "eigenvector": 0.14772339174974344,
+      "pagerank": 2.090086611220643
+    },
+    {
+      "name": "forum.gateworld.net",
+      "post_count": 28848,
+      "community": 23,
+      "x": 0.1413980341808254,
+      "y": 0.03234939501996137,
+      "betweenness": 0.0,
+      "closeness": 0.339572192513369,
+      "degree": 1.0,
+      "eigenvector": 0.007998036246267671,
+      "pagerank": 0.2303109703036147
+    },
+    {
+      "name": "forum.prisonplanet.com",
+      "post_count": 18475,
+      "community": 10,
+      "x": -0.2619779303213826,
+      "y": 0.4280136757241852,
+      "betweenness": 199.09680239069613,
+      "closeness": 0.436426116838488,
+      "degree": 20.0,
+      "eigenvector": 0.11257418678009332,
+      "pagerank": 1.8105902663013702
+    },
+    {
+      "name": "forums.allaboutjazz.com",
+      "post_count": 8269,
+      "community": 75,
+      "x": -0.22520611018089282,
+      "y": -0.2363367968876064,
+      "betweenness": 0.0,
+      "closeness": 0.3649425287356322,
+      "degree": 1.0,
+      "eigenvector": 0.011789827721949616,
+      "pagerank": 0.2439190815511818
+    },
+    {
+      "name": "forums.bit-tech.net",
+      "post_count": 9623,
+      "community": 23,
+      "x": -0.1890654931666307,
+      "y": 0.04208544490264702,
+      "betweenness": 3.9177076258576196,
+      "closeness": 0.4219269102990033,
+      "degree": 4.0,
+      "eigenvector": 0.04115666731676822,
+      "pagerank": 0.4672320016404064
+    },
+    {
+      "name": "forums.comicbookresources.com",
+      "post_count": 30949,
+      "community": 75,
+      "x": -0.14955879964740898,
+      "y": -0.07841954904308591,
+      "betweenness": 3.35980762689908,
+      "closeness": 0.4031746031746032,
+      "degree": 2.0,
+      "eigenvector": 0.019787863968217287,
+      "pagerank": 0.3242300518547964
+    },
+    {
+      "name": "forums.hardwarezone.com",
+      "post_count": 77218,
+      "community": 10,
+      "x": 0.1641657866886616,
+      "y": 0.3857263507325534,
+      "betweenness": 0.0,
+      "closeness": 0.3167082294264339,
+      "degree": 1.0,
+      "eigenvector": 0.005267826567115124,
+      "pagerank": 0.2267210331033151
+    },
+    {
+      "name": "forums.macrumors.com",
+      "post_count": 8435,
+      "community": 23,
+      "x": -0.3785025358086852,
+      "y": 0.1618535340320929,
+      "betweenness": 35.204981802828314,
+      "closeness": 0.4409722222222222,
+      "degree": 11.0,
+      "eigenvector": 0.08842634124388196,
+      "pagerank": 1.0330806206753764
+    },
+    {
+      "name": "forums.mozillazine.org",
+      "post_count": 44930,
+      "community": 10,
+      "x": 0.3078844786859824,
+      "y": 0.3993471424930203,
+      "betweenness": 0.0,
+      "closeness": 0.297423887587822,
+      "degree": 1.0,
+      "eigenvector": 0.0016876793691112538,
+      "pagerank": 0.25076586448536997
+    },
+    {
+      "name": "forums.slickdeals.net",
+      "post_count": 14198,
+      "community": 61,
+      "x": -0.1097714222208837,
+      "y": 0.18629345974833184,
+      "betweenness": 0.193402605471571,
+      "closeness": 0.3895705521472393,
+      "degree": 3.0,
+      "eigenvector": 0.02558866204195861,
+      "pagerank": 0.3687551839009152
+    },
+    {
+      "name": "forums.somd.com",
+      "post_count": 8952,
+      "community": 23,
+      "x": -0.25112178380307626,
+      "y": 0.26562656390488804,
+      "betweenness": 35.71334367466256,
+      "closeness": 0.4652014652014652,
+      "degree": 18.0,
+      "eigenvector": 0.13647982525676242,
+      "pagerank": 1.4772404223579012
+    },
+    {
+      "name": "freerepublic.com",
+      "post_count": 17944,
+      "community": 23,
+      "x": -0.27547795831590494,
+      "y": 0.18622154347723704,
+      "betweenness": 32.98264801289569,
+      "closeness": 0.4756554307116105,
+      "degree": 16.0,
+      "eigenvector": 0.12758143918316106,
+      "pagerank": 1.3520336748513107
+    },
+    {
+      "name": "friendstertalk.com",
+      "post_count": 11697,
+      "community": 15,
+      "x": -0.5106612735243707,
+      "y": 0.7403350060177417,
+      "betweenness": 0.0,
+      "closeness": 0.31203931203931207,
+      "degree": 1.0,
+      "eigenvector": 0.0067083632788276825,
+      "pagerank": 0.22277344992557038
+    },
+    {
+      "name": "frikipedia.es",
+      "post_count": 12011,
+      "community": 116,
+      "x": 0.4739794665218613,
+      "y": -0.3539456194280909,
+      "betweenness": 0.0,
+      "closeness": 0.26458333333333334,
+      "degree": 3.0,
+      "eigenvector": 0.0012384038265192442,
+      "pagerank": 0.6754431602217069
+    },
+    {
+      "name": "g1.globo.com",
+      "post_count": 23546,
+      "community": 116,
+      "x": 0.8278289286014726,
+      "y": -0.7109180702249901,
+      "betweenness": 126.0,
+      "closeness": 0.2113144758735441,
+      "degree": 3.0,
+      "eigenvector": 5.64438121758195e-05,
+      "pagerank": 0.9223480239263537
+    },
+    {
+      "name": "globoesporte.globo.com",
+      "post_count": 10958,
+      "community": 116,
+      "x": 1.0,
+      "y": -0.8729380419759076,
+      "betweenness": 0.0,
+      "closeness": 0.1746905089408528,
+      "degree": 2.0,
+      "eigenvector": 5.219009333292187e-06,
+      "pagerank": 0.6703209046904164
+    },
+    {
+      "name": "golivewire.com",
+      "post_count": 35426,
+      "community": 23,
+      "x": -0.22173982906683243,
+      "y": 0.11597053925400375,
+      "betweenness": 17.280880351077514,
+      "closeness": 0.436426116838488,
+      "degree": 8.0,
+      "eigenvector": 0.07046300060902116,
+      "pagerank": 0.7662773017902215
+    },
+    {
+      "name": "groups.google.com",
+      "post_count": 17450,
+      "community": 10,
+      "x": -0.020501923062808,
+      "y": 0.3137025280513361,
+      "betweenness": 149.02305819138405,
+      "closeness": 0.4219269102990033,
+      "degree": 8.0,
+      "eigenvector": 0.03650464363860601,
+      "pagerank": 0.9542276456556616
+    },
+    {
+      "name": "guardian.co.uk",
+      "post_count": 32905,
+      "community": 23,
+      "x": -0.2800933468079476,
+      "y": 0.2446589320845903,
+      "betweenness": 350.0442084137382,
+      "closeness": 0.5336134453781513,
+      "degree": 38.0,
+      "eigenvector": 0.26141239703020774,
+      "pagerank": 3.145422498630652
+    },
+    {
+      "name": "halo.wikia.com",
+      "post_count": 12179,
+      "community": 23,
+      "x": 0.41379127462112564,
+      "y": 0.6449113345140545,
+      "betweenness": 0.0,
+      "closeness": 0.26963906581740976,
+      "degree": 1.0,
+      "eigenvector": 0.0008178348107334322,
+      "pagerank": 0.31519700199621337
+    },
+    {
+      "name": "heroeswiki.com",
+      "post_count": 10787,
+      "community": 61,
+      "x": -0.32106753342931427,
+      "y": 0.00300823519018552,
+      "betweenness": 15.608640158852282,
+      "closeness": 0.4096774193548387,
+      "degree": 5.0,
+      "eigenvector": 0.02455275641776302,
+      "pagerank": 0.5934374544140805
+    },
+    {
+      "name": "huffingtonpost.com",
+      "post_count": 19502,
+      "community": 23,
+      "x": -0.3107206774151501,
+      "y": 0.2601185246967835,
+      "betweenness": 125.15265522583101,
+      "closeness": 0.5204918032786885,
+      "degree": 38.0,
+      "eigenvector": 0.26218455926949524,
+      "pagerank": 2.9819251672345963
+    },
+    {
+      "name": "identi.ca",
+      "post_count": 47634,
+      "community": 75,
+      "x": -0.06428301698093247,
+      "y": 0.23861986092318427,
+      "betweenness": 210.4527365672823,
+      "closeness": 0.4379310344827586,
+      "degree": 9.0,
+      "eigenvector": 0.04371872856781945,
+      "pagerank": 1.0062589624045475
+    },
+    {
+      "name": "inciclopedia.wikia.com",
+      "post_count": 14114,
+      "community": 116,
+      "x": 0.2553182994067488,
+      "y": -0.1766998595764887,
+      "betweenness": 737.0,
+      "closeness": 0.35774647887323946,
+      "degree": 9.0,
+      "eigenvector": 0.013062800670444102,
+      "pagerank": 1.6742226475298931
+    },
+    {
+      "name": "indeed.com",
+      "post_count": 9081,
+      "community": 10,
+      "x": -0.5724439607360202,
+      "y": 0.25226129376916917,
+      "betweenness": 0.4600840336134454,
+      "closeness": 0.3757396449704142,
+      "degree": 3.0,
+      "eigenvector": 0.027234045734225245,
+      "pagerank": 0.37575496689139604
+    },
+    {
+      "name": "investegate.co.uk",
+      "post_count": 8541,
+      "community": 61,
+      "x": -0.8195264738655491,
+      "y": 0.3017221061300476,
+      "betweenness": 0.0,
+      "closeness": 0.3333333333333333,
+      "degree": 1.0,
+      "eigenvector": 0.00635861421886978,
+      "pagerank": 0.23250266162595296
+    },
+    {
+      "name": "kansascity.com",
+      "post_count": 10442,
+      "community": 15,
+      "x": -0.4795790980923165,
+      "y": 0.32680541954712866,
+      "betweenness": 5.278321082054741,
+      "closeness": 0.42905405405405406,
+      "degree": 6.0,
+      "eigenvector": 0.05303630297085443,
+      "pagerank": 0.6173046892763392
+    },
+    {
+      "name": "latimes.com",
+      "post_count": 11372,
+      "community": 23,
+      "x": -0.23845136937366826,
+      "y": 0.32507538073931974,
+      "betweenness": 291.53282504572616,
+      "closeness": 0.503968253968254,
+      "degree": 29.0,
+      "eigenvector": 0.2055450605045214,
+      "pagerank": 2.4362710233430103
+    },
+    {
+      "name": "losangeles.craigslist.org",
+      "post_count": 98788,
+      "community": 75,
+      "x": -0.2682296104079606,
+      "y": -0.08171342978327026,
+      "betweenness": 0.0,
+      "closeness": 0.38368580060422963,
+      "degree": 2.0,
+      "eigenvector": 0.02107303608516024,
+      "pagerank": 0.31717737137871976
+    },
+    {
+      "name": "lostpedia.wikia.com",
+      "post_count": 16221,
+      "community": 61,
+      "x": -0.4888783660688825,
+      "y": 0.05745730991981009,
+      "betweenness": 8.985534189170536,
+      "closeness": 0.40189873417721517,
+      "degree": 7.0,
+      "eigenvector": 0.03515134283917289,
+      "pagerank": 0.7762024543091512
+    },
+    {
+      "name": "lyricwiki.org",
+      "post_count": 9845,
+      "community": 75,
+      "x": -0.4297183083738305,
+      "y": -0.2260807204211013,
+      "betweenness": 0.0,
+      "closeness": 0.3649425287356322,
+      "degree": 1.0,
+      "eigenvector": 0.011789827721949616,
+      "pagerank": 0.2439190815511818
+    },
+    {
+      "name": "mahalo.com",
+      "post_count": 14085,
+      "community": 15,
+      "x": -0.2838856929281299,
+      "y": 0.3660055308105019,
+      "betweenness": 1122.0776909999793,
+      "closeness": 0.5746606334841629,
+      "degree": 53.0,
+      "eigenvector": 0.23980806333028715,
+      "pagerank": 4.691408617077652
+    },
+    {
+      "name": "marketwatch.com",
+      "post_count": 15110,
+      "community": 61,
+      "x": -0.4344574516506968,
+      "y": 0.4090415676829608,
+      "betweenness": 14.803099550925458,
+      "closeness": 0.4150326797385621,
+      "degree": 10.0,
+      "eigenvector": 0.06943297764131315,
+      "pagerank": 0.9087833565743245
+    },
+    {
+      "name": "marketwire.com",
+      "post_count": 12556,
+      "community": 15,
+      "x": -0.1191434021975148,
+      "y": 0.5625561768007896,
+      "betweenness": 1.3655757057714892,
+      "closeness": 0.3813813813813814,
+      "degree": 4.0,
+      "eigenvector": 0.024496121646531824,
+      "pagerank": 0.47921027850465786
+    },
+    {
+      "name": "mashget.com",
+      "post_count": 18267,
+      "community": 15,
+      "x": -0.3314159919130995,
+      "y": 0.4050379750756189,
+      "betweenness": 227.32414638113104,
+      "closeness": 0.45195729537366547,
+      "degree": 26.0,
+      "eigenvector": 0.14510238746998466,
+      "pagerank": 2.2447445336716587
+    },
+    {
+      "name": "me-ontarget.com",
+      "post_count": 10466,
+      "community": 75,
+      "x": -0.3949778416385822,
+      "y": -0.27284440675767857,
+      "betweenness": 0.0,
+      "closeness": 0.3649425287356322,
+      "degree": 1.0,
+      "eigenvector": 0.011789827721949616,
+      "pagerank": 0.2439190815511818
+    },
+    {
+      "name": "mercurynews.com",
+      "post_count": 9993,
+      "community": 15,
+      "x": -0.5273766211401789,
+      "y": 0.329407890644458,
+      "betweenness": 1.5322518985085227,
+      "closeness": 0.4219269102990033,
+      "degree": 4.0,
+      "eigenvector": 0.039498403047512336,
+      "pagerank": 0.47112020368664714
+    },
+    {
+      "name": "miami.craigslist.org",
+      "post_count": 91603,
+      "community": 75,
+      "x": -0.4798596264981366,
+      "y": -0.2557819661128404,
+      "betweenness": 0.0,
+      "closeness": 0.3649425287356322,
+      "degree": 1.0,
+      "eigenvector": 0.011789827721949616,
+      "pagerank": 0.2439190815511818
+    },
+    {
+      "name": "mx.answers.yahoo.com",
+      "post_count": 65536,
+      "community": 116,
+      "x": 0.509774961843162,
+      "y": -0.3032563001778432,
+      "betweenness": 0.0,
+      "closeness": 0.26458333333333334,
+      "degree": 2.0,
+      "eigenvector": 0.0006611720697449173,
+      "pagerank": 0.49790537545107955
+    },
+    {
+      "name": "neighbors.denverpost.com",
+      "post_count": 40333,
+      "community": 23,
+      "x": -0.41856830454053984,
+      "y": 0.1113638339349661,
+      "betweenness": 0.0,
+      "closeness": 0.4096774193548387,
+      "degree": 5.0,
+      "eigenvector": 0.04947627055017264,
+      "pagerank": 0.5251076998160568
+    },
+    {
+      "name": "news.bbc.co.uk",
+      "post_count": 36440,
+      "community": 23,
+      "x": -0.16270474919628458,
+      "y": 0.20531557037661372,
+      "betweenness": 1135.6458245681383,
+      "closeness": 0.5120967741935484,
+      "degree": 30.0,
+      "eigenvector": 0.17299818712790088,
+      "pagerank": 2.8564013063313154
+    },
+    {
+      "name": "news.com.au",
+      "post_count": 48527,
+      "community": 10,
+      "x": -0.3121638478358381,
+      "y": 0.46760359236236065,
+      "betweenness": 163.61105874528545,
+      "closeness": 0.4584837545126354,
+      "degree": 15.0,
+      "eigenvector": 0.09138220416286497,
+      "pagerank": 1.444213642752381
+    },
+    {
+      "name": "newsday.com",
+      "post_count": 8415,
+      "community": 15,
+      "x": -0.3886882295488214,
+      "y": 0.4437569867849346,
+      "betweenness": 7.98335143218358,
+      "closeness": 0.41233766233766234,
+      "degree": 12.0,
+      "eigenvector": 0.08559559282923955,
+      "pagerank": 1.0344959094426343
+    },
+    {
+      "name": "newyork.craigslist.org",
+      "post_count": 98477,
+      "community": 75,
+      "x": -0.6556205021894911,
+      "y": -0.11003516262564912,
+      "betweenness": 0.0,
+      "closeness": 0.3649425287356322,
+      "degree": 1.0,
+      "eigenvector": 0.011789827721949616,
+      "pagerank": 0.2439190815511818
+    },
+    {
+      "name": "nydailynews.com",
+      "post_count": 16876,
+      "community": 15,
+      "x": -0.3516519091026596,
+      "y": 0.30912551402338745,
+      "betweenness": 36.59263534132132,
+      "closeness": 0.4635036496350365,
+      "degree": 18.0,
+      "eigenvector": 0.12907370088152265,
+      "pagerank": 1.4971580073015773
+    },
+    {
+      "name": "ots.at",
+      "post_count": 8933,
+      "community": 15,
+      "x": 0.13396005196103003,
+      "y": 0.7122083061070626,
+      "betweenness": 0.0,
+      "closeness": 0.2988235294117647,
+      "degree": 1.0,
+      "eigenvector": 0.0018357238783226525,
+      "pagerank": 0.25934788301194706
+    },
+    {
+      "name": "palgn.com.au",
+      "post_count": 16488,
+      "community": 10,
+      "x": -0.4152831785474875,
+      "y": 0.8225142654188717,
+      "betweenness": 0.0,
+      "closeness": 0.315136476426799,
+      "degree": 1.0,
+      "eigenvector": 0.0042247737975986644,
+      "pagerank": 0.2312258869678217
+    },
+    {
+      "name": "philly.com",
+      "post_count": 38364,
+      "community": 15,
+      "x": -0.2670408911856538,
+      "y": 0.38594542269177307,
+      "betweenness": 40.20429046166487,
+      "closeness": 0.45357142857142857,
+      "degree": 15.0,
+      "eigenvector": 0.11830041988142989,
+      "pagerank": 1.3160754087934277
+    },
+    {
+      "name": "plaza.rakuten.co.jp",
+      "post_count": 27897,
+      "community": 75,
+      "x": 0.4840208243578585,
+      "y": 0.15059105256264782,
+      "betweenness": 0.0,
+      "closeness": 0.2651356993736952,
+      "degree": 4.0,
+      "eigenvector": 0.001190170849971221,
+      "pagerank": 0.6741043813998223
+    },
+    {
+      "name": "post-gazette.com",
+      "post_count": 11031,
+      "community": 15,
+      "x": -0.19334157930064624,
+      "y": 0.6007492084864934,
+      "betweenness": 0.1634544936502768,
+      "closeness": 0.38368580060422963,
+      "degree": 3.0,
+      "eigenvector": 0.02553716999403148,
+      "pagerank": 0.37365174731708845
+    },
+    {
+      "name": "postchronicle.com",
+      "post_count": 9913,
+      "community": 15,
+      "x": -0.19215280277871458,
+      "y": 0.3668999496422063,
+      "betweenness": 5.628485486149203,
+      "closeness": 0.4110032362459547,
+      "degree": 10.0,
+      "eigenvector": 0.07564342767909664,
+      "pagerank": 0.876475485197425
+    },
+    {
+      "name": "pr-inside.com",
+      "post_count": 38379,
+      "community": 15,
+      "x": -0.1454357724799349,
+      "y": 0.3890164483660506,
+      "betweenness": 37.95511299787662,
+      "closeness": 0.42474916387959866,
+      "degree": 7.0,
+      "eigenvector": 0.046141510434107955,
+      "pagerank": 0.7524089844690816
+    },
+    {
+      "name": "prnewswire.com",
+      "post_count": 16747,
+      "community": 15,
+      "x": -0.10193279061982849,
+      "y": 0.45697782869428977,
+      "betweenness": 127.48225189850854,
+      "closeness": 0.42474916387959866,
+      "degree": 6.0,
+      "eigenvector": 0.03970686252183262,
+      "pagerank": 0.7761789618159788
+    },
+    {
+      "name": "regnum.ru",
+      "post_count": 10431,
+      "community": 61,
+      "x": -1.0,
+      "y": 0.16726232087154508,
+      "betweenness": 0.0,
+      "closeness": 0.2731182795698925,
+      "degree": 1.0,
+      "eigenvector": 0.0010547055737890362,
+      "pagerank": 0.2798783112157523
+    },
+    {
+      "name": "rep-am.com",
+      "post_count": 13393,
+      "community": 15,
+      "x": -0.43728200954088436,
+      "y": 0.6294822457677736,
+      "betweenness": 0.0,
+      "closeness": 0.3713450292397661,
+      "degree": 2.0,
+      "eigenvector": 0.017202868018241432,
+      "pagerank": 0.2961633143325053
+    },
+    {
+      "name": "reuters.com",
+      "post_count": 12686,
+      "community": 23,
+      "x": -0.3684108236044426,
+      "y": 0.2733063492391634,
+      "betweenness": 163.81847169965715,
+      "closeness": 0.4584837545126354,
+      "degree": 25.0,
+      "eigenvector": 0.15406628818868479,
+      "pagerank": 2.106939092806735
+    },
+    {
+      "name": "rss.feedsportal.com",
+      "post_count": 64273,
+      "community": 23,
+      "x": -0.24044398304068515,
+      "y": 0.2294771856667166,
+      "betweenness": 23.894102174857217,
+      "closeness": 0.47388059701492535,
+      "degree": 16.0,
+      "eigenvector": 0.13038061729724015,
+      "pagerank": 1.32790173708585
+    },
+    {
+      "name": "sacbee.com",
+      "post_count": 8216,
+      "community": 15,
+      "x": -0.15571561578451246,
+      "y": 0.48524990349769814,
+      "betweenness": 1.2847759564169623,
+      "closeness": 0.3956386292834891,
+      "degree": 5.0,
+      "eigenvector": 0.04249174577679751,
+      "pagerank": 0.5150314653788816
+    },
+    {
+      "name": "salon.com",
+      "post_count": 18061,
+      "community": 23,
+      "x": -0.3040748647858139,
+      "y": 0.3311227670784345,
+      "betweenness": 82.52472168293853,
+      "closeness": 0.49034749034749037,
+      "degree": 24.0,
+      "eigenvector": 0.17188476041384335,
+      "pagerank": 1.934978245647789
+    },
+    {
+      "name": "sandiego.craigslist.org",
+      "post_count": 100479,
+      "community": 75,
+      "x": -0.28597008913455213,
+      "y": -0.25616359903506114,
+      "betweenness": 0.0,
+      "closeness": 0.3649425287356322,
+      "degree": 1.0,
+      "eigenvector": 0.011789827721949616,
+      "pagerank": 0.2439190815511818
+    },
+    {
+      "name": "seattle.craigslist.org",
+      "post_count": 125124,
+      "community": 75,
+      "x": -0.34209983562241836,
+      "y": -0.25106344224562455,
+      "betweenness": 0.0,
+      "closeness": 0.3649425287356322,
+      "degree": 1.0,
+      "eigenvector": 0.011789827721949616,
+      "pagerank": 0.2439190815511818
+    },
+    {
+      "name": "seattletimes.nwsource.com",
+      "post_count": 13787,
+      "community": 15,
+      "x": -0.45868129864754237,
+      "y": 0.297760095731556,
+      "betweenness": 5.992155129807663,
+      "closeness": 0.4334470989761092,
+      "degree": 7.0,
+      "eigenvector": 0.06583585212902567,
+      "pagerank": 0.6884778936196427
+    },
+    {
+      "name": "seekingalpha.com",
+      "post_count": 8630,
+      "community": 23,
+      "x": -0.400889980202666,
+      "y": 0.30082347641875185,
+      "betweenness": 152.17112760097595,
+      "closeness": 0.4847328244274809,
+      "degree": 17.0,
+      "eigenvector": 0.1353488848067347,
+      "pagerank": 1.5343873511658483
+    },
+    {
+      "name": "sfbay.craigslist.org",
+      "post_count": 113277,
+      "community": 75,
+      "x": -0.24679244455195581,
+      "y": 0.02448263022395488,
+      "betweenness": 0.0,
+      "closeness": 0.4096774193548387,
+      "degree": 2.0,
+      "eigenvector": 0.02287661613710334,
+      "pagerank": 0.3185463052868202
+    },
+    {
+      "name": "sfgate.com",
+      "post_count": 8170,
+      "community": 23,
+      "x": -0.20611444667072504,
+      "y": 0.2549840240917556,
+      "betweenness": 56.09270423082338,
+      "closeness": 0.4810606060606061,
+      "degree": 18.0,
+      "eigenvector": 0.13438177738411744,
+      "pagerank": 1.5330119911866182
+    },
+    {
+      "name": "slideshare.net",
+      "post_count": 43906,
+      "community": 75,
+      "x": -0.007374641738321753,
+      "y": 0.24749892863328665,
+      "betweenness": 5.004016934563007,
+      "closeness": 0.3527777777777778,
+      "degree": 4.0,
+      "eigenvector": 0.012835351784648666,
+      "pagerank": 0.5187840975088156
+    },
+    {
+      "name": "sportsnipe.com",
+      "post_count": 55289,
+      "community": 15,
+      "x": -0.2997587007691389,
+      "y": 0.4290202003574087,
+      "betweenness": 631.1664820936435,
+      "closeness": 0.503968253968254,
+      "degree": 43.0,
+      "eigenvector": 0.19426244763122913,
+      "pagerank": 3.828034939202255
+    },
+    {
+      "name": "startribune.com",
+      "post_count": 74410,
+      "community": 15,
+      "x": -0.21931317394794198,
+      "y": 0.38682395199910985,
+      "betweenness": 13.025004894329546,
+      "closeness": 0.4349315068493151,
+      "degree": 9.0,
+      "eigenvector": 0.07388876652671539,
+      "pagerank": 0.8366702494697393
+    },
+    {
+      "name": "starwars.wikia.com",
+      "post_count": 23012,
+      "community": 23,
+      "x": 0.15310266743282502,
+      "y": 0.4580026700183073,
+      "betweenness": 251.0,
+      "closeness": 0.3681159420289855,
+      "degree": 5.0,
+      "eigenvector": 0.01768982733307878,
+      "pagerank": 0.9755014131426772
+    },
+    {
+      "name": "taringa.net",
+      "post_count": 8300,
+      "community": 116,
+      "x": 0.41413723835039173,
+      "y": -0.41121506389407003,
+      "betweenness": 0.0,
+      "closeness": 0.26403326403326405,
+      "degree": 1.0,
+      "eigenvector": 0.0006039182876856333,
+      "pagerank": 0.30731767625023926
+    },
+    {
+      "name": "telegraph.co.uk",
+      "post_count": 8048,
+      "community": 23,
+      "x": -0.21290323931309493,
+      "y": 0.28311907567740574,
+      "betweenness": 312.17048382860804,
+      "closeness": 0.49034749034749037,
+      "degree": 24.0,
+      "eigenvector": 0.16595328093191913,
+      "pagerank": 2.014069149009724
+    },
+    {
+      "name": "theaustralian.news.com.au",
+      "post_count": 10256,
+      "community": 10,
+      "x": -0.3226559674644565,
+      "y": 0.6185069796847826,
+      "betweenness": 1.61874912381078,
+      "closeness": 0.38484848484848483,
+      "degree": 5.0,
+      "eigenvector": 0.03372198504680105,
+      "pagerank": 0.5384742799998912
+    },
+    {
+      "name": "thedailypage.com",
+      "post_count": 13984,
+      "community": 75,
+      "x": -0.5702345007138747,
+      "y": -0.20013152120120528,
+      "betweenness": 0.0,
+      "closeness": 0.3649425287356322,
+      "degree": 1.0,
+      "eigenvector": 0.011789827721949616,
+      "pagerank": 0.2439190815511818
+    },
+    {
+      "name": "thefacts.com",
+      "post_count": 17034,
+      "community": 15,
+      "x": -0.17304432576703555,
+      "y": 0.785680170906027,
+      "betweenness": 0.0,
+      "closeness": 0.335978835978836,
+      "degree": 1.0,
+      "eigenvector": 0.008981127272257394,
+      "pagerank": 0.22505854482252943
+    },
+    {
+      "name": "theglobeandmail.com",
+      "post_count": 11250,
+      "community": 10,
+      "x": -0.46504583792955323,
+      "y": 0.3899740721484872,
+      "betweenness": 38.07166406097676,
+      "closeness": 0.44405594405594406,
+      "degree": 9.0,
+      "eigenvector": 0.057801350676236325,
+      "pagerank": 0.8918075893259962
+    },
+    {
+      "name": "todaystrucking.com",
+      "post_count": 10073,
+      "community": 10,
+      "x": -0.543485046257695,
+      "y": 0.48290490522976165,
+      "betweenness": 1.4859888710333131,
+      "closeness": 0.3527777777777778,
+      "degree": 4.0,
+      "eigenvector": 0.02207093113777465,
+      "pagerank": 0.46349161306801884
+    },
+    {
+      "name": "topix.net",
+      "post_count": 12942,
+      "community": 15,
+      "x": -0.32342397113595633,
+      "y": 0.501324614997935,
+      "betweenness": 148.99920814167325,
+      "closeness": 0.4205298013245033,
+      "degree": 15.0,
+      "eigenvector": 0.08129242025150447,
+      "pagerank": 1.4430232531803195
+    },
+    {
+      "name": "torrentportal.com",
+      "post_count": 41927,
+      "community": 10,
+      "x": -0.2272768812578348,
+      "y": 0.8063907171384231,
+      "betweenness": 0.0,
+      "closeness": 0.30455635491606714,
+      "degree": 1.0,
+      "eigenvector": 0.005204521764192604,
+      "pagerank": 0.22633673750608002
+    },
+    {
+      "name": "townhall.com",
+      "post_count": 7993,
+      "community": 23,
+      "x": -0.22240681694354864,
+      "y": 0.1769367601295354,
+      "betweenness": 5.848189306016084,
+      "closeness": 0.44405594405594406,
+      "degree": 10.0,
+      "eigenvector": 0.08616998027487312,
+      "pagerank": 0.889800266935293
+    },
+    {
+      "name": "tucsoncitizen.com",
+      "post_count": 8723,
+      "community": 15,
+      "x": -0.5128079581088288,
+      "y": 0.40660190075975344,
+      "betweenness": 5.423518990462183,
+      "closeness": 0.41776315789473684,
+      "degree": 5.0,
+      "eigenvector": 0.035997067491698766,
+      "pagerank": 0.5533956764250447
+    },
+    {
+      "name": "uk.news.yahoo.com",
+      "post_count": 15432,
+      "community": 61,
+      "x": -0.8189280288857551,
+      "y": 0.2187737726385399,
+      "betweenness": 0.0,
+      "closeness": 0.3333333333333333,
+      "degree": 1.0,
+      "eigenvector": 0.00635861421886978,
+      "pagerank": 0.23250266162595296
+    },
+    {
+      "name": "uk.reuters.com",
+      "post_count": 10206,
+      "community": 23,
+      "x": -0.2820939097253983,
+      "y": 0.29251770851280556,
+      "betweenness": 18.074288586798918,
+      "closeness": 0.4379310344827586,
+      "degree": 13.0,
+      "eigenvector": 0.0999314133778315,
+      "pagerank": 1.1208413915685094
+    },
+    {
+      "name": "uncyclopedia.wikia.com",
+      "post_count": 33766,
+      "community": 23,
+      "x": -0.09426299553198175,
+      "y": 0.11541903254484784,
+      "betweenness": 167.08076497530803,
+      "closeness": 0.40063091482649843,
+      "degree": 11.0,
+      "eigenvector": 0.05169422081126703,
+      "pagerank": 1.1887883822745953
+    },
+    {
+      "name": "us.rd.yahoo.com",
+      "post_count": 55192,
+      "community": 10,
+      "x": -0.4058666545458299,
+      "y": 0.34891371088137496,
+      "betweenness": 415.24443159969877,
+      "closeness": 0.5100401606425703,
+      "degree": 30.0,
+      "eigenvector": 0.1652680406084948,
+      "pagerank": 2.75745393734045
+    },
+    {
+      "name": "vz.ru",
+      "post_count": 11004,
+      "community": 61,
+      "x": -0.6589951616610632,
+      "y": 0.21113659266867374,
+      "betweenness": 126.09651588721356,
+      "closeness": 0.3746312684365782,
+      "degree": 4.0,
+      "eigenvector": 0.0228133618314276,
+      "pagerank": 0.6140703332034044
+    },
+    {
+      "name": "washingtondc.craigslist.org",
+      "post_count": 46150,
+      "community": 23,
+      "x": -0.6191394896858095,
+      "y": 0.625127601582908,
+      "betweenness": 0.0,
+      "closeness": 0.33866666666666667,
+      "degree": 1.0,
+      "eigenvector": 0.010383605040611392,
+      "pagerank": 0.2206283376760135
+    },
+    {
+      "name": "washingtonpost.com",
+      "post_count": 19976,
+      "community": 23,
+      "x": -0.362132360503388,
+      "y": 0.34310450056672936,
+      "betweenness": 312.50836231705716,
+      "closeness": 0.5100401606425703,
+      "degree": 34.0,
+      "eigenvector": 0.2245982121952971,
+      "pagerank": 2.849613520423053
+    },
+    {
+      "name": "wassr.jp",
+      "post_count": 26519,
+      "community": 75,
+      "x": 0.49161159077601785,
+      "y": 0.21634638446491047,
+      "betweenness": 0.0,
+      "closeness": 0.2651356993736952,
+      "degree": 2.0,
+      "eigenvector": 0.0005950854249856105,
+      "pagerank": 0.41205219069991117
+    },
+    {
+      "name": "wikieducator.org",
+      "post_count": 7819,
+      "community": 75,
+      "x": -0.0467505648070229,
+      "y": 0.13032604437948359,
+      "betweenness": 20.482331491162412,
+      "closeness": 0.4096774193548387,
+      "degree": 5.0,
+      "eigenvector": 0.02537531905583998,
+      "pagerank": 0.6219844829879418
+    },
+    {
+      "name": "wowwiki.com",
+      "post_count": 14905,
+      "community": 23,
+      "x": 0.4516095164672704,
+      "y": 0.5736172929975352,
+      "betweenness": 0.0,
+      "closeness": 0.26963906581740976,
+      "degree": 2.0,
+      "eigenvector": 0.0016356696214668645,
+      "pagerank": 0.4803940039924267
+    },
+    {
+      "name": "yelp.com",
+      "post_count": 19611,
+      "community": 75,
+      "x": -0.07583939286206684,
+      "y": 0.19392184392936143,
+      "betweenness": 79.22101513521221,
+      "closeness": 0.43050847457627117,
+      "degree": 5.0,
+      "eigenvector": 0.03705049545276625,
+      "pagerank": 0.5958068787891672
+    }
+  ],
+  "edges": [
+    {
+      "src": "sportsnipe.com",
+      "dst": "washingtonpost.com",
+      "weight": 183,
+      "is_bridge": false
+    },
+    {
+      "src": "sportsnipe.com",
+      "dst": "nydailynews.com",
+      "weight": 105,
+      "is_bridge": false
+    },
+    {
+      "src": "sportsnipe.com",
+      "dst": "us.rd.yahoo.com",
+      "weight": 5184,
+      "is_bridge": false
+    },
+    {
+      "src": "sportsnipe.com",
+      "dst": "chron.com",
+      "weight": 228,
+      "is_bridge": false
+    },
+    {
+      "src": "sportsnipe.com",
+      "dst": "philly.com",
+      "weight": 1443,
+      "is_bridge": false
+    },
+    {
+      "src": "sportsnipe.com",
+      "dst": "cnn.com",
+      "weight": 17,
+      "is_bridge": false
+    },
+    {
+      "src": "sportsnipe.com",
+      "dst": "cbc.ca",
+      "weight": 564,
+      "is_bridge": false
+    },
+    {
+      "src": "sportsnipe.com",
+      "dst": "postchronicle.com",
+      "weight": 21,
+      "is_bridge": false
+    },
+    {
+      "src": "sportsnipe.com",
+      "dst": "theglobeandmail.com",
+      "weight": 54,
+      "is_bridge": false
+    },
+    {
+      "src": "sportsnipe.com",
+      "dst": "news.com.au",
+      "weight": 204,
+      "is_bridge": false
+    },
+    {
+      "src": "sportsnipe.com",
+      "dst": "tucsoncitizen.com",
+      "weight": 45,
+      "is_bridge": false
+    },
+    {
+      "src": "sportsnipe.com",
+      "dst": "boston.com",
+      "weight": 912,
+      "is_bridge": false
+    },
+    {
+      "src": "sportsnipe.com",
+      "dst": "theaustralian.news.com.au",
+      "weight": 12,
+      "is_bridge": false
+    },
+    {
+      "src": "sportsnipe.com",
+      "dst": "seattletimes.nwsource.com",
+      "weight": 723,
+      "is_bridge": false
+    },
+    {
+      "src": "sportsnipe.com",
+      "dst": "rep-am.com",
+      "weight": 24,
+      "is_bridge": false
+    },
+    {
+      "src": "sportsnipe.com",
+      "dst": "earthtimes.org",
+      "weight": 15,
+      "is_bridge": false
+    },
+    {
+      "src": "sportsnipe.com",
+      "dst": "seekingalpha.com",
+      "weight": 6,
+      "is_bridge": false
+    },
+    {
+      "src": "sportsnipe.com",
+      "dst": "thefacts.com",
+      "weight": 6,
+      "is_bridge": true
+    },
+    {
+      "src": "sportsnipe.com",
+      "dst": "pr-inside.com",
+      "weight": 6,
+      "is_bridge": false
+    },
+    {
+      "src": "sportsnipe.com",
+      "dst": "guardian.co.uk",
+      "weight": 1002,
+      "is_bridge": false
+    },
+    {
+      "src": "sportsnipe.com",
+      "dst": "sfgate.com",
+      "weight": 168,
+      "is_bridge": false
+    },
+    {
+      "src": "sportsnipe.com",
+      "dst": "marketwire.com",
+      "weight": 12,
+      "is_bridge": false
+    },
+    {
+      "src": "sportsnipe.com",
+      "dst": "dailyherald.com",
+      "weight": 42,
+      "is_bridge": false
+    },
+    {
+      "src": "sportsnipe.com",
+      "dst": "newsday.com",
+      "weight": 72,
+      "is_bridge": false
+    },
+    {
+      "src": "sportsnipe.com",
+      "dst": "sacbee.com",
+      "weight": 156,
+      "is_bridge": false
+    },
+    {
+      "src": "sportsnipe.com",
+      "dst": "reuters.com",
+      "weight": 57,
+      "is_bridge": false
+    },
+    {
+      "src": "sportsnipe.com",
+      "dst": "bizjournals.com",
+      "weight": 78,
+      "is_bridge": false
+    },
+    {
+      "src": "sportsnipe.com",
+      "dst": "mercurynews.com",
+      "weight": 204,
+      "is_bridge": false
+    },
+    {
+      "src": "sportsnipe.com",
+      "dst": "news.bbc.co.uk",
+      "weight": 1764,
+      "is_bridge": false
+    },
+    {
+      "src": "sportsnipe.com",
+      "dst": "huffingtonpost.com",
+      "weight": 15,
+      "is_bridge": false
+    },
+    {
+      "src": "sportsnipe.com",
+      "dst": "kansascity.com",
+      "weight": 768,
+      "is_bridge": false
+    },
+    {
+      "src": "sportsnipe.com",
+      "dst": "forbes.com",
+      "weight": 21,
+      "is_bridge": false
+    },
+    {
+      "src": "sportsnipe.com",
+      "dst": "startribune.com",
+      "weight": 1041,
+      "is_bridge": false
+    },
+    {
+      "src": "sportsnipe.com",
+      "dst": "chicagotribune.com",
+      "weight": 228,
+      "is_bridge": false
+    },
+    {
+      "src": "sportsnipe.com",
+      "dst": "abc.net.au",
+      "weight": 243,
+      "is_bridge": false
+    },
+    {
+      "src": "sportsnipe.com",
+      "dst": "rss.feedsportal.com",
+      "weight": 63,
+      "is_bridge": false
+    },
+    {
+      "src": "sportsnipe.com",
+      "dst": "prnewswire.com",
+      "weight": 57,
+      "is_bridge": false
+    },
+    {
+      "src": "sportsnipe.com",
+      "dst": "post-gazette.com",
+      "weight": 312,
+      "is_bridge": false
+    },
+    {
+      "src": "sportsnipe.com",
+      "dst": "latimes.com",
+      "weight": 222,
+      "is_bridge": false
+    },
+    {
+      "src": "sportsnipe.com",
+      "dst": "uk.reuters.com",
+      "weight": 24,
+      "is_bridge": false
+    },
+    {
+      "src": "sportsnipe.com",
+      "dst": "baltimoresun.com",
+      "weight": 153,
+      "is_bridge": false
+    },
+    {
+      "src": "sportsnipe.com",
+      "dst": "topix.net",
+      "weight": 1413,
+      "is_bridge": false
+    },
+    {
+      "src": "sportsnipe.com",
+      "dst": "telegraph.co.uk",
+      "weight": 156,
+      "is_bridge": false
+    },
+    {
+      "src": "guardian.co.uk",
+      "dst": "boston.com",
+      "weight": 10,
+      "is_bridge": false
+    },
+    {
+      "src": "guardian.co.uk",
+      "dst": "forbes.com",
+      "weight": 16,
+      "is_bridge": false
+    },
+    {
+      "src": "guardian.co.uk",
+      "dst": "dailymail.co.uk",
+      "weight": 32,
+      "is_bridge": false
+    },
+    {
+      "src": "guardian.co.uk",
+      "dst": "indeed.com",
+      "weight": 11898,
+      "is_bridge": false
+    },
+    {
+      "src": "guardian.co.uk",
+      "dst": "reuters.com",
+      "weight": 23,
+      "is_bridge": false
+    },
+    {
+      "src": "guardian.co.uk",
+      "dst": "washingtonpost.com",
+      "weight": 49,
+      "is_bridge": false
+    },
+    {
+      "src": "guardian.co.uk",
+      "dst": "huffingtonpost.com",
+      "weight": 26,
+      "is_bridge": false
+    },
+    {
+      "src": "guardian.co.uk",
+      "dst": "latimes.com",
+      "weight": 33,
+      "is_bridge": false
+    },
+    {
+      "src": "guardian.co.uk",
+      "dst": "news.bbc.co.uk",
+      "weight": 173,
+      "is_bridge": false
+    },
+    {
+      "src": "guardian.co.uk",
+      "dst": "uk.reuters.com",
+      "weight": 7,
+      "is_bridge": false
+    },
+    {
+      "src": "guardian.co.uk",
+      "dst": "cnn.com",
+      "weight": 10,
+      "is_bridge": false
+    },
+    {
+      "src": "guardian.co.uk",
+      "dst": "topix.net",
+      "weight": 18,
+      "is_bridge": false
+    },
+    {
+      "src": "guardian.co.uk",
+      "dst": "telegraph.co.uk",
+      "weight": 72,
+      "is_bridge": false
+    },
+    {
+      "src": "guardian.co.uk",
+      "dst": "amazon.com",
+      "weight": 15,
+      "is_bridge": false
+    },
+    {
+      "src": "amazon.com",
+      "dst": "boston.com",
+      "weight": 42,
+      "is_bridge": false
+    },
+    {
+      "src": "amazon.com",
+      "dst": "latimes.com",
+      "weight": 344,
+      "is_bridge": false
+    },
+    {
+      "src": "amazon.com",
+      "dst": "guardian.co.uk",
+      "weight": 515,
+      "is_bridge": false
+    },
+    {
+      "src": "amazon.com",
+      "dst": "washingtonpost.com",
+      "weight": 464,
+      "is_bridge": false
+    },
+    {
+      "src": "amazon.com",
+      "dst": "theglobeandmail.com",
+      "weight": 319,
+      "is_bridge": false
+    },
+    {
+      "src": "amazon.com",
+      "dst": "nydailynews.com",
+      "weight": 5,
+      "is_bridge": false
+    },
+    {
+      "src": "amazon.com",
+      "dst": "yelp.com",
+      "weight": 27,
+      "is_bridge": false
+    },
+    {
+      "src": "mahalo.com",
+      "dst": "latimes.com",
+      "weight": 273,
+      "is_bridge": false
+    },
+    {
+      "src": "mahalo.com",
+      "dst": "theglobeandmail.com",
+      "weight": 23,
+      "is_bridge": false
+    },
+    {
+      "src": "mahalo.com",
+      "dst": "townhall.com",
+      "weight": 23,
+      "is_bridge": false
+    },
+    {
+      "src": "mahalo.com",
+      "dst": "chron.com",
+      "weight": 124,
+      "is_bridge": false
+    },
+    {
+      "src": "mahalo.com",
+      "dst": "theaustralian.news.com.au",
+      "weight": 12,
+      "is_bridge": false
+    },
+    {
+      "src": "mahalo.com",
+      "dst": "breitbart.com",
+      "weight": 17,
+      "is_bridge": false
+    },
+    {
+      "src": "mahalo.com",
+      "dst": "bizjournals.com",
+      "weight": 26,
+      "is_bridge": false
+    },
+    {
+      "src": "mahalo.com",
+      "dst": "chicagotribune.com",
+      "weight": 112,
+      "is_bridge": false
+    },
+    {
+      "src": "mahalo.com",
+      "dst": "marketwire.com",
+      "weight": 5,
+      "is_bridge": false
+    },
+    {
+      "src": "mahalo.com",
+      "dst": "nydailynews.com",
+      "weight": 224,
+      "is_bridge": false
+    },
+    {
+      "src": "mahalo.com",
+      "dst": "forums.slickdeals.net",
+      "weight": 6,
+      "is_bridge": false
+    },
+    {
+      "src": "mahalo.com",
+      "dst": "newsday.com",
+      "weight": 67,
+      "is_bridge": false
+    },
+    {
+      "src": "mahalo.com",
+      "dst": "kansascity.com",
+      "weight": 36,
+      "is_bridge": false
+    },
+    {
+      "src": "mahalo.com",
+      "dst": "mercurynews.com",
+      "weight": 53,
+      "is_bridge": false
+    },
+    {
+      "src": "mahalo.com",
+      "dst": "freerepublic.com",
+      "weight": 8,
+      "is_bridge": false
+    },
+    {
+      "src": "mahalo.com",
+      "dst": "topix.net",
+      "weight": 940,
+      "is_bridge": false
+    },
+    {
+      "src": "mahalo.com",
+      "dst": "news.com.au",
+      "weight": 52,
+      "is_bridge": false
+    },
+    {
+      "src": "mahalo.com",
+      "dst": "yelp.com",
+      "weight": 190,
+      "is_bridge": false
+    },
+    {
+      "src": "mahalo.com",
+      "dst": "guardian.co.uk",
+      "weight": 235,
+      "is_bridge": false
+    },
+    {
+      "src": "mahalo.com",
+      "dst": "marketwatch.com",
+      "weight": 71,
+      "is_bridge": false
+    },
+    {
+      "src": "mahalo.com",
+      "dst": "salon.com",
+      "weight": 91,
+      "is_bridge": false
+    },
+    {
+      "src": "mahalo.com",
+      "dst": "startribune.com",
+      "weight": 72,
+      "is_bridge": false
+    },
+    {
+      "src": "mahalo.com",
+      "dst": "amazon.com",
+      "weight": 4705,
+      "is_bridge": false
+    },
+    {
+      "src": "mahalo.com",
+      "dst": "dailyherald.com",
+      "weight": 13,
+      "is_bridge": false
+    },
+    {
+      "src": "mahalo.com",
+      "dst": "news.bbc.co.uk",
+      "weight": 590,
+      "is_bridge": false
+    },
+    {
+      "src": "mahalo.com",
+      "dst": "post-gazette.com",
+      "weight": 91,
+      "is_bridge": false
+    },
+    {
+      "src": "mahalo.com",
+      "dst": "answers.yahoo.com",
+      "weight": 25,
+      "is_bridge": false
+    },
+    {
+      "src": "mahalo.com",
+      "dst": "earthtimes.org",
+      "weight": 10,
+      "is_bridge": false
+    },
+    {
+      "src": "mahalo.com",
+      "dst": "abc.net.au",
+      "weight": 61,
+      "is_bridge": false
+    },
+    {
+      "src": "mahalo.com",
+      "dst": "sfbay.craigslist.org",
+      "weight": 7,
+      "is_bridge": false
+    },
+    {
+      "src": "mahalo.com",
+      "dst": "uk.reuters.com",
+      "weight": 50,
+      "is_bridge": false
+    },
+    {
+      "src": "mahalo.com",
+      "dst": "seattletimes.nwsource.com",
+      "weight": 103,
+      "is_bridge": false
+    },
+    {
+      "src": "mahalo.com",
+      "dst": "dailymail.co.uk",
+      "weight": 108,
+      "is_bridge": false
+    },
+    {
+      "src": "mahalo.com",
+      "dst": "groups.google.com",
+      "weight": 16,
+      "is_bridge": false
+    },
+    {
+      "src": "mahalo.com",
+      "dst": "reuters.com",
+      "weight": 235,
+      "is_bridge": false
+    },
+    {
+      "src": "mahalo.com",
+      "dst": "huffingtonpost.com",
+      "weight": 174,
+      "is_bridge": false
+    },
+    {
+      "src": "mahalo.com",
+      "dst": "seekingalpha.com",
+      "weight": 12,
+      "is_bridge": false
+    },
+    {
+      "src": "mahalo.com",
+      "dst": "digitalspy.co.uk",
+      "weight": 5,
+      "is_bridge": false
+    },
+    {
+      "src": "mahalo.com",
+      "dst": "forbes.com",
+      "weight": 99,
+      "is_bridge": false
+    },
+    {
+      "src": "mahalo.com",
+      "dst": "billboard.com",
+      "weight": 56,
+      "is_bridge": false
+    },
+    {
+      "src": "mahalo.com",
+      "dst": "baltimoresun.com",
+      "weight": 64,
+      "is_bridge": false
+    },
+    {
+      "src": "mahalo.com",
+      "dst": "prnewswire.com",
+      "weight": 9,
+      "is_bridge": false
+    },
+    {
+      "src": "mahalo.com",
+      "dst": "philly.com",
+      "weight": 100,
+      "is_bridge": false
+    },
+    {
+      "src": "mahalo.com",
+      "dst": "boards.cruisecritic.com",
+      "weight": 9,
+      "is_bridge": true
+    },
+    {
+      "src": "mahalo.com",
+      "dst": "washingtonpost.com",
+      "weight": 459,
+      "is_bridge": false
+    },
+    {
+      "src": "mahalo.com",
+      "dst": "sfgate.com",
+      "weight": 304,
+      "is_bridge": false
+    },
+    {
+      "src": "mahalo.com",
+      "dst": "sacbee.com",
+      "weight": 22,
+      "is_bridge": false
+    },
+    {
+      "src": "mahalo.com",
+      "dst": "cnn.com",
+      "weight": 456,
+      "is_bridge": false
+    },
+    {
+      "src": "mahalo.com",
+      "dst": "telegraph.co.uk",
+      "weight": 175,
+      "is_bridge": false
+    },
+    {
+      "src": "mahalo.com",
+      "dst": "boston.com",
+      "weight": 248,
+      "is_bridge": false
+    },
+    {
+      "src": "mahalo.com",
+      "dst": "cbc.ca",
+      "weight": 130,
+      "is_bridge": false
+    },
+    {
+      "src": "mahalo.com",
+      "dst": "postchronicle.com",
+      "weight": 12,
+      "is_bridge": false
+    },
+    {
+      "src": "mashget.com",
+      "dst": "kansascity.com",
+      "weight": 62,
+      "is_bridge": false
+    },
+    {
+      "src": "mashget.com",
+      "dst": "latimes.com",
+      "weight": 452,
+      "is_bridge": false
+    },
+    {
+      "src": "mashget.com",
+      "dst": "boston.com",
+      "weight": 162,
+      "is_bridge": false
+    },
+    {
+      "src": "mashget.com",
+      "dst": "uk.reuters.com",
+      "weight": 858,
+      "is_bridge": false
+    },
+    {
+      "src": "mashget.com",
+      "dst": "forbes.com",
+      "weight": 455,
+      "is_bridge": false
+    },
+    {
+      "src": "mashget.com",
+      "dst": "telegraph.co.uk",
+      "weight": 390,
+      "is_bridge": false
+    },
+    {
+      "src": "mashget.com",
+      "dst": "dailymail.co.uk",
+      "weight": 88,
+      "is_bridge": false
+    },
+    {
+      "src": "mashget.com",
+      "dst": "newsday.com",
+      "weight": 82,
+      "is_bridge": false
+    },
+    {
+      "src": "mashget.com",
+      "dst": "seattletimes.nwsource.com",
+      "weight": 83,
+      "is_bridge": false
+    },
+    {
+      "src": "mashget.com",
+      "dst": "washingtonpost.com",
+      "weight": 661,
+      "is_bridge": false
+    },
+    {
+      "src": "mashget.com",
+      "dst": "guardian.co.uk",
+      "weight": 530,
+      "is_bridge": false
+    },
+    {
+      "src": "mashget.com",
+      "dst": "huffingtonpost.com",
+      "weight": 1779,
+      "is_bridge": false
+    },
+    {
+      "src": "mashget.com",
+      "dst": "sacbee.com",
+      "weight": 5,
+      "is_bridge": false
+    },
+    {
+      "src": "mashget.com",
+      "dst": "news.bbc.co.uk",
+      "weight": 1056,
+      "is_bridge": false
+    },
+    {
+      "src": "mashget.com",
+      "dst": "nydailynews.com",
+      "weight": 268,
+      "is_bridge": false
+    },
+    {
+      "src": "mashget.com",
+      "dst": "chicagotribune.com",
+      "weight": 220,
+      "is_bridge": false
+    },
+    {
+      "src": "mashget.com",
+      "dst": "reuters.com",
+      "weight": 1780,
+      "is_bridge": false
+    },
+    {
+      "src": "mashget.com",
+      "dst": "baltimoresun.com",
+      "weight": 24,
+      "is_bridge": false
+    },
+    {
+      "src": "mashget.com",
+      "dst": "startribune.com",
+      "weight": 38,
+      "is_bridge": false
+    },
+    {
+      "src": "mashget.com",
+      "dst": "abc.net.au",
+      "weight": 86,
+      "is_bridge": false
+    },
+    {
+      "src": "mashget.com",
+      "dst": "chron.com",
+      "weight": 222,
+      "is_bridge": false
+    },
+    {
+      "src": "mashget.com",
+      "dst": "bizjournals.com",
+      "weight": 283,
+      "is_bridge": false
+    },
+    {
+      "src": "mashget.com",
+      "dst": "marketwatch.com",
+      "weight": 330,
+      "is_bridge": false
+    },
+    {
+      "src": "mashget.com",
+      "dst": "philly.com",
+      "weight": 163,
+      "is_bridge": false
+    },
+    {
+      "src": "mashget.com",
+      "dst": "cnn.com",
+      "weight": 311,
+      "is_bridge": false
+    },
+    {
+      "src": "us.rd.yahoo.com",
+      "dst": "seekingalpha.com",
+      "weight": 513,
+      "is_bridge": false
+    },
+    {
+      "src": "us.rd.yahoo.com",
+      "dst": "philly.com",
+      "weight": 8,
+      "is_bridge": false
+    },
+    {
+      "src": "us.rd.yahoo.com",
+      "dst": "boston.com",
+      "weight": 93,
+      "is_bridge": false
+    },
+    {
+      "src": "us.rd.yahoo.com",
+      "dst": "amazon.com",
+      "weight": 35,
+      "is_bridge": false
+    },
+    {
+      "src": "us.rd.yahoo.com",
+      "dst": "tucsoncitizen.com",
+      "weight": 251,
+      "is_bridge": false
+    },
+    {
+      "src": "us.rd.yahoo.com",
+      "dst": "sfgate.com",
+      "weight": 7,
+      "is_bridge": false
+    },
+    {
+      "src": "us.rd.yahoo.com",
+      "dst": "marketwatch.com",
+      "weight": 44,
+      "is_bridge": false
+    },
+    {
+      "src": "us.rd.yahoo.com",
+      "dst": "forbes.com",
+      "weight": 103,
+      "is_bridge": false
+    },
+    {
+      "src": "us.rd.yahoo.com",
+      "dst": "news.bbc.co.uk",
+      "weight": 10,
+      "is_bridge": false
+    },
+    {
+      "src": "us.rd.yahoo.com",
+      "dst": "latimes.com",
+      "weight": 11,
+      "is_bridge": false
+    },
+    {
+      "src": "us.rd.yahoo.com",
+      "dst": "mercurynews.com",
+      "weight": 50,
+      "is_bridge": false
+    },
+    {
+      "src": "us.rd.yahoo.com",
+      "dst": "guardian.co.uk",
+      "weight": 63,
+      "is_bridge": false
+    },
+    {
+      "src": "us.rd.yahoo.com",
+      "dst": "seattletimes.nwsource.com",
+      "weight": 22,
+      "is_bridge": false
+    },
+    {
+      "src": "us.rd.yahoo.com",
+      "dst": "earthtimes.org",
+      "weight": 63,
+      "is_bridge": false
+    },
+    {
+      "src": "us.rd.yahoo.com",
+      "dst": "uk.reuters.com",
+      "weight": 7,
+      "is_bridge": false
+    },
+    {
+      "src": "us.rd.yahoo.com",
+      "dst": "telegraph.co.uk",
+      "weight": 14,
+      "is_bridge": false
+    },
+    {
+      "src": "us.rd.yahoo.com",
+      "dst": "cbc.ca",
+      "weight": 27,
+      "is_bridge": false
+    },
+    {
+      "src": "us.rd.yahoo.com",
+      "dst": "dailymail.co.uk",
+      "weight": 14,
+      "is_bridge": false
+    },
+    {
+      "src": "us.rd.yahoo.com",
+      "dst": "reuters.com",
+      "weight": 41,
+      "is_bridge": false
+    },
+    {
+      "src": "us.rd.yahoo.com",
+      "dst": "indeed.com",
+      "weight": 7,
+      "is_bridge": false
+    },
+    {
+      "src": "us.rd.yahoo.com",
+      "dst": "cnn.com",
+      "weight": 10,
+      "is_bridge": false
+    },
+    {
+      "src": "us.rd.yahoo.com",
+      "dst": "financial.de",
+      "weight": 46,
+      "is_bridge": true
+    },
+    {
+      "src": "us.rd.yahoo.com",
+      "dst": "nydailynews.com",
+      "weight": 26,
+      "is_bridge": false
+    },
+    {
+      "src": "us.rd.yahoo.com",
+      "dst": "allafrica.com",
+      "weight": 38,
+      "is_bridge": true
+    },
+    {
+      "src": "us.rd.yahoo.com",
+      "dst": "kansascity.com",
+      "weight": 6,
+      "is_bridge": false
+    },
+    {
+      "src": "us.rd.yahoo.com",
+      "dst": "news.com.au",
+      "weight": 6,
+      "is_bridge": false
+    },
+    {
+      "src": "us.rd.yahoo.com",
+      "dst": "theglobeandmail.com",
+      "weight": 5,
+      "is_bridge": false
+    },
+    {
+      "src": "us.rd.yahoo.com",
+      "dst": "washingtonpost.com",
+      "weight": 19,
+      "is_bridge": false
+    },
+    {
+      "src": "news.bbc.co.uk",
+      "dst": "guardian.co.uk",
+      "weight": 10,
+      "is_bridge": false
+    },
+    {
+      "src": "news.bbc.co.uk",
+      "dst": "telegraph.co.uk",
+      "weight": 7,
+      "is_bridge": false
+    },
+    {
+      "src": "news.bbc.co.uk",
+      "dst": "dailymail.co.uk",
+      "weight": 6,
+      "is_bridge": false
+    },
+    {
+      "src": "forum.dvdtalk.com",
+      "dst": "huffingtonpost.com",
+      "weight": 9,
+      "is_bridge": false
+    },
+    {
+      "src": "forum.dvdtalk.com",
+      "dst": "nydailynews.com",
+      "weight": 37,
+      "is_bridge": false
+    },
+    {
+      "src": "forum.dvdtalk.com",
+      "dst": "boston.craigslist.org",
+      "weight": 12,
+      "is_bridge": false
+    },
+    {
+      "src": "forum.dvdtalk.com",
+      "dst": "billboard.com",
+      "weight": 32,
+      "is_bridge": false
+    },
+    {
+      "src": "forum.dvdtalk.com",
+      "dst": "dailymail.co.uk",
+      "weight": 47,
+      "is_bridge": false
+    },
+    {
+      "src": "forum.dvdtalk.com",
+      "dst": "answers.yahoo.com",
+      "weight": 11,
+      "is_bridge": false
+    },
+    {
+      "src": "forum.dvdtalk.com",
+      "dst": "guardian.co.uk",
+      "weight": 23,
+      "is_bridge": false
+    },
+    {
+      "src": "forum.dvdtalk.com",
+      "dst": "forums.slickdeals.net",
+      "weight": 26,
+      "is_bridge": false
+    },
+    {
+      "src": "forum.dvdtalk.com",
+      "dst": "sfgate.com",
+      "weight": 9,
+      "is_bridge": false
+    },
+    {
+      "src": "forum.dvdtalk.com",
+      "dst": "forbes.com",
+      "weight": 10,
+      "is_bridge": false
+    },
+    {
+      "src": "forum.dvdtalk.com",
+      "dst": "philly.com",
+      "weight": 13,
+      "is_bridge": false
+    },
+    {
+      "src": "forum.dvdtalk.com",
+      "dst": "breitbart.com",
+      "weight": 10,
+      "is_bridge": false
+    },
+    {
+      "src": "forum.dvdtalk.com",
+      "dst": "news.bbc.co.uk",
+      "weight": 25,
+      "is_bridge": false
+    },
+    {
+      "src": "forum.dvdtalk.com",
+      "dst": "amazon.com",
+      "weight": 4956,
+      "is_bridge": false
+    },
+    {
+      "src": "forum.dvdtalk.com",
+      "dst": "boston.com",
+      "weight": 14,
+      "is_bridge": false
+    },
+    {
+      "src": "forum.dvdtalk.com",
+      "dst": "chron.com",
+      "weight": 10,
+      "is_bridge": false
+    },
+    {
+      "src": "forum.dvdtalk.com",
+      "dst": "reuters.com",
+      "weight": 30,
+      "is_bridge": false
+    },
+    {
+      "src": "forum.dvdtalk.com",
+      "dst": "telegraph.co.uk",
+      "weight": 11,
+      "is_bridge": false
+    },
+    {
+      "src": "forum.dvdtalk.com",
+      "dst": "kansascity.com",
+      "weight": 5,
+      "is_bridge": false
+    },
+    {
+      "src": "forum.dvdtalk.com",
+      "dst": "washingtonpost.com",
+      "weight": 17,
+      "is_bridge": false
+    },
+    {
+      "src": "forum.dvdtalk.com",
+      "dst": "cnn.com",
+      "weight": 63,
+      "is_bridge": false
+    },
+    {
+      "src": "forum.dvdtalk.com",
+      "dst": "lostpedia.wikia.com",
+      "weight": 12,
+      "is_bridge": false
+    },
+    {
+      "src": "forum.dvdtalk.com",
+      "dst": "latimes.com",
+      "weight": 28,
+      "is_bridge": false
+    },
+    {
+      "src": "forum.dvdtalk.com",
+      "dst": "us.rd.yahoo.com",
+      "weight": 48,
+      "is_bridge": false
+    },
+    {
+      "src": "reuters.com",
+      "dst": "breitbart.com",
+      "weight": 5,
+      "is_bridge": false
+    },
+    {
+      "src": "citeulike.org",
+      "dst": "topix.net",
+      "weight": 4294,
+      "is_bridge": true
+    },
+    {
+      "src": "digitalspy.co.uk",
+      "dst": "telegraph.co.uk",
+      "weight": 234,
+      "is_bridge": false
+    },
+    {
+      "src": "digitalspy.co.uk",
+      "dst": "huffingtonpost.com",
+      "weight": 47,
+      "is_bridge": false
+    },
+    {
+      "src": "digitalspy.co.uk",
+      "dst": "uk.news.yahoo.com",
+      "weight": 43,
+      "is_bridge": true
+    },
+    {
+      "src": "digitalspy.co.uk",
+      "dst": "boston.com",
+      "weight": 6,
+      "is_bridge": false
+    },
+    {
+      "src": "digitalspy.co.uk",
+      "dst": "answers.yahoo.com",
+      "weight": 6,
+      "is_bridge": false
+    },
+    {
+      "src": "digitalspy.co.uk",
+      "dst": "cnn.com",
+      "weight": 6,
+      "is_bridge": false
+    },
+    {
+      "src": "digitalspy.co.uk",
+      "dst": "theglobeandmail.com",
+      "weight": 8,
+      "is_bridge": false
+    },
+    {
+      "src": "digitalspy.co.uk",
+      "dst": "news.com.au",
+      "weight": 24,
+      "is_bridge": false
+    },
+    {
+      "src": "digitalspy.co.uk",
+      "dst": "dailymail.co.uk",
+      "weight": 1265,
+      "is_bridge": false
+    },
+    {
+      "src": "digitalspy.co.uk",
+      "dst": "blogs.myspace.com",
+      "weight": 8,
+      "is_bridge": false
+    },
+    {
+      "src": "digitalspy.co.uk",
+      "dst": "news.bbc.co.uk",
+      "weight": 1269,
+      "is_bridge": false
+    },
+    {
+      "src": "digitalspy.co.uk",
+      "dst": "nydailynews.com",
+      "weight": 8,
+      "is_bridge": false
+    },
+    {
+      "src": "digitalspy.co.uk",
+      "dst": "breitbart.com",
+      "weight": 5,
+      "is_bridge": false
+    },
+    {
+      "src": "digitalspy.co.uk",
+      "dst": "newsday.com",
+      "weight": 10,
+      "is_bridge": false
+    },
+    {
+      "src": "digitalspy.co.uk",
+      "dst": "investegate.co.uk",
+      "weight": 6,
+      "is_bridge": true
+    },
+    {
+      "src": "digitalspy.co.uk",
+      "dst": "amazon.com",
+      "weight": 30,
+      "is_bridge": false
+    },
+    {
+      "src": "digitalspy.co.uk",
+      "dst": "lostpedia.wikia.com",
+      "weight": 21,
+      "is_bridge": false
+    },
+    {
+      "src": "digitalspy.co.uk",
+      "dst": "uk.reuters.com",
+      "weight": 6,
+      "is_bridge": false
+    },
+    {
+      "src": "digitalspy.co.uk",
+      "dst": "reuters.com",
+      "weight": 7,
+      "is_bridge": false
+    },
+    {
+      "src": "digitalspy.co.uk",
+      "dst": "washingtonpost.com",
+      "weight": 39,
+      "is_bridge": false
+    },
+    {
+      "src": "digitalspy.co.uk",
+      "dst": "vz.ru",
+      "weight": 6,
+      "is_bridge": false
+    },
+    {
+      "src": "digitalspy.co.uk",
+      "dst": "guardian.co.uk",
+      "weight": 600,
+      "is_bridge": false
+    },
+    {
+      "src": "digitalspy.co.uk",
+      "dst": "marketwatch.com",
+      "weight": 34,
+      "is_bridge": false
+    },
+    {
+      "src": "wikieducator.org",
+      "dst": "identi.ca",
+      "weight": 20,
+      "is_bridge": false
+    },
+    {
+      "src": "wikieducator.org",
+      "dst": "cnn.com",
+      "weight": 16,
+      "is_bridge": false
+    },
+    {
+      "src": "wikieducator.org",
+      "dst": "groups.google.com",
+      "weight": 2467,
+      "is_bridge": false
+    },
+    {
+      "src": "wikieducator.org",
+      "dst": "slideshare.net",
+      "weight": 432,
+      "is_bridge": false
+    },
+    {
+      "src": "wikieducator.org",
+      "dst": "amazon.com",
+      "weight": 19,
+      "is_bridge": false
+    },
+    {
+      "src": "huffingtonpost.com",
+      "dst": "reuters.com",
+      "weight": 14,
+      "is_bridge": false
+    },
+    {
+      "src": "huffingtonpost.com",
+      "dst": "boston.com",
+      "weight": 12,
+      "is_bridge": false
+    },
+    {
+      "src": "huffingtonpost.com",
+      "dst": "amazon.com",
+      "weight": 84,
+      "is_bridge": false
+    },
+    {
+      "src": "huffingtonpost.com",
+      "dst": "latimes.com",
+      "weight": 27,
+      "is_bridge": false
+    },
+    {
+      "src": "huffingtonpost.com",
+      "dst": "chicagotribune.com",
+      "weight": 9,
+      "is_bridge": false
+    },
+    {
+      "src": "huffingtonpost.com",
+      "dst": "washingtonpost.com",
+      "weight": 81,
+      "is_bridge": false
+    },
+    {
+      "src": "huffingtonpost.com",
+      "dst": "guardian.co.uk",
+      "weight": 23,
+      "is_bridge": false
+    },
+    {
+      "src": "huffingtonpost.com",
+      "dst": "telegraph.co.uk",
+      "weight": 13,
+      "is_bridge": false
+    },
+    {
+      "src": "huffingtonpost.com",
+      "dst": "uk.reuters.com",
+      "weight": 13,
+      "is_bridge": false
+    },
+    {
+      "src": "huffingtonpost.com",
+      "dst": "seattletimes.nwsource.com",
+      "weight": 5,
+      "is_bridge": false
+    },
+    {
+      "src": "huffingtonpost.com",
+      "dst": "salon.com",
+      "weight": 20,
+      "is_bridge": false
+    },
+    {
+      "src": "huffingtonpost.com",
+      "dst": "sfgate.com",
+      "weight": 12,
+      "is_bridge": false
+    },
+    {
+      "src": "huffingtonpost.com",
+      "dst": "philly.com",
+      "weight": 8,
+      "is_bridge": false
+    },
+    {
+      "src": "huffingtonpost.com",
+      "dst": "nydailynews.com",
+      "weight": 8,
+      "is_bridge": false
+    },
+    {
+      "src": "huffingtonpost.com",
+      "dst": "forbes.com",
+      "weight": 8,
+      "is_bridge": false
+    },
+    {
+      "src": "huffingtonpost.com",
+      "dst": "news.bbc.co.uk",
+      "weight": 32,
+      "is_bridge": false
+    },
+    {
+      "src": "huffingtonpost.com",
+      "dst": "cnn.com",
+      "weight": 29,
+      "is_bridge": false
+    },
+    {
+      "src": "washingtonpost.com",
+      "dst": "marketwatch.com",
+      "weight": 5,
+      "is_bridge": false
+    },
+    {
+      "src": "washingtonpost.com",
+      "dst": "guardian.co.uk",
+      "weight": 8,
+      "is_bridge": false
+    },
+    {
+      "src": "washingtonpost.com",
+      "dst": "reuters.com",
+      "weight": 8,
+      "is_bridge": false
+    },
+    {
+      "src": "washingtonpost.com",
+      "dst": "latimes.com",
+      "weight": 25,
+      "is_bridge": false
+    },
+    {
+      "src": "washingtonpost.com",
+      "dst": "telegraph.co.uk",
+      "weight": 6,
+      "is_bridge": false
+    },
+    {
+      "src": "groups.google.com",
+      "dst": "dailymail.co.uk",
+      "weight": 12,
+      "is_bridge": false
+    },
+    {
+      "src": "groups.google.com",
+      "dst": "cnn.com",
+      "weight": 12,
+      "is_bridge": false
+    },
+    {
+      "src": "postchronicle.com",
+      "dst": "huffingtonpost.com",
+      "weight": 52,
+      "is_bridge": false
+    },
+    {
+      "src": "postchronicle.com",
+      "dst": "reuters.com",
+      "weight": 2057,
+      "is_bridge": false
+    },
+    {
+      "src": "postchronicle.com",
+      "dst": "boston.com",
+      "weight": 5,
+      "is_bridge": false
+    },
+    {
+      "src": "postchronicle.com",
+      "dst": "breitbart.com",
+      "weight": 24,
+      "is_bridge": false
+    },
+    {
+      "src": "postchronicle.com",
+      "dst": "cnn.com",
+      "weight": 8,
+      "is_bridge": false
+    },
+    {
+      "src": "postchronicle.com",
+      "dst": "nydailynews.com",
+      "weight": 8,
+      "is_bridge": false
+    },
+    {
+      "src": "postchronicle.com",
+      "dst": "chicagotribune.com",
+      "weight": 11,
+      "is_bridge": false
+    },
+    {
+      "src": "postchronicle.com",
+      "dst": "dailymail.co.uk",
+      "weight": 9,
+      "is_bridge": false
+    },
+    {
+      "src": "todaystrucking.com",
+      "dst": "cbc.ca",
+      "weight": 474,
+      "is_bridge": false
+    },
+    {
+      "src": "todaystrucking.com",
+      "dst": "washingtonpost.com",
+      "weight": 101,
+      "is_bridge": false
+    },
+    {
+      "src": "todaystrucking.com",
+      "dst": "reuters.com",
+      "weight": 473,
+      "is_bridge": false
+    },
+    {
+      "src": "todaystrucking.com",
+      "dst": "theglobeandmail.com",
+      "weight": 946,
+      "is_bridge": false
+    },
+    {
+      "src": "boston.com",
+      "dst": "latimes.com",
+      "weight": 9,
+      "is_bridge": false
+    },
+    {
+      "src": "boston.com",
+      "dst": "topix.net",
+      "weight": 198,
+      "is_bridge": false
+    },
+    {
+      "src": "boston.com",
+      "dst": "amazon.com",
+      "weight": 103,
+      "is_bridge": false
+    },
+    {
+      "src": "boston.com",
+      "dst": "rep-am.com",
+      "weight": 20,
+      "is_bridge": false
+    },
+    {
+      "src": "boston.com",
+      "dst": "newsday.com",
+      "weight": 11,
+      "is_bridge": false
+    },
+    {
+      "src": "boston.com",
+      "dst": "washingtonpost.com",
+      "weight": 25,
+      "is_bridge": false
+    },
+    {
+      "src": "boston.com",
+      "dst": "nydailynews.com",
+      "weight": 10,
+      "is_bridge": false
+    },
+    {
+      "src": "boston.com",
+      "dst": "telegraph.co.uk",
+      "weight": 9,
+      "is_bridge": false
+    },
+    {
+      "src": "boston.com",
+      "dst": "billboard.com",
+      "weight": 7,
+      "is_bridge": false
+    },
+    {
+      "src": "philly.com",
+      "dst": "boston.com",
+      "weight": 10,
+      "is_bridge": false
+    },
+    {
+      "src": "philly.com",
+      "dst": "washingtonpost.com",
+      "weight": 15,
+      "is_bridge": false
+    },
+    {
+      "src": "philly.com",
+      "dst": "post-gazette.com",
+      "weight": 10,
+      "is_bridge": false
+    },
+    {
+      "src": "philly.com",
+      "dst": "amazon.com",
+      "weight": 7,
+      "is_bridge": false
+    },
+    {
+      "src": "philly.com",
+      "dst": "nydailynews.com",
+      "weight": 18,
+      "is_bridge": false
+    },
+    {
+      "src": "philly.com",
+      "dst": "reuters.com",
+      "weight": 7,
+      "is_bridge": false
+    },
+    {
+      "src": "philly.com",
+      "dst": "prnewswire.com",
+      "weight": 6,
+      "is_bridge": false
+    },
+    {
+      "src": "philly.com",
+      "dst": "huffingtonpost.com",
+      "weight": 7,
+      "is_bridge": false
+    },
+    {
+      "src": "cnn.com",
+      "dst": "chicagotribune.com",
+      "weight": 6,
+      "is_bridge": false
+    },
+    {
+      "src": "cnn.com",
+      "dst": "billboard.com",
+      "weight": 12,
+      "is_bridge": false
+    },
+    {
+      "src": "cnn.com",
+      "dst": "huffingtonpost.com",
+      "weight": 5,
+      "is_bridge": false
+    },
+    {
+      "src": "cnn.com",
+      "dst": "amazon.com",
+      "weight": 31,
+      "is_bridge": false
+    },
+    {
+      "src": "cnn.com",
+      "dst": "topix.net",
+      "weight": 159,
+      "is_bridge": false
+    },
+    {
+      "src": "cnn.com",
+      "dst": "telegraph.co.uk",
+      "weight": 8,
+      "is_bridge": false
+    },
+    {
+      "src": "cnn.com",
+      "dst": "losangeles.craigslist.org",
+      "weight": 5,
+      "is_bridge": false
+    },
+    {
+      "src": "cnn.com",
+      "dst": "washingtonpost.com",
+      "weight": 8,
+      "is_bridge": false
+    },
+    {
+      "src": "latimes.com",
+      "dst": "amazon.com",
+      "weight": 24,
+      "is_bridge": false
+    },
+    {
+      "src": "latimes.com",
+      "dst": "sfgate.com",
+      "weight": 6,
+      "is_bridge": false
+    },
+    {
+      "src": "latimes.com",
+      "dst": "news.bbc.co.uk",
+      "weight": 7,
+      "is_bridge": false
+    },
+    {
+      "src": "latimes.com",
+      "dst": "washingtonpost.com",
+      "weight": 5,
+      "is_bridge": false
+    },
+    {
+      "src": "latimes.com",
+      "dst": "forbes.com",
+      "weight": 7,
+      "is_bridge": false
+    },
+    {
+      "src": "ameblo.jp",
+      "dst": "yelp.com",
+      "weight": 13,
+      "is_bridge": false
+    },
+    {
+      "src": "ameblo.jp",
+      "dst": "plaza.rakuten.co.jp",
+      "weight": 342,
+      "is_bridge": false
+    },
+    {
+      "src": "ameblo.jp",
+      "dst": "blog.livedoor.jp",
+      "weight": 438,
+      "is_bridge": false
+    },
+    {
+      "src": "ameblo.jp",
+      "dst": "wassr.jp",
+      "weight": 20,
+      "is_bridge": false
+    },
+    {
+      "src": "ameblo.jp",
+      "dst": "telegraph.co.uk",
+      "weight": 5,
+      "is_bridge": false
+    },
+    {
+      "src": "theglobeandmail.com",
+      "dst": "cbc.ca",
+      "weight": 6,
+      "is_bridge": false
+    },
+    {
+      "src": "startribune.com",
+      "dst": "washingtonpost.com",
+      "weight": 29,
+      "is_bridge": false
+    },
+    {
+      "src": "startribune.com",
+      "dst": "huffingtonpost.com",
+      "weight": 14,
+      "is_bridge": false
+    },
+    {
+      "src": "startribune.com",
+      "dst": "amazon.com",
+      "weight": 27,
+      "is_bridge": false
+    },
+    {
+      "src": "news.com.au",
+      "dst": "theaustralian.news.com.au",
+      "weight": 365,
+      "is_bridge": false
+    },
+    {
+      "src": "news.com.au",
+      "dst": "telegraph.co.uk",
+      "weight": 11,
+      "is_bridge": false
+    },
+    {
+      "src": "news.com.au",
+      "dst": "abc.net.au",
+      "weight": 29,
+      "is_bridge": false
+    },
+    {
+      "src": "news.com.au",
+      "dst": "news.bbc.co.uk",
+      "weight": 6,
+      "is_bridge": false
+    },
+    {
+      "src": "news.com.au",
+      "dst": "washingtonpost.com",
+      "weight": 9,
+      "is_bridge": false
+    },
+    {
+      "src": "news.com.au",
+      "dst": "dailymail.co.uk",
+      "weight": 31,
+      "is_bridge": false
+    },
+    {
+      "src": "chacha.com",
+      "dst": "answers.yahoo.com",
+      "weight": 226,
+      "is_bridge": false
+    },
+    {
+      "src": "chacha.com",
+      "dst": "dailymail.co.uk",
+      "weight": 17,
+      "is_bridge": false
+    },
+    {
+      "src": "chacha.com",
+      "dst": "indeed.com",
+      "weight": 8,
+      "is_bridge": false
+    },
+    {
+      "src": "chacha.com",
+      "dst": "chicagotribune.com",
+      "weight": 5,
+      "is_bridge": false
+    },
+    {
+      "src": "chacha.com",
+      "dst": "nydailynews.com",
+      "weight": 8,
+      "is_bridge": false
+    },
+    {
+      "src": "chacha.com",
+      "dst": "latimes.com",
+      "weight": 13,
+      "is_bridge": false
+    },
+    {
+      "src": "chacha.com",
+      "dst": "reuters.com",
+      "weight": 7,
+      "is_bridge": false
+    },
+    {
+      "src": "chacha.com",
+      "dst": "seattletimes.nwsource.com",
+      "weight": 7,
+      "is_bridge": false
+    },
+    {
+      "src": "chacha.com",
+      "dst": "fixya.com",
+      "weight": 5,
+      "is_bridge": true
+    },
+    {
+      "src": "chacha.com",
+      "dst": "huffingtonpost.com",
+      "weight": 16,
+      "is_bridge": false
+    },
+    {
+      "src": "chacha.com",
+      "dst": "telegraph.co.uk",
+      "weight": 11,
+      "is_bridge": false
+    },
+    {
+      "src": "chacha.com",
+      "dst": "mahalo.com",
+      "weight": 24,
+      "is_bridge": false
+    },
+    {
+      "src": "chacha.com",
+      "dst": "slideshare.net",
+      "weight": 6,
+      "is_bridge": false
+    },
+    {
+      "src": "chacha.com",
+      "dst": "answerbag.com",
+      "weight": 66,
+      "is_bridge": false
+    },
+    {
+      "src": "chacha.com",
+      "dst": "news.com.au",
+      "weight": 5,
+      "is_bridge": false
+    },
+    {
+      "src": "chacha.com",
+      "dst": "abc.net.au",
+      "weight": 6,
+      "is_bridge": false
+    },
+    {
+      "src": "chacha.com",
+      "dst": "yelp.com",
+      "weight": 65,
+      "is_bridge": false
+    },
+    {
+      "src": "chacha.com",
+      "dst": "guardian.co.uk",
+      "weight": 16,
+      "is_bridge": false
+    },
+    {
+      "src": "chacha.com",
+      "dst": "billboard.com",
+      "weight": 21,
+      "is_bridge": false
+    },
+    {
+      "src": "chacha.com",
+      "dst": "forbes.com",
+      "weight": 38,
+      "is_bridge": false
+    },
+    {
+      "src": "chacha.com",
+      "dst": "boston.com",
+      "weight": 12,
+      "is_bridge": false
+    },
+    {
+      "src": "chacha.com",
+      "dst": "sfgate.com",
+      "weight": 11,
+      "is_bridge": false
+    },
+    {
+      "src": "chacha.com",
+      "dst": "washingtonpost.com",
+      "weight": 14,
+      "is_bridge": false
+    },
+    {
+      "src": "chacha.com",
+      "dst": "amazon.com",
+      "weight": 191,
+      "is_bridge": false
+    },
+    {
+      "src": "chacha.com",
+      "dst": "articlesbase.com",
+      "weight": 119,
+      "is_bridge": false
+    },
+    {
+      "src": "chacha.com",
+      "dst": "cnn.com",
+      "weight": 134,
+      "is_bridge": false
+    },
+    {
+      "src": "chacha.com",
+      "dst": "cbc.ca",
+      "weight": 7,
+      "is_bridge": false
+    },
+    {
+      "src": "chacha.com",
+      "dst": "news.bbc.co.uk",
+      "weight": 42,
+      "is_bridge": false
+    },
+    {
+      "src": "chacha.com",
+      "dst": "freerepublic.com",
+      "weight": 6,
+      "is_bridge": false
+    },
+    {
+      "src": "tucsoncitizen.com",
+      "dst": "amazon.com",
+      "weight": 8,
+      "is_bridge": false
+    },
+    {
+      "src": "tucsoncitizen.com",
+      "dst": "topix.net",
+      "weight": 795,
+      "is_bridge": false
+    },
+    {
+      "src": "uk.reuters.com",
+      "dst": "reuters.com",
+      "weight": 9,
+      "is_bridge": false
+    },
+    {
+      "src": "seattletimes.nwsource.com",
+      "dst": "amazon.com",
+      "weight": 14,
+      "is_bridge": false
+    },
+    {
+      "src": "seekingalpha.com",
+      "dst": "latimes.com",
+      "weight": 12,
+      "is_bridge": false
+    },
+    {
+      "src": "seekingalpha.com",
+      "dst": "uk.reuters.com",
+      "weight": 15,
+      "is_bridge": false
+    },
+    {
+      "src": "seekingalpha.com",
+      "dst": "washingtonpost.com",
+      "weight": 27,
+      "is_bridge": false
+    },
+    {
+      "src": "seekingalpha.com",
+      "dst": "marketwatch.com",
+      "weight": 47,
+      "is_bridge": false
+    },
+    {
+      "src": "seekingalpha.com",
+      "dst": "guardian.co.uk",
+      "weight": 28,
+      "is_bridge": false
+    },
+    {
+      "src": "seekingalpha.com",
+      "dst": "telegraph.co.uk",
+      "weight": 17,
+      "is_bridge": false
+    },
+    {
+      "src": "seekingalpha.com",
+      "dst": "forbes.com",
+      "weight": 35,
+      "is_bridge": false
+    },
+    {
+      "src": "seekingalpha.com",
+      "dst": "news.bbc.co.uk",
+      "weight": 5,
+      "is_bridge": false
+    },
+    {
+      "src": "seekingalpha.com",
+      "dst": "cnn.com",
+      "weight": 9,
+      "is_bridge": false
+    },
+    {
+      "src": "seekingalpha.com",
+      "dst": "alacrastore.com",
+      "weight": 18,
+      "is_bridge": true
+    },
+    {
+      "src": "seekingalpha.com",
+      "dst": "huffingtonpost.com",
+      "weight": 13,
+      "is_bridge": false
+    },
+    {
+      "src": "seekingalpha.com",
+      "dst": "reuters.com",
+      "weight": 76,
+      "is_bridge": false
+    },
+    {
+      "src": "seekingalpha.com",
+      "dst": "amazon.com",
+      "weight": 42,
+      "is_bridge": false
+    },
+    {
+      "src": "forbes.com",
+      "dst": "amazon.com",
+      "weight": 12,
+      "is_bridge": false
+    },
+    {
+      "src": "forbes.com",
+      "dst": "guardian.co.uk",
+      "weight": 5,
+      "is_bridge": false
+    },
+    {
+      "src": "kansascity.com",
+      "dst": "amazon.com",
+      "weight": 6,
+      "is_bridge": false
+    },
+    {
+      "src": "plaza.rakuten.co.jp",
+      "dst": "ameblo.jp",
+      "weight": 409,
+      "is_bridge": false
+    },
+    {
+      "src": "plaza.rakuten.co.jp",
+      "dst": "blog.livedoor.jp",
+      "weight": 83,
+      "is_bridge": false
+    },
+    {
+      "src": "envirolink.org",
+      "dst": "guardian.co.uk",
+      "weight": 786,
+      "is_bridge": false
+    },
+    {
+      "src": "envirolink.org",
+      "dst": "cnn.com",
+      "weight": 71,
+      "is_bridge": false
+    },
+    {
+      "src": "nydailynews.com",
+      "dst": "newsday.com",
+      "weight": 19,
+      "is_bridge": false
+    },
+    {
+      "src": "salon.com",
+      "dst": "startribune.com",
+      "weight": 37,
+      "is_bridge": false
+    },
+    {
+      "src": "salon.com",
+      "dst": "marketwatch.com",
+      "weight": 44,
+      "is_bridge": false
+    },
+    {
+      "src": "salon.com",
+      "dst": "washingtonpost.com",
+      "weight": 97,
+      "is_bridge": false
+    },
+    {
+      "src": "salon.com",
+      "dst": "latimes.com",
+      "weight": 29,
+      "is_bridge": false
+    },
+    {
+      "src": "salon.com",
+      "dst": "uk.reuters.com",
+      "weight": 13,
+      "is_bridge": false
+    },
+    {
+      "src": "salon.com",
+      "dst": "nydailynews.com",
+      "weight": 29,
+      "is_bridge": false
+    },
+    {
+      "src": "salon.com",
+      "dst": "news.bbc.co.uk",
+      "weight": 22,
+      "is_bridge": false
+    },
+    {
+      "src": "salon.com",
+      "dst": "news.com.au",
+      "weight": 17,
+      "is_bridge": false
+    },
+    {
+      "src": "salon.com",
+      "dst": "dailymail.co.uk",
+      "weight": 9,
+      "is_bridge": false
+    },
+    {
+      "src": "salon.com",
+      "dst": "amazon.com",
+      "weight": 78,
+      "is_bridge": false
+    },
+    {
+      "src": "salon.com",
+      "dst": "topix.net",
+      "weight": 16,
+      "is_bridge": false
+    },
+    {
+      "src": "salon.com",
+      "dst": "chicagotribune.com",
+      "weight": 11,
+      "is_bridge": false
+    },
+    {
+      "src": "salon.com",
+      "dst": "guardian.co.uk",
+      "weight": 47,
+      "is_bridge": false
+    },
+    {
+      "src": "salon.com",
+      "dst": "forbes.com",
+      "weight": 18,
+      "is_bridge": false
+    },
+    {
+      "src": "salon.com",
+      "dst": "telegraph.co.uk",
+      "weight": 19,
+      "is_bridge": false
+    },
+    {
+      "src": "salon.com",
+      "dst": "sfgate.com",
+      "weight": 16,
+      "is_bridge": false
+    },
+    {
+      "src": "salon.com",
+      "dst": "chron.com",
+      "weight": 8,
+      "is_bridge": false
+    },
+    {
+      "src": "salon.com",
+      "dst": "cnn.com",
+      "weight": 29,
+      "is_bridge": false
+    },
+    {
+      "src": "salon.com",
+      "dst": "reuters.com",
+      "weight": 34,
+      "is_bridge": false
+    },
+    {
+      "src": "salon.com",
+      "dst": "newsday.com",
+      "weight": 13,
+      "is_bridge": false
+    },
+    {
+      "src": "salon.com",
+      "dst": "huffingtonpost.com",
+      "weight": 65,
+      "is_bridge": false
+    },
+    {
+      "src": "blog.livedoor.jp",
+      "dst": "plaza.rakuten.co.jp",
+      "weight": 46,
+      "is_bridge": false
+    },
+    {
+      "src": "blog.livedoor.jp",
+      "dst": "ameblo.jp",
+      "weight": 182,
+      "is_bridge": false
+    },
+    {
+      "src": "chicagotribune.com",
+      "dst": "topix.net",
+      "weight": 30,
+      "is_bridge": false
+    },
+    {
+      "src": "chicagotribune.com",
+      "dst": "amazon.com",
+      "weight": 84,
+      "is_bridge": false
+    },
+    {
+      "src": "chicagotribune.com",
+      "dst": "latimes.com",
+      "weight": 6,
+      "is_bridge": false
+    },
+    {
+      "src": "me-ontarget.com",
+      "dst": "amazon.com",
+      "weight": 700,
+      "is_bridge": true
+    },
+    {
+      "src": "forums.somd.com",
+      "dst": "cnn.com",
+      "weight": 144,
+      "is_bridge": false
+    },
+    {
+      "src": "forums.somd.com",
+      "dst": "breitbart.com",
+      "weight": 11,
+      "is_bridge": false
+    },
+    {
+      "src": "forums.somd.com",
+      "dst": "telegraph.co.uk",
+      "weight": 25,
+      "is_bridge": false
+    },
+    {
+      "src": "forums.somd.com",
+      "dst": "chicagotribune.com",
+      "weight": 7,
+      "is_bridge": false
+    },
+    {
+      "src": "forums.somd.com",
+      "dst": "amazon.com",
+      "weight": 37,
+      "is_bridge": false
+    },
+    {
+      "src": "forums.somd.com",
+      "dst": "news.bbc.co.uk",
+      "weight": 13,
+      "is_bridge": false
+    },
+    {
+      "src": "forums.somd.com",
+      "dst": "philly.com",
+      "weight": 13,
+      "is_bridge": false
+    },
+    {
+      "src": "forums.somd.com",
+      "dst": "huffingtonpost.com",
+      "weight": 108,
+      "is_bridge": false
+    },
+    {
+      "src": "forums.somd.com",
+      "dst": "sfgate.com",
+      "weight": 25,
+      "is_bridge": false
+    },
+    {
+      "src": "forums.somd.com",
+      "dst": "townhall.com",
+      "weight": 13,
+      "is_bridge": false
+    },
+    {
+      "src": "forums.somd.com",
+      "dst": "guardian.co.uk",
+      "weight": 9,
+      "is_bridge": false
+    },
+    {
+      "src": "forums.somd.com",
+      "dst": "dailymail.co.uk",
+      "weight": 20,
+      "is_bridge": false
+    },
+    {
+      "src": "forums.somd.com",
+      "dst": "latimes.com",
+      "weight": 20,
+      "is_bridge": false
+    },
+    {
+      "src": "forums.somd.com",
+      "dst": "boston.com",
+      "weight": 11,
+      "is_bridge": false
+    },
+    {
+      "src": "forums.somd.com",
+      "dst": "reuters.com",
+      "weight": 41,
+      "is_bridge": false
+    },
+    {
+      "src": "forums.somd.com",
+      "dst": "baltimoresun.com",
+      "weight": 9,
+      "is_bridge": false
+    },
+    {
+      "src": "forums.somd.com",
+      "dst": "washingtonpost.com",
+      "weight": 135,
+      "is_bridge": false
+    },
+    {
+      "src": "forums.somd.com",
+      "dst": "salon.com",
+      "weight": 15,
+      "is_bridge": false
+    },
+    {
+      "src": "sfgate.com",
+      "dst": "yelp.com",
+      "weight": 6,
+      "is_bridge": false
+    },
+    {
+      "src": "sfgate.com",
+      "dst": "huffingtonpost.com",
+      "weight": 6,
+      "is_bridge": false
+    },
+    {
+      "src": "sfgate.com",
+      "dst": "dailymail.co.uk",
+      "weight": 5,
+      "is_bridge": false
+    },
+    {
+      "src": "sfgate.com",
+      "dst": "amazon.com",
+      "weight": 7,
+      "is_bridge": false
+    },
+    {
+      "src": "sfgate.com",
+      "dst": "cnn.com",
+      "weight": 9,
+      "is_bridge": false
+    },
+    {
+      "src": "rss.feedsportal.com",
+      "dst": "forbes.com",
+      "weight": 8,
+      "is_bridge": false
+    },
+    {
+      "src": "rss.feedsportal.com",
+      "dst": "dailymail.co.uk",
+      "weight": 64,
+      "is_bridge": false
+    },
+    {
+      "src": "rss.feedsportal.com",
+      "dst": "sfgate.com",
+      "weight": 7,
+      "is_bridge": false
+    },
+    {
+      "src": "rss.feedsportal.com",
+      "dst": "huffingtonpost.com",
+      "weight": 5,
+      "is_bridge": false
+    },
+    {
+      "src": "rss.feedsportal.com",
+      "dst": "chicagotribune.com",
+      "weight": 5,
+      "is_bridge": false
+    },
+    {
+      "src": "rss.feedsportal.com",
+      "dst": "reuters.com",
+      "weight": 55,
+      "is_bridge": false
+    },
+    {
+      "src": "rss.feedsportal.com",
+      "dst": "uk.reuters.com",
+      "weight": 24,
+      "is_bridge": false
+    },
+    {
+      "src": "rss.feedsportal.com",
+      "dst": "telegraph.co.uk",
+      "weight": 63,
+      "is_bridge": false
+    },
+    {
+      "src": "rss.feedsportal.com",
+      "dst": "nydailynews.com",
+      "weight": 15,
+      "is_bridge": false
+    },
+    {
+      "src": "rss.feedsportal.com",
+      "dst": "latimes.com",
+      "weight": 17,
+      "is_bridge": false
+    },
+    {
+      "src": "rss.feedsportal.com",
+      "dst": "cnn.com",
+      "weight": 7,
+      "is_bridge": false
+    },
+    {
+      "src": "rss.feedsportal.com",
+      "dst": "news.bbc.co.uk",
+      "weight": 186,
+      "is_bridge": false
+    },
+    {
+      "src": "rss.feedsportal.com",
+      "dst": "guardian.co.uk",
+      "weight": 101,
+      "is_bridge": false
+    },
+    {
+      "src": "rss.feedsportal.com",
+      "dst": "washingtonpost.com",
+      "weight": 7,
+      "is_bridge": false
+    },
+    {
+      "src": "rss.feedsportal.com",
+      "dst": "amazon.com",
+      "weight": 14,
+      "is_bridge": false
+    },
+    {
+      "src": "forums.macrumors.com",
+      "dst": "forbes.com",
+      "weight": 35,
+      "is_bridge": false
+    },
+    {
+      "src": "forums.macrumors.com",
+      "dst": "latimes.com",
+      "weight": 6,
+      "is_bridge": false
+    },
+    {
+      "src": "forums.macrumors.com",
+      "dst": "huffingtonpost.com",
+      "weight": 17,
+      "is_bridge": false
+    },
+    {
+      "src": "forums.macrumors.com",
+      "dst": "reuters.com",
+      "weight": 34,
+      "is_bridge": false
+    },
+    {
+      "src": "forums.macrumors.com",
+      "dst": "guardian.co.uk",
+      "weight": 29,
+      "is_bridge": false
+    },
+    {
+      "src": "forums.macrumors.com",
+      "dst": "boston.com",
+      "weight": 10,
+      "is_bridge": false
+    },
+    {
+      "src": "forums.macrumors.com",
+      "dst": "cnn.com",
+      "weight": 49,
+      "is_bridge": false
+    },
+    {
+      "src": "forums.macrumors.com",
+      "dst": "news.bbc.co.uk",
+      "weight": 149,
+      "is_bridge": false
+    },
+    {
+      "src": "forums.macrumors.com",
+      "dst": "marketwatch.com",
+      "weight": 8,
+      "is_bridge": false
+    },
+    {
+      "src": "forums.macrumors.com",
+      "dst": "amazon.com",
+      "weight": 276,
+      "is_bridge": false
+    },
+    {
+      "src": "marketwatch.com",
+      "dst": "topix.net",
+      "weight": 12,
+      "is_bridge": false
+    },
+    {
+      "src": "chron.com",
+      "dst": "washingtonpost.com",
+      "weight": 6,
+      "is_bridge": false
+    },
+    {
+      "src": "forum.prisonplanet.com",
+      "dst": "news.com.au",
+      "weight": 5,
+      "is_bridge": false
+    },
+    {
+      "src": "forum.prisonplanet.com",
+      "dst": "dailymail.co.uk",
+      "weight": 9,
+      "is_bridge": false
+    },
+    {
+      "src": "forum.prisonplanet.com",
+      "dst": "abc.net.au",
+      "weight": 5,
+      "is_bridge": false
+    },
+    {
+      "src": "forum.prisonplanet.com",
+      "dst": "seekingalpha.com",
+      "weight": 19,
+      "is_bridge": false
+    },
+    {
+      "src": "forum.prisonplanet.com",
+      "dst": "nydailynews.com",
+      "weight": 13,
+      "is_bridge": false
+    },
+    {
+      "src": "forum.prisonplanet.com",
+      "dst": "guardian.co.uk",
+      "weight": 13,
+      "is_bridge": false
+    },
+    {
+      "src": "forum.prisonplanet.com",
+      "dst": "torrentportal.com",
+      "weight": 12,
+      "is_bridge": true
+    },
+    {
+      "src": "forum.prisonplanet.com",
+      "dst": "cnn.com",
+      "weight": 35,
+      "is_bridge": false
+    },
+    {
+      "src": "forum.prisonplanet.com",
+      "dst": "theglobeandmail.com",
+      "weight": 14,
+      "is_bridge": false
+    },
+    {
+      "src": "forum.prisonplanet.com",
+      "dst": "boston.com",
+      "weight": 5,
+      "is_bridge": false
+    },
+    {
+      "src": "forum.prisonplanet.com",
+      "dst": "uk.reuters.com",
+      "weight": 19,
+      "is_bridge": false
+    },
+    {
+      "src": "forum.prisonplanet.com",
+      "dst": "reuters.com",
+      "weight": 88,
+      "is_bridge": false
+    },
+    {
+      "src": "forum.prisonplanet.com",
+      "dst": "washingtonpost.com",
+      "weight": 127,
+      "is_bridge": false
+    },
+    {
+      "src": "forum.prisonplanet.com",
+      "dst": "telegraph.co.uk",
+      "weight": 43,
+      "is_bridge": false
+    },
+    {
+      "src": "forum.prisonplanet.com",
+      "dst": "marketwatch.com",
+      "weight": 24,
+      "is_bridge": false
+    },
+    {
+      "src": "forum.prisonplanet.com",
+      "dst": "news.bbc.co.uk",
+      "weight": 66,
+      "is_bridge": false
+    },
+    {
+      "src": "forum.prisonplanet.com",
+      "dst": "groups.google.com",
+      "weight": 23,
+      "is_bridge": false
+    },
+    {
+      "src": "forum.prisonplanet.com",
+      "dst": "latimes.com",
+      "weight": 29,
+      "is_bridge": false
+    },
+    {
+      "src": "forum.prisonplanet.com",
+      "dst": "breitbart.com",
+      "weight": 5,
+      "is_bridge": false
+    },
+    {
+      "src": "forum.prisonplanet.com",
+      "dst": "theaustralian.news.com.au",
+      "weight": 10,
+      "is_bridge": false
+    },
+    {
+      "src": "inciclopedia.wikia.com",
+      "dst": "uncyclopedia.wikia.com",
+      "weight": 42,
+      "is_bridge": false
+    },
+    {
+      "src": "inciclopedia.wikia.com",
+      "dst": "mx.answers.yahoo.com",
+      "weight": 16,
+      "is_bridge": false
+    },
+    {
+      "src": "inciclopedia.wikia.com",
+      "dst": "desciclo.pedia.ws",
+      "weight": 90,
+      "is_bridge": false
+    },
+    {
+      "src": "inciclopedia.wikia.com",
+      "dst": "taringa.net",
+      "weight": 8,
+      "is_bridge": true
+    },
+    {
+      "src": "inciclopedia.wikia.com",
+      "dst": "news.bbc.co.uk",
+      "weight": 30,
+      "is_bridge": false
+    },
+    {
+      "src": "inciclopedia.wikia.com",
+      "dst": "frikipedia.es",
+      "weight": 297,
+      "is_bridge": false
+    },
+    {
+      "src": "theaustralian.news.com.au",
+      "dst": "news.com.au",
+      "weight": 92,
+      "is_bridge": false
+    },
+    {
+      "src": "freerepublic.com",
+      "dst": "reuters.com",
+      "weight": 6,
+      "is_bridge": false
+    },
+    {
+      "src": "freerepublic.com",
+      "dst": "telegraph.co.uk",
+      "weight": 9,
+      "is_bridge": false
+    },
+    {
+      "src": "freerepublic.com",
+      "dst": "huffingtonpost.com",
+      "weight": 6,
+      "is_bridge": false
+    },
+    {
+      "src": "freerepublic.com",
+      "dst": "cnn.com",
+      "weight": 9,
+      "is_bridge": false
+    },
+    {
+      "src": "freerepublic.com",
+      "dst": "washingtonpost.com",
+      "weight": 15,
+      "is_bridge": false
+    },
+    {
+      "src": "freerepublic.com",
+      "dst": "townhall.com",
+      "weight": 6,
+      "is_bridge": false
+    },
+    {
+      "src": "freerepublic.com",
+      "dst": "sfgate.com",
+      "weight": 7,
+      "is_bridge": false
+    },
+    {
+      "src": "freerepublic.com",
+      "dst": "amazon.com",
+      "weight": 16,
+      "is_bridge": false
+    },
+    {
+      "src": "freerepublic.com",
+      "dst": "news.bbc.co.uk",
+      "weight": 13,
+      "is_bridge": false
+    },
+    {
+      "src": "freerepublic.com",
+      "dst": "breitbart.com",
+      "weight": 6,
+      "is_bridge": false
+    },
+    {
+      "src": "freerepublic.com",
+      "dst": "guardian.co.uk",
+      "weight": 10,
+      "is_bridge": false
+    },
+    {
+      "src": "freerepublic.com",
+      "dst": "latimes.com",
+      "weight": 9,
+      "is_bridge": false
+    },
+    {
+      "src": "freerepublic.com",
+      "dst": "nydailynews.com",
+      "weight": 13,
+      "is_bridge": false
+    },
+    {
+      "src": "blogs.myspace.com",
+      "dst": "amazon.com",
+      "weight": 411,
+      "is_bridge": false
+    },
+    {
+      "src": "neighbors.denverpost.com",
+      "dst": "cnn.com",
+      "weight": 28,
+      "is_bridge": false
+    },
+    {
+      "src": "neighbors.denverpost.com",
+      "dst": "freerepublic.com",
+      "weight": 337,
+      "is_bridge": false
+    },
+    {
+      "src": "neighbors.denverpost.com",
+      "dst": "amazon.com",
+      "weight": 9,
+      "is_bridge": false
+    },
+    {
+      "src": "neighbors.denverpost.com",
+      "dst": "huffingtonpost.com",
+      "weight": 6,
+      "is_bridge": false
+    },
+    {
+      "src": "neighbors.denverpost.com",
+      "dst": "washingtonpost.com",
+      "weight": 39,
+      "is_bridge": false
+    },
+    {
+      "src": "bizjournals.com",
+      "dst": "topix.net",
+      "weight": 7,
+      "is_bridge": false
+    },
+    {
+      "src": "newsday.com",
+      "dst": "boston.com",
+      "weight": 6,
+      "is_bridge": false
+    },
+    {
+      "src": "newsday.com",
+      "dst": "chicagotribune.com",
+      "weight": 5,
+      "is_bridge": false
+    },
+    {
+      "src": "newsday.com",
+      "dst": "latimes.com",
+      "weight": 44,
+      "is_bridge": false
+    },
+    {
+      "src": "newsday.com",
+      "dst": "topix.net",
+      "weight": 40,
+      "is_bridge": false
+    },
+    {
+      "src": "townhall.com",
+      "dst": "huffingtonpost.com",
+      "weight": 19,
+      "is_bridge": false
+    },
+    {
+      "src": "townhall.com",
+      "dst": "forbes.com",
+      "weight": 5,
+      "is_bridge": false
+    },
+    {
+      "src": "townhall.com",
+      "dst": "washingtonpost.com",
+      "weight": 33,
+      "is_bridge": false
+    },
+    {
+      "src": "townhall.com",
+      "dst": "cnn.com",
+      "weight": 9,
+      "is_bridge": false
+    },
+    {
+      "src": "townhall.com",
+      "dst": "telegraph.co.uk",
+      "weight": 6,
+      "is_bridge": false
+    },
+    {
+      "src": "townhall.com",
+      "dst": "dailymail.co.uk",
+      "weight": 12,
+      "is_bridge": false
+    },
+    {
+      "src": "townhall.com",
+      "dst": "amazon.com",
+      "weight": 248,
+      "is_bridge": false
+    },
+    {
+      "src": "mercurynews.com",
+      "dst": "amazon.com",
+      "weight": 32,
+      "is_bridge": false
+    },
+    {
+      "src": "frikipedia.es",
+      "dst": "inciclopedia.wikia.com",
+      "weight": 6,
+      "is_bridge": false
+    },
+    {
+      "src": "frikipedia.es",
+      "dst": "mx.answers.yahoo.com",
+      "weight": 28,
+      "is_bridge": false
+    },
+    {
+      "src": "baltimoresun.com",
+      "dst": "theglobeandmail.com",
+      "weight": 6,
+      "is_bridge": false
+    },
+    {
+      "src": "baltimoresun.com",
+      "dst": "latimes.com",
+      "weight": 11,
+      "is_bridge": false
+    },
+    {
+      "src": "baltimoresun.com",
+      "dst": "amazon.com",
+      "weight": 5,
+      "is_bridge": false
+    },
+    {
+      "src": "baltimoresun.com",
+      "dst": "tucsoncitizen.com",
+      "weight": 5,
+      "is_bridge": false
+    },
+    {
+      "src": "baltimoresun.com",
+      "dst": "newsday.com",
+      "weight": 7,
+      "is_bridge": false
+    },
+    {
+      "src": "baltimoresun.com",
+      "dst": "washingtonpost.com",
+      "weight": 12,
+      "is_bridge": false
+    },
+    {
+      "src": "baltimoresun.com",
+      "dst": "nydailynews.com",
+      "weight": 5,
+      "is_bridge": false
+    },
+    {
+      "src": "baltimoresun.com",
+      "dst": "topix.net",
+      "weight": 29,
+      "is_bridge": false
+    },
+    {
+      "src": "palgn.com.au",
+      "dst": "news.com.au",
+      "weight": 308,
+      "is_bridge": true
+    },
+    {
+      "src": "uncyclopedia.wikia.com",
+      "dst": "news.bbc.co.uk",
+      "weight": 18,
+      "is_bridge": false
+    },
+    {
+      "src": "uncyclopedia.wikia.com",
+      "dst": "uk.reuters.com",
+      "weight": 5,
+      "is_bridge": false
+    },
+    {
+      "src": "uncyclopedia.wikia.com",
+      "dst": "guardian.co.uk",
+      "weight": 20,
+      "is_bridge": false
+    },
+    {
+      "src": "uncyclopedia.wikia.com",
+      "dst": "groups.google.com",
+      "weight": 46,
+      "is_bridge": false
+    },
+    {
+      "src": "uncyclopedia.wikia.com",
+      "dst": "inciclopedia.wikia.com",
+      "weight": 20,
+      "is_bridge": false
+    },
+    {
+      "src": "uncyclopedia.wikia.com",
+      "dst": "sfgate.com",
+      "weight": 24,
+      "is_bridge": false
+    },
+    {
+      "src": "uncyclopedia.wikia.com",
+      "dst": "boston.com",
+      "weight": 13,
+      "is_bridge": false
+    },
+    {
+      "src": "uncyclopedia.wikia.com",
+      "dst": "dailymail.co.uk",
+      "weight": 34,
+      "is_bridge": false
+    },
+    {
+      "src": "forum.brighthand.com",
+      "dst": "amazon.com",
+      "weight": 233,
+      "is_bridge": false
+    },
+    {
+      "src": "forum.brighthand.com",
+      "dst": "forums.macrumors.com",
+      "weight": 16,
+      "is_bridge": false
+    },
+    {
+      "src": "aussie-nintendo.com",
+      "dst": "news.bbc.co.uk",
+      "weight": 74,
+      "is_bridge": false
+    },
+    {
+      "src": "aussie-nintendo.com",
+      "dst": "amazon.com",
+      "weight": 166,
+      "is_bridge": false
+    },
+    {
+      "src": "earthtimes.org",
+      "dst": "startribune.com",
+      "weight": 6,
+      "is_bridge": false
+    },
+    {
+      "src": "earthtimes.org",
+      "dst": "marketwire.com",
+      "weight": 27,
+      "is_bridge": false
+    },
+    {
+      "src": "earthtimes.org",
+      "dst": "prnewswire.com",
+      "weight": 61,
+      "is_bridge": false
+    },
+    {
+      "src": "earthtimes.org",
+      "dst": "amazon.com",
+      "weight": 15,
+      "is_bridge": false
+    },
+    {
+      "src": "earthtimes.org",
+      "dst": "topix.net",
+      "weight": 28,
+      "is_bridge": false
+    },
+    {
+      "src": "sacbee.com",
+      "dst": "latimes.com",
+      "weight": 14,
+      "is_bridge": false
+    },
+    {
+      "src": "sacbee.com",
+      "dst": "sfgate.com",
+      "weight": 13,
+      "is_bridge": false
+    },
+    {
+      "src": "pr-inside.com",
+      "dst": "slideshare.net",
+      "weight": 5,
+      "is_bridge": false
+    },
+    {
+      "src": "pr-inside.com",
+      "dst": "topix.net",
+      "weight": 33,
+      "is_bridge": false
+    },
+    {
+      "src": "pr-inside.com",
+      "dst": "marketwire.com",
+      "weight": 127,
+      "is_bridge": false
+    },
+    {
+      "src": "pr-inside.com",
+      "dst": "washingtonpost.com",
+      "weight": 7,
+      "is_bridge": false
+    },
+    {
+      "src": "pr-inside.com",
+      "dst": "amazon.com",
+      "weight": 10,
+      "is_bridge": false
+    },
+    {
+      "src": "pr-inside.com",
+      "dst": "latimes.com",
+      "weight": 5,
+      "is_bridge": false
+    },
+    {
+      "src": "forums.allaboutjazz.com",
+      "dst": "amazon.com",
+      "weight": 160,
+      "is_bridge": true
+    },
+    {
+      "src": "heroeswiki.com",
+      "dst": "lostpedia.wikia.com",
+      "weight": 21,
+      "is_bridge": false
+    },
+    {
+      "src": "heroeswiki.com",
+      "dst": "amazon.com",
+      "weight": 20,
+      "is_bridge": false
+    },
+    {
+      "src": "heroeswiki.com",
+      "dst": "reuters.com",
+      "weight": 55,
+      "is_bridge": false
+    },
+    {
+      "src": "heroeswiki.com",
+      "dst": "uncyclopedia.wikia.com",
+      "weight": 34,
+      "is_bridge": false
+    },
+    {
+      "src": "prnewswire.com",
+      "dst": "amazon.com",
+      "weight": 13,
+      "is_bridge": false
+    },
+    {
+      "src": "lostpedia.wikia.com",
+      "dst": "heroeswiki.com",
+      "weight": 25,
+      "is_bridge": false
+    },
+    {
+      "src": "lostpedia.wikia.com",
+      "dst": "answers.yahoo.com",
+      "weight": 46,
+      "is_bridge": false
+    },
+    {
+      "src": "lostpedia.wikia.com",
+      "dst": "amazon.com",
+      "weight": 7,
+      "is_bridge": false
+    },
+    {
+      "src": "lostpedia.wikia.com",
+      "dst": "digitalspy.co.uk",
+      "weight": 15,
+      "is_bridge": false
+    },
+    {
+      "src": "articlesbase.com",
+      "dst": "amazon.com",
+      "weight": 19,
+      "is_bridge": false
+    },
+    {
+      "src": "desciclo.pedia.ws",
+      "dst": "g1.globo.com",
+      "weight": 6,
+      "is_bridge": true
+    },
+    {
+      "src": "desciclo.pedia.ws",
+      "dst": "inciclopedia.wikia.com",
+      "weight": 35,
+      "is_bridge": false
+    },
+    {
+      "src": "identi.ca",
+      "dst": "slideshare.net",
+      "weight": 5,
+      "is_bridge": false
+    },
+    {
+      "src": "identi.ca",
+      "dst": "news.bbc.co.uk",
+      "weight": 36,
+      "is_bridge": false
+    },
+    {
+      "src": "identi.ca",
+      "dst": "amazon.com",
+      "weight": 11,
+      "is_bridge": false
+    },
+    {
+      "src": "identi.ca",
+      "dst": "forbes.com",
+      "weight": 5,
+      "is_bridge": false
+    },
+    {
+      "src": "identi.ca",
+      "dst": "groups.google.com",
+      "weight": 13,
+      "is_bridge": false
+    },
+    {
+      "src": "identi.ca",
+      "dst": "guardian.co.uk",
+      "weight": 15,
+      "is_bridge": false
+    },
+    {
+      "src": "identi.ca",
+      "dst": "blog.livedoor.jp",
+      "weight": 5,
+      "is_bridge": false
+    },
+    {
+      "src": "identi.ca",
+      "dst": "cbc.ca",
+      "weight": 9,
+      "is_bridge": false
+    },
+    {
+      "src": "golivewire.com",
+      "dst": "guardian.co.uk",
+      "weight": 8,
+      "is_bridge": false
+    },
+    {
+      "src": "golivewire.com",
+      "dst": "cnn.com",
+      "weight": 15,
+      "is_bridge": false
+    },
+    {
+      "src": "golivewire.com",
+      "dst": "amazon.com",
+      "weight": 9,
+      "is_bridge": false
+    },
+    {
+      "src": "golivewire.com",
+      "dst": "reuters.com",
+      "weight": 7,
+      "is_bridge": false
+    },
+    {
+      "src": "golivewire.com",
+      "dst": "telegraph.co.uk",
+      "weight": 8,
+      "is_bridge": false
+    },
+    {
+      "src": "golivewire.com",
+      "dst": "uncyclopedia.wikia.com",
+      "weight": 8,
+      "is_bridge": false
+    },
+    {
+      "src": "golivewire.com",
+      "dst": "news.bbc.co.uk",
+      "weight": 30,
+      "is_bridge": false
+    },
+    {
+      "src": "golivewire.com",
+      "dst": "huffingtonpost.com",
+      "weight": 7,
+      "is_bridge": false
+    },
+    {
+      "src": "breitbart.com",
+      "dst": "startribune.com",
+      "weight": 5,
+      "is_bridge": false
+    },
+    {
+      "src": "starwars.wikia.com",
+      "dst": "latimes.com",
+      "weight": 19,
+      "is_bridge": false
+    },
+    {
+      "src": "starwars.wikia.com",
+      "dst": "wowwiki.com",
+      "weight": 17,
+      "is_bridge": false
+    },
+    {
+      "src": "starwars.wikia.com",
+      "dst": "news.bbc.co.uk",
+      "weight": 18,
+      "is_bridge": false
+    },
+    {
+      "src": "sfbay.craigslist.org",
+      "dst": "amazon.com",
+      "weight": 76,
+      "is_bridge": false
+    },
+    {
+      "src": "answerbag.com",
+      "dst": "amazon.com",
+      "weight": 7,
+      "is_bridge": false
+    },
+    {
+      "src": "vz.ru",
+      "dst": "reuters.com",
+      "weight": 38,
+      "is_bridge": false
+    },
+    {
+      "src": "vz.ru",
+      "dst": "regnum.ru",
+      "weight": 6,
+      "is_bridge": true
+    },
+    {
+      "src": "vz.ru",
+      "dst": "cnn.com",
+      "weight": 16,
+      "is_bridge": false
+    },
+    {
+      "src": "forums.bit-tech.net",
+      "dst": "news.bbc.co.uk",
+      "weight": 13,
+      "is_bridge": false
+    },
+    {
+      "src": "forums.bit-tech.net",
+      "dst": "amazon.com",
+      "weight": 18,
+      "is_bridge": false
+    },
+    {
+      "src": "forums.bit-tech.net",
+      "dst": "guardian.co.uk",
+      "weight": 6,
+      "is_bridge": false
+    },
+    {
+      "src": "forums.bit-tech.net",
+      "dst": "cnn.com",
+      "weight": 24,
+      "is_bridge": false
+    },
+    {
+      "src": "seattle.craigslist.org",
+      "dst": "amazon.com",
+      "weight": 56,
+      "is_bridge": true
+    },
+    {
+      "src": "losangeles.craigslist.org",
+      "dst": "amazon.com",
+      "weight": 48,
+      "is_bridge": false
+    },
+    {
+      "src": "boston.craigslist.org",
+      "dst": "amazon.com",
+      "weight": 40,
+      "is_bridge": false
+    },
+    {
+      "src": "forums.slickdeals.net",
+      "dst": "telegraph.co.uk",
+      "weight": 20,
+      "is_bridge": false
+    },
+    {
+      "src": "g1.globo.com",
+      "dst": "globoesporte.globo.com",
+      "weight": 29,
+      "is_bridge": false
+    },
+    {
+      "src": "newyork.craigslist.org",
+      "dst": "amazon.com",
+      "weight": 51,
+      "is_bridge": true
+    },
+    {
+      "src": "globoesporte.globo.com",
+      "dst": "g1.globo.com",
+      "weight": 17,
+      "is_bridge": false
+    },
+    {
+      "src": "wassr.jp",
+      "dst": "blog.livedoor.jp",
+      "weight": 23,
+      "is_bridge": false
+    },
+    {
+      "src": "thedailypage.com",
+      "dst": "amazon.com",
+      "weight": 31,
+      "is_bridge": true
+    },
+    {
+      "src": "bogleheads.org",
+      "dst": "amazon.com",
+      "weight": 25,
+      "is_bridge": false
+    },
+    {
+      "src": "bogleheads.org",
+      "dst": "forbes.com",
+      "weight": 6,
+      "is_bridge": false
+    },
+    {
+      "src": "forums.comicbookresources.com",
+      "dst": "amazon.com",
+      "weight": 20,
+      "is_bridge": false
+    },
+    {
+      "src": "forums.comicbookresources.com",
+      "dst": "news.bbc.co.uk",
+      "weight": 9,
+      "is_bridge": false
+    },
+    {
+      "src": "wowwiki.com",
+      "dst": "starwars.wikia.com",
+      "weight": 12,
+      "is_bridge": false
+    },
+    {
+      "src": "sandiego.craigslist.org",
+      "dst": "amazon.com",
+      "weight": 28,
+      "is_bridge": true
+    },
+    {
+      "src": "chicago.craigslist.org",
+      "dst": "amazon.com",
+      "weight": 21,
+      "is_bridge": true
+    },
+    {
+      "src": "halo.wikia.com",
+      "dst": "starwars.wikia.com",
+      "weight": 21,
+      "is_bridge": true
+    },
+    {
+      "src": "forum.gateworld.net",
+      "dst": "news.bbc.co.uk",
+      "weight": 20,
+      "is_bridge": true
+    },
+    {
+      "src": "lyricwiki.org",
+      "dst": "amazon.com",
+      "weight": 18,
+      "is_bridge": true
+    },
+    {
+      "src": "miami.craigslist.org",
+      "dst": "amazon.com",
+      "weight": 16,
+      "is_bridge": true
+    },
+    {
+      "src": "evga.com",
+      "dst": "amazon.com",
+      "weight": 15,
+      "is_bridge": true
+    },
+    {
+      "src": "forums.mozillazine.org",
+      "dst": "groups.google.com",
+      "weight": 13,
+      "is_bridge": true
+    },
+    {
+      "src": "forums.hardwarezone.com",
+      "dst": "dailymail.co.uk",
+      "weight": 12,
+      "is_bridge": true
+    },
+    {
+      "src": "ots.at",
+      "dst": "prnewswire.com",
+      "weight": 8,
+      "is_bridge": true
+    },
+    {
+      "src": "friendstertalk.com",
+      "dst": "mashget.com",
+      "weight": 7,
+      "is_bridge": true
+    },
+    {
+      "src": "washingtondc.craigslist.org",
+      "dst": "washingtonpost.com",
+      "weight": 5,
+      "is_bridge": true
+    }
+  ],
+  "cypher": {
+    "load_nodes": "LOAD CSV WITH HEADERS FROM 'file:///quotes_domains.csv' AS row\nCREATE (d:Domain {\n    name: row.domain,\n    post_count: toInteger(row.post_count)\n});",
+    "load_edges": "LOAD CSV WITH HEADERS FROM 'file:///quotes_domain_edges.csv' AS row\nMATCH (a:Domain {name: row.src}), (b:Domain {name: row.dst})\nCREATE (a)-[:LINKS {weight: toInteger(row.weight)}]->(b);",
+    "project": "MATCH (s:Domain)-[r:LINKS]->(t:Domain)\nRETURN gds.graph.project(\n    'quotesGraph', s, t,\n    { relationshipProperties: r { .weight } },\n    { undirectedRelationshipTypes: ['*'] }\n);",
+    "bridges": "CALL gds.bridges.stream('quotesGraph')\nYIELD from, to, remainingSizes\nRETURN gds.util.asNode(from).name AS f,\n       gds.util.asNode(to).name   AS t,\n       remainingSizes\nORDER BY f, t;",
+    "betweenness": "CALL gds.betweenness.stream('quotesGraph')\nYIELD nodeId, score\nRETURN gds.util.asNode(nodeId).name AS name, score\nORDER BY score DESC LIMIT 10;",
+    "closeness": "CALL gds.closeness.stream('quotesGraph')\nYIELD nodeId, score\nRETURN gds.util.asNode(nodeId).name AS name, score\nORDER BY score DESC LIMIT 10;",
+    "degree": "CALL gds.degree.stream('quotesGraph')\nYIELD nodeId, score\nRETURN gds.util.asNode(nodeId).name AS name, score\nORDER BY score DESC LIMIT 10;",
+    "eigenvector": "CALL gds.eigenvector.stream('quotesGraph')\nYIELD nodeId, score\nRETURN gds.util.asNode(nodeId).name AS name, score\nORDER BY score DESC LIMIT 10;",
+    "pagerank": "CALL gds.pageRank.stream('quotesGraph')\nYIELD nodeId, score\nRETURN gds.util.asNode(nodeId).name AS name, score\nORDER BY score DESC LIMIT 10;",
+    "louvain": "// stats\nCALL gds.louvain.stats('quotesGraph')\nYIELD modularity, communityCount, communityDistribution;\n\n// per-node assignment\nCALL gds.louvain.stream('quotesGraph')\nYIELD nodeId, communityId\nRETURN communityId, collect(gds.util.asNode(nodeId).name) AS members\nORDER BY size(members) DESC;"
+  }
+}

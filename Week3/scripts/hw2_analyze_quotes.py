@@ -314,4 +314,144 @@ img_path = output_path("images", "hw2_quotes_centrality.png")
 os.makedirs(os.path.dirname(img_path), exist_ok=True)
 plt.savefig(img_path, dpi=170, bbox_inches="tight", facecolor=fig.get_facecolor())
 print(f"\n==> Saved: {img_path}")
+
+# --- 9. Export JSON snapshot for the Streamlit app ---
+import json
+
+snapshot_path = output_path("snapshots", "hw2_quotes.json")
+os.makedirs(os.path.dirname(snapshot_path), exist_ok=True)
+
+# Reload post_count from the saved CSV (we lost it after driver.close)
+post_count_map = {}
+nodes_csv = os.path.join(os.path.dirname(__file__), "..", "homework", "quotes_domains.csv")
+if os.path.exists(nodes_csv):
+    with open(nodes_csv, "r", encoding="utf-8") as f:
+        next(f)  # header
+        for line in f:
+            parts = line.strip().split(",")
+            if len(parts) >= 2:
+                post_count_map[parts[0]] = int(parts[1])
+
+# Edge weights — re-read from CSV (already in homework/)
+edge_weights = {}
+edges_csv = os.path.join(os.path.dirname(__file__), "..", "homework", "quotes_domain_edges.csv")
+if os.path.exists(edges_csv):
+    with open(edges_csv, "r", encoding="utf-8") as f:
+        next(f)
+        for line in f:
+            parts = line.strip().split(",")
+            if len(parts) >= 3:
+                edge_weights[(parts[0], parts[1])] = int(parts[2])
+
+snapshot = {
+    "meta": {
+        "dataset": "Stanford MemeTracker quotes_2009-04.txt",
+        "raw_size_gb": 10.9,
+        "n_posts_streamed": 15_312_654,
+        "n_links_streamed": 26_704_274,
+        "n_domains_unique": 351_260,
+        "top_k": 200,
+        "min_weight": 5,
+        "n_nodes_plotted": len(all_names),
+        "n_edges_plotted": len(all_edges),
+        "n_bridges": len(bridge_set) // 2,
+        "louvain_modularity": float(modularity),
+        "louvain_communities": int(n_comm),
+    },
+    "nodes": [
+        {
+            "name": name,
+            "post_count": post_count_map.get(name, 0),
+            "community": int(louvain[name]),
+            "x": float(pos[name][0]),
+            "y": float(pos[name][1]),
+            **{label.lower(): float(scores[label].get(name, 0.0)) for label, _ in metrics},
+        }
+        for name in all_names
+    ],
+    "edges": [
+        {
+            "src": a,
+            "dst": b,
+            "weight": int(edge_weights.get((a, b), 1)),
+            "is_bridge": (a, b) in bridge_set,
+        }
+        for a, b in all_edges
+    ],
+    "cypher": {
+        "load_nodes": (
+            "LOAD CSV WITH HEADERS FROM 'file:///quotes_domains.csv' AS row\n"
+            "CREATE (d:Domain {\n"
+            "    name: row.domain,\n"
+            "    post_count: toInteger(row.post_count)\n"
+            "});"
+        ),
+        "load_edges": (
+            "LOAD CSV WITH HEADERS FROM 'file:///quotes_domain_edges.csv' AS row\n"
+            "MATCH (a:Domain {name: row.src}), (b:Domain {name: row.dst})\n"
+            "CREATE (a)-[:LINKS {weight: toInteger(row.weight)}]->(b);"
+        ),
+        "project": (
+            "MATCH (s:Domain)-[r:LINKS]->(t:Domain)\n"
+            "RETURN gds.graph.project(\n"
+            "    'quotesGraph', s, t,\n"
+            "    { relationshipProperties: r { .weight } },\n"
+            "    { undirectedRelationshipTypes: ['*'] }\n"
+            ");"
+        ),
+        "bridges": (
+            "CALL gds.bridges.stream('quotesGraph')\n"
+            "YIELD from, to, remainingSizes\n"
+            "RETURN gds.util.asNode(from).name AS f,\n"
+            "       gds.util.asNode(to).name   AS t,\n"
+            "       remainingSizes\n"
+            "ORDER BY f, t;"
+        ),
+        "betweenness": (
+            "CALL gds.betweenness.stream('quotesGraph')\n"
+            "YIELD nodeId, score\n"
+            "RETURN gds.util.asNode(nodeId).name AS name, score\n"
+            "ORDER BY score DESC LIMIT 10;"
+        ),
+        "closeness": (
+            "CALL gds.closeness.stream('quotesGraph')\n"
+            "YIELD nodeId, score\n"
+            "RETURN gds.util.asNode(nodeId).name AS name, score\n"
+            "ORDER BY score DESC LIMIT 10;"
+        ),
+        "degree": (
+            "CALL gds.degree.stream('quotesGraph')\n"
+            "YIELD nodeId, score\n"
+            "RETURN gds.util.asNode(nodeId).name AS name, score\n"
+            "ORDER BY score DESC LIMIT 10;"
+        ),
+        "eigenvector": (
+            "CALL gds.eigenvector.stream('quotesGraph')\n"
+            "YIELD nodeId, score\n"
+            "RETURN gds.util.asNode(nodeId).name AS name, score\n"
+            "ORDER BY score DESC LIMIT 10;"
+        ),
+        "pagerank": (
+            "CALL gds.pageRank.stream('quotesGraph')\n"
+            "YIELD nodeId, score\n"
+            "RETURN gds.util.asNode(nodeId).name AS name, score\n"
+            "ORDER BY score DESC LIMIT 10;"
+        ),
+        "louvain": (
+            "// stats\n"
+            "CALL gds.louvain.stats('quotesGraph')\n"
+            "YIELD modularity, communityCount, communityDistribution;\n\n"
+            "// per-node assignment\n"
+            "CALL gds.louvain.stream('quotesGraph')\n"
+            "YIELD nodeId, communityId\n"
+            "RETURN communityId, collect(gds.util.asNode(nodeId).name) AS members\n"
+            "ORDER BY size(members) DESC;"
+        ),
+    },
+}
+
+with open(snapshot_path, "w", encoding="utf-8") as f:
+    json.dump(snapshot, f, indent=2, ensure_ascii=False)
+print(f"==> Saved snapshot: {snapshot_path}  ({os.path.getsize(snapshot_path) / 1024:.1f} KB)")
+
 print("Done.")

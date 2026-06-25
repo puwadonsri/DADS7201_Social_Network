@@ -376,6 +376,28 @@ YIELD modularity, communityCount;
 - Visualisation ใช้แค่ **largest connected component** (128 nodes, 601 edges)
   เพื่อความชัดเจน — node isolates ถูกตัดออก
 
+### Streamlit dashboard (`streamlit_app.py`)
+
+หลังจากรัน `hw2_analyze_quotes.py` จะได้ JSON snapshot ที่
+[`outputs/snapshots/hw2_quotes.json`](outputs/snapshots/hw2_quotes.json) (~120 KB)
+ซึ่ง [`streamlit_app.py`](streamlit_app.py) ใช้แสดงผลแบบ interactive:
+
+```powershell
+cd Week3
+pip install -r requirements.txt
+streamlit run streamlit_app.py
+```
+
+4 tabs:
+- **🌐 Network** — PyVis force-directed graph, สีตาม metric หรือ Louvain
+  community เลือกได้, ไฮไลต์ bridge edges
+- **📊 Top-N** — เลือก metric + N → ตาราง + Plotly bar chart
+- **🧩 Communities** — drill-down ทีละ community พร้อม sub-graph
+- **🧪 Cypher** — โชว์ Cypher 10 ตัวที่ใช้คำนวณผลทั้งหมด (copy-paste ได้)
+
+**Deploy บน Streamlit Cloud:** ชี้ไปที่ `Week3/streamlit_app.py` —
+ไม่ต้องเชื่อมต่อ Neo4j จริง เพราะใช้ snapshot ที่ pre-computed ไว้แล้ว
+
 ## เอกสารอ้างอิง
 
 - Bridges: <https://neo4j.com/docs/graph-data-science/current/algorithms/bridges/>
