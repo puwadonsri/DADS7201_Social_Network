@@ -1,0 +1,9 @@
+Visualization of you centrality values (Computed by Cypher only) as follows:
+- Between
+- Bridges
+- Closeness
+- Degree
+- Eigenvector
+- PageRank
+- Louvain (Community detection)
+on this dataset: quotes_2009-04.txt

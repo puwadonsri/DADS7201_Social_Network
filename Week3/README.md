@@ -291,9 +291,95 @@ RETURN avg(silhouette) AS avg_sil;
 | 7 | 0.4734 | [6, 5, 5, 3, 2, 2, 1] |
 | 8 | 0.4421 | [6, 5, 5, 3, 2, 1, 1, 1] |
 
+## Homework 2 — MemeTracker (`quotes_2009-04.txt`)
+
+โจทย์ใน [`homework/hw2.txt`](homework/hw2.txt) ขอ centrality + Bridges +
+Louvain ทั้ง 7 ตัวบน **Stanford MemeTracker** ([SNAP dataset](https://snap.stanford.edu/data/memetracker9.html))
+ขนาด **10.9 GB** เก็บคำพูดจากบล็อก/ข่าวเดือนเมษายน 2009
+
+![HW2 — MemeTracker centralities](outputs/images/hw2_quotes_centrality.png)
+
+### Pipeline
+
+```
+quotes_2009-04.txt  (10.9 GB)
+        │
+        │  scripts/hw2_parse_quotes.py
+        │  ── stream 2 passes (~8 min)
+        │  ── 15.3M posts · 26.7M outbound links
+        │  ── top-200 domains by post count
+        │  ── aggregate edges, keep weight ≥ 5
+        ▼
+quotes_domain_edges.csv  (605 edges)
+quotes_domains.csv       (200 domains)
+        │
+        │  scripts/hw2_analyze_quotes.py
+        │  ── LOAD CSV → :Domain + [:LINKS {weight}]
+        │  ── project undirected weighted graph
+        │  ── run gds.bridges + 5 centralities + gds.louvain
+        ▼
+outputs/images/hw2_quotes_centrality.png
+```
+
+### ผลลัพธ์ — Top 1 ของแต่ละ algorithm
+
+| Algorithm | Domain | Score | ตีความ |
+|---|---|---|---|
+| **Bridges** | _(33 bridge edges)_ | — | leaf-like blogs ที่ผูกกับ network ผ่าน hub เดียว |
+| **Betweenness** | `amazon.com` | 2342.77 | จุดผ่านของเส้นทางสั้นสุดที่เยอะที่สุด (สินค้า + รีวิว) |
+| **Closeness** | `scouty.de` / forum sites | 1.0 | อยู่ในชุมชนเล็กที่เชื่อมต่อหนาแน่นภายใน |
+| **Degree** | `amazon.com` | 64 | จำนวน link เข้า+ออก สูงสุด |
+| **Eigenvector** | `huffingtonpost.com` | 0.262 | ถูกอ้างอิงโดย "ของดี" — quality > quantity |
+| **PageRank** | `amazon.com` | 7.12 | importance score ตาม random surfer model |
+| **Louvain** | **8 communities, modularity 0.268** | — | กลุ่ม news / shopping / tech / entertainment |
+
+> **ข้อสังเกต:** `amazon.com` คุม 3 metrics ที่ขึ้นกับจำนวน link (Degree / Betweenness / PageRank)
+> ขณะที่ `huffingtonpost.com` ชนะ Eigenvector เพราะถูกเชื่อมโดยโหนดอื่นที่มีคุณภาพสูง
+
+### Cypher snippets ที่ใช้
+
+```cypher
+// LOAD
+LOAD CSV WITH HEADERS FROM 'file:///quotes_domains.csv' AS row
+CREATE (d:Domain { name: row.domain, post_count: toInteger(row.post_count) });
+
+LOAD CSV WITH HEADERS FROM 'file:///quotes_domain_edges.csv' AS row
+MATCH (a:Domain {name: row.src}), (b:Domain {name: row.dst})
+CREATE (a)-[:LINKS {weight: toInteger(row.weight)}]->(b);
+
+// PROJECT (undirected, with weight property)
+MATCH (s:Domain)-[r:LINKS]->(t:Domain)
+RETURN gds.graph.project(
+  'quotesGraph', s, t,
+  { relationshipProperties: r { .weight } },
+  { undirectedRelationshipTypes: ['*'] }
+);
+
+// BRIDGES
+CALL gds.bridges.stream('quotesGraph')
+YIELD from, to, remainingSizes
+RETURN gds.util.asNode(from).name AS f,
+       gds.util.asNode(to).name   AS t, remainingSizes;
+// → 33 rows
+
+// LOUVAIN
+CALL gds.louvain.stats('quotesGraph')
+YIELD modularity, communityCount;
+// modularity 0.268, 8 communities
+```
+
+### หมายเหตุการปรับ scale
+
+- ไฟล์ดิบ 10.9 GB → `Week3/homework/quotes_2009-04.txt` (gitignored)
+- กรอง **top-200 domains** + **edge weight ≥ 5** เพื่อให้ Neo4j + GDS ประมวลผลใน
+  ระดับวินาที (full graph จะมี ~351K unique domains, ไม่เหมาะกับ visualization)
+- Visualisation ใช้แค่ **largest connected component** (128 nodes, 601 edges)
+  เพื่อความชัดเจน — node isolates ถูกตัดออก
+
 ## เอกสารอ้างอิง
 
 - Bridges: <https://neo4j.com/docs/graph-data-science/current/algorithms/bridges/>
 - Betweenness: <https://neo4j.com/docs/graph-data-science/current/algorithms/betweenness-centrality/>
 - Centrality (ภาพรวม): <https://neo4j.com/docs/graph-data-science/current/algorithms/centrality/>
 - Community detection: <https://neo4j.com/docs/graph-data-science/current/algorithms/community/>
+- Stanford MemeTracker: <https://snap.stanford.edu/data/memetracker9.html>
