@@ -1,0 +1,11 @@
+# GitHub language stats — exclude generated/vendored content from the
+# repo's language percentage so the headline reflects the Python source.
+
+# PyVis / vis-network exported HTML (regenerated from Python; ships an
+# embedded copy of vis-network + tom-select bundles).
+Week2/graph.html linguist-generated=true
+Week3/outputs/html/*.html linguist-generated=true
+
+# Any future pyvis-style auto-generated network HTML
+**/*_network.html linguist-generated=true
+**/*_pyvis.html  linguist-generated=true
