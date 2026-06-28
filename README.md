@@ -11,6 +11,7 @@ data, dependencies, and deploy configuration.
 | 1 | Bipartite network: SET50 companies ↔ top-5 major shareholders | [`Week1/`](Week1/) | ✅ deployed |
 | 2 | Centrality on a conflict-news graph in Neo4j Aura (Degree / Closeness / Betweenness / Eigenvector / Katz / PageRank) | [`Week2/`](Week2/) | ✅ done |
 | 3 | Neo4j Graph Data Science — Bridges + 5 centralities + Louvain vs K-Means community detection (edges_rows + Karate + IMDB) + HW2 Streamlit dashboard on Stanford MemeTracker | [`Week3/`](Week3/) | ✅ done · 🚀 Streamlit-ready |
+| 4 | Similarity & Node Embeddings on GDS — similarity functions, Node Similarity, KNN, FastRP, end-to-end product recommendation | [`Week4/`](Week4/) | 📖 notes |
 | Midterm | Retail Hype & Sentiment Network on SET50 (Pantip Sinthorn + WangchanBERTa + correlation overlay) | [`Midterm/`](Midterm/) | ✅ done |
 
 ## How this repo is organised
