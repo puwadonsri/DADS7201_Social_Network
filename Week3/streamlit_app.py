@@ -157,6 +157,40 @@ st.caption(
     "All metrics computed via `gds.*` in Cypher."
 )
 
+with st.expander(f"ℹ️ ทำไมกรอง top-{meta['top_k']} domains + weight ≥ {meta['min_weight']}?"):
+    st.markdown(
+        f"""
+กราฟดิบหลัง parse ไฟล์ **{meta['raw_size_gb']} GB** มีประมาณ **~351K domains**
+และ **5–15M edges** ซึ่งใหญ่กว่ากราฟที่แสดงอยู่หลายพันเท่า
+
+**ข้อจำกัดของการรัน full-scale บนเครื่องปกติ:**
+
+1. **Neo4j GDS heap** — GDS เก็บกราฟใน JVM heap ล้วน (ไม่ใช่ page cache)
+   → ต้องเพิ่มจาก 4 GB เป็น **16–32 GB**
+2. **Betweenness Centrality** — O(V·E) ≈ 1.75 × 10¹² operations
+   → รันแบบ exact ใช้เวลาระดับ **หลายชั่วโมงถึงเป็นวัน**
+3. **Visualization** — PyVis / matplotlib วาด 351K โหนดไม่ไหว
+   → browser hang, ภาพเป็นก้อนดำ อ่านไม่ออก
+
+**เปรียบเทียบ scale:**
+
+| ระดับ | Nodes | Edges | Heap | เวลา |
+|---|---|---|---|---|
+| ปัจจุบัน (top-{meta['top_k']} + w ≥ {meta['min_weight']}) | {meta['n_nodes_plotted']} | {meta['n_edges_plotted']} | 4 GB | วินาที |
+| ขยายกลาง (top-2K + w ≥ 2) | ~2,000 | ~30K | 8 GB | นาที |
+| Full-scale (ไม่กรอง) | ~351K | ~5–15M | 16–32 GB | 30 นาที – ชั่วโมง |
+
+**ทางแก้ถ้าต้องรัน full-scale:** ใช้ `samplingSize` ใน `gds.betweenness.stream`
+และ `gds.closeness.harmonic.stream` — top-N ranking ยังเชื่อถือได้ แต่ score
+เป็นค่าประมาณ ส่วน Bridges / PageRank / Eigenvector / Louvain ใช้ตรง ๆ ได้
+
+**ทำไม top-{meta['top_k']} ก็เพียงพอกับ insight:** hub หลัก (amazon.com,
+huffingtonpost.com, cnn.com …) มี degree สูงสุดอยู่แล้ว ranking ไม่เปลี่ยนไม่ว่า
+จะรันบน top-{meta['top_k']} หรือ full graph — filter ตัด **noise ของ long-tail
+domains** ที่มีลิงก์แค่ 1–4 ครั้ง ไม่ใช่การซ่อนข้อมูลสำคัญ
+"""
+    )
+
 # Top-line metric cards
 c1, c2, c3, c4 = st.columns(4)
 c1.metric("Bridges", meta["n_bridges"])
