@@ -24,7 +24,10 @@ Neo4j-*.txt
 # Per-week .gitignore files add their own ignores
 # (e.g. Week1/.gitignore drops large regenerated artifacts like *_network.html)
 
-Midterm/
+# Midterm — keep the whole pipeline private; only expose the README.
+Midterm/*
+!Midterm/README.md
+
 Week3/docs/
 Week3/legacy/
 Week3/neo4j-import/
