@@ -196,13 +196,7 @@ Midterm/
 │                                   hype, communities, centrality_top10,
 │                                   overlay, attention_vs_fundamentals,
 │                                   overlap_sensitivity)
-│
-└── report/                                   ← NOT pushed to repo
-    ├── 6420422026_Midterm_Report.pdf         ← submitted file
-    ├── DADS7201_Midterm_Report.{docx,pdf,tex}
-    ├── DADS7201_Midterm_Report_2page.docx    2-page submission layout
-    ├── DADS7201_Midterm_Slides.pptx          12-slide deck
-    └── COMPILE_LATEX.md                      LaTeX build notes
+
 ```
 
 ---
