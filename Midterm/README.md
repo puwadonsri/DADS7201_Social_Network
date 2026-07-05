@@ -181,21 +181,21 @@ Midterm/
 │   └── sentiment_gold.csv         100-post hand-annotated gold-set
 │
 ├── output/
-│   ├── centrality.csv             50 stocks × 3 centralities
-│   ├── communities.csv            Louvain partition
-│   ├── evolution_comparison.csv   3-phase metrics
-│   ├── hype_hubs.csv              composite ranking
-│   ├── stock_sentiment.csv        per-stock sentiment
-│   ├── overlap_sensitivity.csv    Jaccard at |r| in {0.3, 0.4, 0.5, 0.6, 0.7}
-│   ├── attention_without_correlation.csv     "hype only" pairs (212)
-│   ├── correlation_without_attention.csv     "overlooked" pairs (214)
-│   ├── validated_attention_edges.csv         pairs in both networks (62)
-│   ├── significance.json          permutation p + bootstrap Jaccard CI
-│   ├── sentiment_validation.{csv,json}       gold-set F1 breakdown
-│   └── *.png / *.svg              8 figures (network_full, evolution,
-│                                   hype, communities, centrality_top10,
-│                                   overlay, attention_vs_fundamentals,
-│                                   overlap_sensitivity)
+    ├── centrality.csv             50 stocks × 3 centralities
+    ├── communities.csv            Louvain partition
+    ├── evolution_comparison.csv   3-phase metrics
+    ├── hype_hubs.csv              composite ranking
+    ├── stock_sentiment.csv        per-stock sentiment
+    ├── overlap_sensitivity.csv    Jaccard at |r| in {0.3, 0.4, 0.5, 0.6, 0.7}
+    ├── attention_without_correlation.csv     "hype only" pairs (212)
+    ├── correlation_without_attention.csv     "overlooked" pairs (214)
+    ├── validated_attention_edges.csv         pairs in both networks (62)
+    ├── significance.json          permutation p + bootstrap Jaccard CI
+    ├── sentiment_validation.{csv,json}       gold-set F1 breakdown
+    └── *.png / *.svg              8 figures (network_full, evolution,
+                                    hype, communities, centrality_top10,
+                                    overlay, attention_vs_fundamentals,
+                                    overlap_sensitivity)
 
 ```
 
