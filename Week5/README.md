@@ -246,18 +246,6 @@ for epoch in range(500):
 
 ---
 
-## Files ในโฟลเดอร์นี้
-
-| File | Description |
-|---|---|
-| [`Slide/Lab1_inClass.ipynb`](Slide/Lab1_inClass.ipynb) | Random walk + softmax NLL + SGD from scratch (10-node graph) |
-| [`Slide/CS224W_Colab_0.ipynb`](Slide/CS224W_Colab_0.ipynb) | NetworkX + PyG intro, 3-layer GCN บน Karate Club |
-| [`Slide/CS224W_Colab_1_2024_25.ipynb`](Slide/CS224W_Colab_1_2024_25.ipynb) | Full pipeline: graph stats → tensor → node embedding via link prediction |
-| [`Slide/01-intro-เริ่มที่หน้า-20.pdf`](Slide/01-intro-เริ่มที่หน้า-20.pdf) | Representation learning motivation |
-| [`Slide/02-nodeemb.pdf`](Slide/02-nodeemb.pdf) | DeepWalk / Node2Vec / matrix factorisation |
-
-> ทั้งโฟลเดอร์ `Slide/` ถูก `.gitignore` ไว้ — ใช้เป็นเอกสารประกอบเท่านั้น ไม่ push ขึ้น repo
-
 ## ความรู้พื้นฐานที่ควรมี
 
 - Graph basics: node, edge, adjacency, degree, neighbour
