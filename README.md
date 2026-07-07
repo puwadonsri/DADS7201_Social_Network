@@ -13,6 +13,7 @@ data, dependencies, and deploy configuration.
 | 3 | Neo4j Graph Data Science — Bridges + 5 centralities + Louvain vs K-Means community detection (edges_rows + Karate + IMDB) + HW2 Streamlit dashboard on Stanford MemeTracker | [`Week3/`](Week3/) |
 | 4 | Similarity & Node Embeddings on GDS — similarity functions, Node Similarity, KNN, FastRP, end-to-end product recommendation | [`Week4/`](Week4/) |
 | Midterm | Retail Hype & Sentiment Network on SET50 (Pantip Sinthorn + WangchanBERTa + correlation overlay) | [`Midterm/`](Midterm/) |
+| 5 | Node Embeddings — random walk + softmax NLL from scratch, DeepWalk / Node2Vec (BFS vs DFS), GCN preview on Karate Club (PyG) | [`Week5/`](Week5/) |
 
 ## How this repo is organised
 
