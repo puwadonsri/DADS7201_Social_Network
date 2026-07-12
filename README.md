@@ -14,6 +14,7 @@ data, dependencies, and deploy configuration.
 | 4 | Similarity & Node Embeddings on GDS — similarity functions, Node Similarity, KNN, FastRP, end-to-end product recommendation | [`Week4/`](Week4/) |
 | Midterm | Retail Hype & Sentiment Network on SET50 (Pantip Sinthorn + WangchanBERTa + correlation overlay) | [`Midterm/`](Midterm/) |
 | 5 | Node Embeddings — random walk + softmax NLL from scratch, DeepWalk / Node2Vec (BFS vs DFS), GCN preview on Karate Club (PyG) | [`Week5/`](Week5/) |
+| 6 | Graph Neural Networks — GCN vs MLP on Cora (node classification), 3-layer GCN + `global_mean_pool` on MUTAG (graph classification), GAT with attention heads | [`Week6/`](Week6/) |
 
 ## How this repo is organised
 
