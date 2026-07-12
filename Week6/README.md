@@ -62,6 +62,16 @@ $$
 | **GCN** (2-layer, hidden=16) | ✅ | **81.1%** | +24pt โดยแค่เปลี่ยน `Linear` → `GCNConv` |
 | **GAT** (2-layer, 8 heads) | ✅ + attention | ~82% | learn น้ำหนักเพื่อนบ้านต่างกัน |
 
+### เห็นด้วยตา — t-SNE ของ GCN embedding (Cora, 7 classes)
+
+| ก่อน train (init random) | หลัง train 100 epoch |
+|:---:|:---:|
+| ![Untrained GCN](images/cora_gcn_untrained.png) | ![Trained GCN](images/cora_gcn_trained.png) |
+| สีปนกันหมด — ไม่มีสัญญาณ community | 7 cluster ชัด (1 cluster ต่อ 1 หัวข้อวิจัย) |
+
+> โมเดลเดียวกัน 2-layer GCN — ต่างกันแค่ "ผ่าน backprop มา 100 epoch"
+> **inductive bias ของ GCN** ทำงาน: node ที่ cite กัน → embedding ไปกองด้วยกัน
+
 ### GCN code (ที่ต่างจาก MLP แค่บรรทัดเดียว)
 
 ```python
@@ -131,6 +141,14 @@ dataset = TUDataset(root='data/TUDataset', name='MUTAG')
 # Data(edge_index=[2, 38], x=[17, 7], edge_attr=[38, 4], y=[1])
 #   ↑ กราฟแรก: 17 อะตอม, 38 พันธะ, label 1 ตัว
 ```
+
+### ตัวอย่างกราฟ 3 อันแรกใน MUTAG
+
+![MUTAG example graphs](images/mutag_examples.png)
+
+> แต่ละกราฟคือ 1 โมเลกุล — node = อะตอม, edge = พันธะเคมี
+> label = "โมเลกุลนี้ mutagenic ต่อ *S. typhimurium* หรือไม่"
+> โจทย์คือดูจากโครงสร้าง (topology + atom type) → ทำนาย label ของกราฟ
 
 ### Recipe ของ graph classification
 
