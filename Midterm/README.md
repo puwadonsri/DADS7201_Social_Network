@@ -20,7 +20,7 @@ daily data. Adds a **permutation + bootstrap significance layer** and a
 | Market data | `yfinance` (30-day event window + 6-month corr window) | `data/prices.csv`, `data/returns.csv` |
 | Real chatter | Playwright + Pantip XHR interception (resumable) | `data/pantip_topics_index.csv`, `data/posts_raw.csv` |
 | Mention extraction | strict-boundary SET50 regex + phase split | `data/posts.csv`, `data/mentions.csv` |
-| Sentiment | WangchanBERTa 3-class + 100-post gold-set validation | `data/sentiment.csv`, `data/sentiment_gold.csv`, `output/sentiment_validation.*` |
+| Sentiment | WangchanBERTa 3-class + 50-post gold-set validation | `data/sentiment.csv`, `data/sentiment_gold.csv`, `output/sentiment_validation.*` |
 | Network analysis | NetworkX + python-louvain | `output/centrality.csv`, `communities.csv`, `evolution_comparison.csv`, `hype_hubs.csv` |
 | Cross-validation | Pearson corr graph vs co-mention graph | `output/overlap_sensitivity.csv`, `attention_without_correlation.csv`, `correlation_without_attention.csv`, `validated_attention_edges.csv` |
 | Significance | 1,000× permutation on phase edges + 500× bootstrap Jaccard | `output/significance.json` |
@@ -30,8 +30,8 @@ daily data. Adds a **permutation + bootstrap significance layer** and a
 
 ## 2. Headline results (final run)
 
-**Corpus.** 1,383 SET50-tagged Pantip Sinthorn topics scraped 2026-01-01
-→ 2026-06-18; **97 kept** (≥ 2 SET50 mentions); **312 mention records**;
+**Corpus.** 1,374 SET50-tagged Pantip Sinthorn topics scraped 2026-01-01
+→ 2026-06-18; **96 kept** (≥ 2 SET50 mentions); **311 mention records**;
 3.2 stocks/post average. Phase split (10-day windows around the event
 anchor): Before = 27 posts, During = 42, After = 27.
 
@@ -97,8 +97,13 @@ Pearson correlation, `|r| ≥ 0.3`):
 → Retail chatter is **not** a proxy for fundamentals; the two networks
 share only ~13% of edges at the standard threshold.
 
-**Sentiment validation.** WangchanBERTa vs 100-post hand-annotated
-gold-set — see `output/sentiment_validation.json`.
+**Sentiment validation.** WangchanBERTa vs 50-post hand-annotated
+gold-set — **classifier is chance-level**: accuracy 0.34, Cohen κ = 0.14,
+Positive recall = 0.00 (all 23 gold-Positive posts predicted as Neutral).
+The H3 hypothesis (sentiment → hub score) is therefore weak largely as a
+**classifier artefact**, not a data one. Full breakdown in
+`output/sentiment_validation.json`. A domain-adapted classifier is the
+natural next step.
 
 ---
 
@@ -158,7 +163,7 @@ Midterm/
 │   ├── 01b_scrape_pantip.py       Playwright Phase A + requests Phase B
 │   ├── 01c_extract_mentions.py    regex + phase split
 │   ├── 02_sentiment_real.py       WangchanBERTa classifier
-│   ├── 02b_validate_sentiment.py  100-post gold-set F1
+│   ├── 02b_validate_sentiment.py  50-post gold-set F1
 │   ├── 02_sentiment.py            per-stock aggregation
 │   ├── 03_network.py              centrality + Louvain
 │   ├── 04_visualization.py        all figures (PNG + SVG)
@@ -173,12 +178,12 @@ Midterm/
 │   ├── stocks.csv                 SET50 H1 2026 universe
 │   ├── prices.csv / returns.csv   yfinance event window
 │   ├── event_anchor.json          event window centre (from returns)
-│   ├── pantip_topics_index.csv    Phase A output (1,383 rows)
-│   ├── posts_raw.csv              Phase B output (1,383 rows)
-│   ├── posts.csv                  filtered (97 rows, ≥ 2 SET50 mentions)
-│   ├── mentions.csv               long format (312 rows)
+│   ├── pantip_topics_index.csv    Phase A output (1,374 topics)
+│   ├── posts_raw.csv              Phase B output (1,374 posts)
+│   ├── posts.csv                  filtered (96 posts, ≥ 2 SET50 mentions)
+│   ├── mentions.csv               long format (311 records)
 │   ├── sentiment.csv              WangchanBERTa labels
-│   └── sentiment_gold.csv         100-post hand-annotated gold-set
+│   └── sentiment_gold.csv         50-post hand-annotated gold-set
 │
 ├── output/
     ├── centrality.csv             50 stocks × 3 centralities
@@ -203,6 +208,13 @@ Midterm/
 
 ## 5. Caveats & what's not done
 
+- **Sentiment classifier is chance-level on this corpus.** WangchanBERTa
+  hits accuracy 0.34 / κ = 0.14 on the 50-post gold set — Positive posts
+  are systematically misclassified as Neutral (recall = 0.00). Any claim
+  built on `AvgSentiment` (including the sentiment term in HypeScore) is
+  therefore **not defensible**; the H3 hypothesis is treated as a
+  classifier artefact, not a data one. Fix: fine-tune on Thai finance
+  posts (e.g. Pantip Sinthorn hand-labels) before publication.
 - **Sentiment-stock pairing is post-level, not span-level.** A long post
   mentioning DELTA negatively + GULF positively assigns the same label
   to both. Future work: aspect-based sentiment.
@@ -213,6 +225,6 @@ Midterm/
   common English words / particles. The strict boundary regex catches
   most Thai false positives but a final manual sanity check is
   recommended before publication.
-- **Sample size after filtering (97 posts, 27/42/27 by phase)** is small
+- **Sample size after filtering (96 posts, 27/42/27 by phase)** is small
   → the permutation p = 0.032 is significant but the modest sample
   makes effect-size claims tentative.
