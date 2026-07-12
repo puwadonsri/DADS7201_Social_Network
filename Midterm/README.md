@@ -24,6 +24,7 @@ daily data. Adds a **permutation + bootstrap significance layer** and a
 | Network analysis | NetworkX + python-louvain | `output/centrality.csv`, `communities.csv`, `evolution_comparison.csv`, `hype_hubs.csv` |
 | Cross-validation | Pearson corr graph vs co-mention graph | `output/overlap_sensitivity.csv`, `attention_without_correlation.csv`, `correlation_without_attention.csv`, `validated_attention_edges.csv` |
 | Significance | 1,000× permutation on phase edges + 500× bootstrap Jaccard | `output/significance.json` |
+| H2 community coherence | 1,000× permutation on within vs between community pairwise return `r` | `output/h2_test.json`, `h2_null_distribution.{png,svg}` |
 | Report + slides | python-docx / LaTeX / python-pptx | 2-page & 4-page `.docx` + `.pdf` + `.tex` + 12-slide `.pptx` (built locally under `report/`, not published) |
 
 ---
@@ -55,6 +56,33 @@ anchor): Before = 27 posts, During = 42, After = 27.
 
 → The Before → After densification is significant at α = 0.05, but the
 attention/correlation overlap is *low* and its CI does not cross 0.5.
+
+**H2 — community coherence in return co-movement** (`output/h2_test.json`,
+post-submission analysis; not in the report). For each stock pair we
+took Pearson `r` on the same 121-trading-day yfinance window as the
+correlation graph. Statistic S = mean(within-community r) −
+mean(between-community r), evaluated over the 5 non-trivial Louvain
+communities (40 stocks, 171 within + 609 between pairs; GULF and TIDLOR
+dropped due to missing yfinance history).
+
+- Observed **S = +0.075** (mean within r = 0.255 vs mean between r = 0.180)
+- Permutation null (1,000 shuffles of community labels): mean ≈ 0.000,
+  SD = 0.014 → observed sits **+5.4σ** above null → **p = 0.001**
+- Per-community mean internal `r`, ranked:
+
+| Community | n | mean r | Character |
+|---|:---:|---:|---|
+| C4 | 8 | **+0.324** | Pure Banks (BBL, KBANK, KKP, KTB, SCB, TCAP, TISCO, TTB) |
+| C5 | 9 | +0.280 | Consumer / Real (BEM, BJC, BTS, CBG, CPALL, ...) |
+| C1 | 5 | +0.246 | Growth / Comms (ADVANC, KTC, MINT, TRUE, WHA) |
+| C2 | 14 | +0.233 | Bluechip (PTT, PTTEP, IVL, AOT, ...) |
+| C7 | 4 | +0.144 | Speculative (CCET, CPN, DELTA, OR) |
+
+→ H2 is supported statistically — co-mention communities do co-move at
+returns level. **Caveat:** Louvain communities largely align with sectors
+(C4 = 8/8 banks), so part of this effect is a **sector confound** rather
+than pure attention. Full breakdown in `output/h2_test.json`;
+null-distribution histogram at `output/h2_null_distribution.png`.
 
 **Top 5 Hype Hubs** (composite of Degree × MentionCount × AvgSentiment × |Return|):
 
@@ -133,6 +161,7 @@ python scripts/03_network.py
 python scripts/04_visualization.py
 python scripts/06_correlation_overlay.py
 python scripts/08_significance.py
+python scripts/09_test_h2.py               # post-submission H2 test
 
 # 5. Report + slides
 python scripts/05_report.py                # 4-page .docx
@@ -172,7 +201,8 @@ Midterm/
 │   ├── 05_report_latex.py         LaTeX / .tex
 │   ├── 06_correlation_overlay.py  attention vs fundamentals
 │   ├── 07_make_slides.py          .pptx deck
-│   └── 08_significance.py         permutation + bootstrap
+│   ├── 08_significance.py         permutation + bootstrap
+│   └── 09_test_h2.py              post-submission H2 community-coherence test
 │
 ├── data/
 │   ├── stocks.csv                 SET50 H1 2026 universe
@@ -197,10 +227,11 @@ Midterm/
     ├── validated_attention_edges.csv         pairs in both networks (62)
     ├── significance.json          permutation p + bootstrap Jaccard CI
     ├── sentiment_validation.{csv,json}       gold-set F1 breakdown
-    └── *.png / *.svg              8 figures (network_full, evolution,
+    ├── h2_test.json               H2 permutation p + per-community mean r
+    └── *.png / *.svg              9 figures (network_full, evolution,
                                     hype, communities, centrality_top10,
                                     overlay, attention_vs_fundamentals,
-                                    overlap_sensitivity)
+                                    overlap_sensitivity, h2_null_distribution)
 
 ```
 
