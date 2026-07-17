@@ -26,6 +26,12 @@ Week 7 ของ **DADS7201 — Social Network Analysis** ที่ NIDA — เ
 | Ratings (edges) | **100,836** |
 | Genres | **20** (Action, Adventure, Drama, Horror, …) |
 
+![Heterogeneous bipartite graph](images/01_bipartite.png)
+
+โครงสร้างเป็น **bipartite graph** — user เชื่อมกับ movie ผ่าน `[:rates]`
+เท่านั้น (ไม่มี user↔user หรือ movie↔movie) และ movie มี **20-dim genre
+feature** ในตัว ส่วน user มีแค่ node_id (ต้องให้โมเดลเรียนรู้ feature เอง)
+
 ## Pipeline
 
 ```
@@ -59,6 +65,8 @@ movies.csv  ──┼──▶ HeteroData
 ```
 
 ## Model — Heterogeneous GraphSAGE
+
+![Model architecture](images/04_architecture.png)
 
 **ทำไมต้อง heterogeneous?** กราฟนี้มี **2 node types** (`user`, `movie`)
 และ **2 edge types** (`rates`, `rev_rates`) ซึ่ง PyG จัดการด้วย
@@ -106,19 +114,32 @@ class Model(torch.nn.Module):
 
 ## Data Splits (จำนวน edges จริงหลัง split)
 
-| Split | message-passing edges | supervision edges | negative edges |
-|---|---:|---:|---:|
-| Train | 56,469 | 24,201 | on-the-fly (2:1) |
-| Val   | 80,670 (train+30% ใหม่) | 30,249 | fixed 2:1 (20,166 neg / 10,083 pos) |
-| Test  | (แยก 10%) | — | fixed 2:1 |
+![RandomLinkSplit composition](images/02_split.png)
+
+**แถวบน (a)** — 100,836 rate edges ถูกแบ่งเป็น 4 กอง: train MP (56,469),
+train supervision (24,201), val supervision (10,083), test supervision (10,083)
+
+**แถวล่าง (b)** — จำนวน supervision labels ต่อ split (positive + fixed
+2:1 negatives) ส่วน train ไม่เก็บ negatives ล่วงหน้า แต่สุ่ม on-the-fly
+ในทุก mini-batch
 
 **`disjoint_train_ratio = 0.3`** ทำให้ 30% ของ train edges ถูกใช้เป็น
 supervision (label) โดย **ไม่ปรากฏใน message passing** — กัน leakage
 ของ label เข้าไปใน hidden state
 
+### Neighbor sampling (`LinkNeighborLoader`)
+
+![2-hop neighbor sampling](images/03_neighbor_sampling.png)
+
+แต่ละ mini-batch สร้าง **subgraph รอบ seed edge** ด้วย 2-hop random
+sampling — hop 1 เก็บ ≤ 20 neighbors, hop 2 เก็บ ≤ 10 neighbors จำกัด
+memory ได้แม้กราฟใหญ่ (สำคัญตอนขยับไปกราฟระดับล้าน edge)
+
 ## ผลการทดลอง (จาก notebook)
 
 **Training loss (5 epochs, batch_size=128)**
+
+![Training loss curve](images/05_training_loss.png)
 
 | Epoch | Loss |
 |---:|---:|
@@ -129,7 +150,14 @@ supervision (label) โดย **ไม่ปรากฏใน message passing**
 | 5 | 0.2987 |
 
 **Validation AUC = 0.9309** — โมเดลแยก positive จาก negative ได้ดีมาก
-บน 30k validation edges
+บน 30,249 validation edges
+
+![ROC curve](images/06_roc.png)
+
+> ⚠️ Curve เป็น **smooth reconstruction ที่ค่า AUC ตรงกับผลจริง** (0.9309)
+> ไม่ใช่ curve ที่ได้จาก model outputs ตรง ๆ — notebook ไม่ได้เก็บค่า
+> prediction ต่อ edge ไว้ ถ้าอยาก ROC จริง ต้องรัน `roc_curve` จาก
+> sklearn บน `preds` + `ground_truths` ในตอนท้ายของ notebook
 
 ## วิธีรัน
 
@@ -183,3 +211,8 @@ centrality) จากนั้น PyG ใช้ context นั้นเป็น
   ที่แสดงในตารางด้านบนมาจาก Colab run โดยตรง
 - โฟลเดอร์ `ml-latest-small/` และ `ml-latest-small.zip` ที่ถูก download
   ตอนรัน ควร gitignore เพราะเป็น dataset จาก external source
+- รูป diagrams ใน [`images/`](images/) generate จาก
+  [`scripts/make_diagrams.py`](scripts/make_diagrams.py) โดยใช้เฉพาะ
+  matplotlib + numpy (ไม่ต้องมี PyTorch/PyG) — training loss ใช้ตัวเลขจริง
+  จาก Colab run ส่วน bipartite / neighbor / architecture เป็น mock-up
+  เพื่อสื่อความ concept
