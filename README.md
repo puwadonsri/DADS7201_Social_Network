@@ -15,6 +15,7 @@ data, dependencies, and deploy configuration.
 | Midterm | Retail Hype & Sentiment Network on SET50 (Pantip Sinthorn + WangchanBERTa + correlation overlay) | [`Midterm/`](Midterm/) |
 | 5 | Node Embeddings — random walk + softmax NLL from scratch, DeepWalk / Node2Vec (BFS vs DFS), GCN preview on Karate Club (PyG) | [`Week5/`](Week5/) |
 | 6 | Graph Neural Networks — GCN vs MLP on Cora (node classification), 3-layer GCN + `global_mean_pool` on MUTAG (graph classification), GAT with attention heads | [`Week6/`](Week6/) |
+| 7 | Link Prediction on MovieLens — heterogeneous GraphSAGE with `to_hetero` + `LinkNeighborLoader` + dot-product classifier (Val AUC 0.93) | [`Week7/`](Week7/) |
 
 ## How this repo is organised
 
