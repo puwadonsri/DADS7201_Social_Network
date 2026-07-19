@@ -1,8 +1,18 @@
 # Midterm — Retail Hype & Sentiment Network on SET50
 
 > Course **DADS7201 — Social Network Analysis**, NIDA.
-> Deliverable: 2-page A4 report — **submitted** (PDF kept locally, not
-> pushed to the public repo).
+>
+> **Submitted (graded):** 2-page A4 report
+> (`report/DADS7201_Midterm_Report_2page.docx`), PDF exported locally.
+>
+> **Also documented here (post-submission, not graded):** an H2
+> community-coherence permutation test, an extended LNCS `.tex` / `.pdf`
+> version, and the 12-slide `.pptx`. Sections tagged **§3
+> Post-submission analysis** onward are for follow-up work, not the
+> Midterm grade.
+>
+> Predictive extension is developed in [`../Final/`](../Final/) — see
+> **§5 Follow-up work** at the bottom.
 
 End-to-end SNA pipeline that turns **real Pantip Sinthorn chatter** into a
 weighted co-mention network over the **SET50 H1-2026** constituents, then
@@ -24,8 +34,10 @@ daily data. Adds a **permutation + bootstrap significance layer** and a
 | Network analysis | NetworkX + python-louvain | `output/centrality.csv`, `communities.csv`, `evolution_comparison.csv`, `hype_hubs.csv` |
 | Cross-validation | Pearson corr graph vs co-mention graph | `output/overlap_sensitivity.csv`, `attention_without_correlation.csv`, `correlation_without_attention.csv`, `validated_attention_edges.csv` |
 | Significance | 1,000× permutation on phase edges + 500× bootstrap Jaccard | `output/significance.json` |
+| Report (submitted) | python-docx | 2-page `.docx` → `report/DADS7201_Midterm_Report_2page.docx` |
+| **Post-submission additions** | | |
 | H2 community coherence | 1,000× permutation on within vs between community pairwise return `r` | `output/h2_test.json`, `h2_null_distribution.{png,svg}` |
-| Report + slides | python-docx / LaTeX / python-pptx | 2-page & 4-page `.docx` + `.pdf` + `.tex` + 12-slide `.pptx` (built locally under `report/`, not published) |
+| Extended report + slides | python-docx / LaTeX / python-pptx | extended `.docx` + `.tex` / `.pdf` (LNCS) + 12-slide `.pptx` (built locally under `report/`, not published) |
 
 ---
 
@@ -47,6 +59,13 @@ anchor): Before = 27 posts, During = 42, After = 27.
 → Density rises ~3.5× from Before to After and modularity collapses
 (0.415 → 0.078) — attention **expands and de-fragments** after the event.
 
+> ⚠️ **N caveat.** Only 27 / 42 / 27 posts per phase after the
+> event-anchor filter. The permutation test (below) controls for
+> chance in phase-label assignment, but *effect-size* claims remain
+> sample-size-limited — the 3.5× density ratio in particular should
+> not be reported as a stable point estimate. Multi-event replication
+> is the natural robustness check; see §5 Follow-up work.
+
 **Statistical significance** (`output/significance.json`):
 
 - Density gap **After − Before = +0.146** (raw)
@@ -56,33 +75,6 @@ anchor): Before = 27 posts, During = 42, After = 27.
 
 → The Before → After densification is significant at α = 0.05, but the
 attention/correlation overlap is *low* and its CI does not cross 0.5.
-
-**H2 — community coherence in return co-movement** (`output/h2_test.json`,
-post-submission analysis; not in the report). For each stock pair we
-took Pearson `r` on the same 121-trading-day yfinance window as the
-correlation graph. Statistic S = mean(within-community r) −
-mean(between-community r), evaluated over the 5 non-trivial Louvain
-communities (40 stocks, 171 within + 609 between pairs; GULF and TIDLOR
-dropped due to missing yfinance history).
-
-- Observed **S = +0.075** (mean within r = 0.255 vs mean between r = 0.180)
-- Permutation null (1,000 shuffles of community labels): mean ≈ 0.000,
-  SD = 0.014 → observed sits **+5.4σ** above null → **p = 0.001**
-- Per-community mean internal `r`, ranked:
-
-| Community | n | mean r | Character |
-|---|:---:|---:|---|
-| C4 | 8 | **+0.324** | Pure Banks (BBL, KBANK, KKP, KTB, SCB, TCAP, TISCO, TTB) |
-| C5 | 9 | +0.280 | Consumer / Real (BEM, BJC, BTS, CBG, CPALL, ...) |
-| C1 | 5 | +0.246 | Growth / Comms (ADVANC, KTC, MINT, TRUE, WHA) |
-| C2 | 14 | +0.233 | Bluechip (PTT, PTTEP, IVL, AOT, ...) |
-| C7 | 4 | +0.144 | Speculative (CCET, CPN, DELTA, OR) |
-
-→ H2 is supported statistically — co-mention communities do co-move at
-returns level. **Caveat:** Louvain communities largely align with sectors
-(C4 = 8/8 banks), so part of this effect is a **sector confound** rather
-than pure attention. Full breakdown in `output/h2_test.json`;
-null-distribution histogram at `output/h2_null_distribution.png`.
 
 **Top 5 Hype Hubs** (composite of Degree × MentionCount × AvgSentiment × |Return|):
 
@@ -108,8 +100,13 @@ five of them are non-trivial (≥ 4 members):
 | C1 — Comms + growth | 6 | ADVANC, GULF, KTC, MINT, TRUE, WHA |
 | C7 — Electronics / speculative | 4 | CCET, CPN, DELTA, OR |
 
-The pure 8-bank cluster is the strongest signal — no bank strays into
-any other community.
+The pure 8-bank cluster is the *cleanest partition* — but partly
+**tautological**: retail Sinthorn posts routinely name major banks
+together ("SCB/KBANK/KTB บวกยกแผง", "แบงก์ใหญ่ลงยกกลุ่ม"), so a Louvain
+algorithm grouping them is partly a property of retail linguistic
+habit rather than a purely attention-driven finding. §3.1 (H2 test) is
+a partial statistical control for this; a stronger test would be a
+**sector-stratified permutation null**.
 
 **Attention vs Fundamentals overlay** (co-mention vs 6-month return
 Pearson correlation, `|r| ≥ 0.3`):
@@ -131,11 +128,61 @@ Positive recall = 0.00 (all 23 gold-Positive posts predicted as Neutral).
 The H3 hypothesis (sentiment → hub score) is therefore weak largely as a
 **classifier artefact**, not a data one. Full breakdown in
 `output/sentiment_validation.json`. A domain-adapted classifier is the
-natural next step.
+natural next step — and is done in the Final project (see §5): a
+5-fold CV fine-tune of WangchanBERTa on the same 50 gold posts lifts
+accuracy 0.34 → **0.50** and Positive recall 0.00 → **0.30**, confirming
+that the Midterm H3 weakness is largely a **classifier artefact**.
 
 ---
 
-## 3. How to reproduce
+## 3. Post-submission analysis (not in the graded report)
+
+Developed after the 2-page submission for follow-up work. Written up
+here for completeness; do not read this as part of the submitted
+findings.
+
+### 3.1 H2 — community coherence in return co-movement
+
+Test whether Louvain communities from co-mention edges actually co-move
+at the price level. For each stock pair we take Pearson `r` on the same
+121-trading-day yfinance window as the correlation graph. Statistic
+
+S = mean(within-community `r`) − mean(between-community `r`)
+
+evaluated over the 5 non-trivial Louvain communities (40 stocks; 171
+within + 609 between pairs; GULF and TIDLOR dropped due to missing
+yfinance history).
+
+- Observed **S = +0.075** (mean within `r` = 0.255 vs mean between
+  `r` = 0.180)
+- Permutation null (1,000 shuffles of community labels): mean ≈ 0.000,
+  SD = 0.014 → observed sits **+5.4σ** above null → **p = 0.001**
+- Per-community mean internal `r`, ranked:
+
+| Community | n | mean r | Character |
+|---|:---:|---:|---|
+| C4 | 8 | **+0.324** | Pure Banks (BBL, KBANK, KKP, KTB, SCB, TCAP, TISCO, TTB) |
+| C5 | 9 | +0.280 | Consumer / Real (BEM, BJC, BTS, CBG, CPALL, ...) |
+| C1 | 5 | +0.246 | Growth / Comms (ADVANC, KTC, MINT, TRUE, WHA) |
+| C2 | 14 | +0.233 | Bluechip (PTT, PTTEP, IVL, AOT, ...) |
+| C7 | 4 | +0.144 | Speculative (CCET, CPN, DELTA, OR) |
+
+**H2 is supported statistically** — co-mention communities do co-move
+at the returns level. **Caveat:** Louvain communities largely align
+with SET industry sectors (C4 = 8/8 banks; C5 mostly Consumer + Real
+Estate), so part of this effect is a **sector confound** — the Pearson
+`r` between two banks is elevated *because they are both banks*, not
+purely because retail talk about them together. A properly attention-
+driven test would need a **sector-stratified permutation null** (shuffle
+labels within-sector, not across the full universe) — deferred to
+future work.
+
+Full breakdown in `output/h2_test.json`; null-distribution histogram at
+`output/h2_null_distribution.png`.
+
+---
+
+## 4. How to reproduce
 
 ```powershell
 pip install -r requirements.txt
@@ -164,10 +211,10 @@ python scripts/08_significance.py
 python scripts/09_test_h2.py               # post-submission H2 test
 
 # 5. Report + slides
-python scripts/05_report.py                # 4-page .docx
-python scripts/05_report_2page.py          # 2-page .docx (submission)
-python scripts/05_report_latex.py          # LaTeX version
-python scripts/07_make_slides.py           # .pptx
+python scripts/05_report_2page.py          # ★ 2-page .docx (submitted)
+python scripts/05_report.py                # extended .docx (post-submission)
+python scripts/05_report_latex.py          # LNCS .tex → tectonic → .pdf
+python scripts/07_make_slides.py           # 12-slide .pptx
 ```
 
 Detailed walkthrough + debugging tips are kept locally in
@@ -176,7 +223,31 @@ Detailed walkthrough + debugging tips are kept locally in
 
 ---
 
-## 4. Repo layout
+## 5. Follow-up work — Final project
+
+The three main Midterm limitations (chance-level sentiment classifier;
+descriptive-only findings; small event window) are addressed in the
+Final project [`../Final/`](../Final/) via three predictive layers
+spanning course Weeks 3–7:
+
+- **Path A — Temporal link prediction** on the same co-mention graph,
+  comparing 5 methods (Jaccard / Adamic–Adar / Preferential Attachment
+  / Node2Vec / GraphSAGE). Best test AUC 0.73 (Preferential Attachment).
+- **Path B — Return prediction** with graph + attention features.
+  Directional accuracy stays near chance (~0.55) but the long–short
+  portfolio Sharpe proxy climbs **3.07 → 4.30** as graph features are
+  added — attention moves the money, not the average.
+- **Path C — WangchanBERTa fine-tune** (5-fold CV on the same 50-post
+  gold set): accuracy **0.34 → 0.50**, Positive recall **0.00 → 0.30**.
+  Confirms H3 weakness is largely a classifier artefact.
+
+Report + slides: [`../Final/report/DADS7201_Final_Report.pdf`](../Final/report/DADS7201_Final_Report.pdf)
+(4-page LNCS), [`../Final/report/DADS7201_Final_Slides.pptx`](../Final/report/DADS7201_Final_Slides.pptx)
+(14 slides with Thai speaker notes).
+
+---
+
+## 6. Repo layout
 
 ```
 Midterm/
@@ -196,9 +267,9 @@ Midterm/
 │   ├── 02_sentiment.py            per-stock aggregation
 │   ├── 03_network.py              centrality + Louvain
 │   ├── 04_visualization.py        all figures (PNG + SVG)
-│   ├── 05_report.py               4-page .docx
-│   ├── 05_report_2page.py         2-page .docx (submitted layout)
-│   ├── 05_report_latex.py         LaTeX / .tex
+│   ├── 05_report_2page.py         ★ 2-page .docx (submitted layout)
+│   ├── 05_report.py               extended .docx (post-submission)
+│   ├── 05_report_latex.py         LNCS .tex
 │   ├── 06_correlation_overlay.py  attention vs fundamentals
 │   ├── 07_make_slides.py          .pptx deck
 │   ├── 08_significance.py         permutation + bootstrap
@@ -237,15 +308,17 @@ Midterm/
 
 ---
 
-## 5. Caveats & what's not done
+## 7. Caveats & what's not done
 
 - **Sentiment classifier is chance-level on this corpus.** WangchanBERTa
   hits accuracy 0.34 / κ = 0.14 on the 50-post gold set — Positive posts
   are systematically misclassified as Neutral (recall = 0.00). Any claim
   built on `AvgSentiment` (including the sentiment term in HypeScore) is
   therefore **not defensible**; the H3 hypothesis is treated as a
-  classifier artefact, not a data one. Fix: fine-tune on Thai finance
-  posts (e.g. Pantip Sinthorn hand-labels) before publication.
+  classifier artefact, not a data one. **Fix implemented in the Final
+  project** (see §5): 5-fold CV fine-tune on the same 50 gold posts
+  raises accuracy to **0.50** and Positive recall to **0.30**. A larger
+  labelling budget (200–500 posts) is the natural next step.
 - **Sentiment-stock pairing is post-level, not span-level.** A long post
   mentioning DELTA negatively + GULF positively assigns the same label
   to both. Future work: aspect-based sentiment.
