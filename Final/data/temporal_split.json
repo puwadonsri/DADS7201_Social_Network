@@ -1,0 +1,12 @@
+{
+  "event_date": "2026-05-28",
+  "train_end": "2026-05-08",
+  "val_end": "2026-05-28",
+  "test_end": "2026-06-17",
+  "n_train_posts": 165,
+  "n_val_posts": 42,
+  "n_test_posts": 27,
+  "n_train_edges": 154,
+  "n_val_positive_first_seen": 50,
+  "n_test_positive_first_seen": 134
+}

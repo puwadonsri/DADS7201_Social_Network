@@ -130,7 +130,7 @@ The H3 hypothesis (sentiment → hub score) is therefore weak largely as a
 `output/sentiment_validation.json`. A domain-adapted classifier is the
 natural next step — and is done in the Final project (see §5): a
 5-fold CV fine-tune of WangchanBERTa on the same 50 gold posts lifts
-accuracy 0.34 → **0.50** and Positive recall 0.00 → **0.30**, confirming
+accuracy 0.34 → **0.50** and Positive recall 0.00 → **0.78**, confirming
 that the Midterm H3 weakness is largely a **classifier artefact**.
 
 ---
@@ -238,7 +238,7 @@ spanning course Weeks 3–7:
   portfolio Sharpe proxy climbs **3.07 → 4.30** as graph features are
   added — attention moves the money, not the average.
 - **Path C — WangchanBERTa fine-tune** (5-fold CV on the same 50-post
-  gold set): accuracy **0.34 → 0.50**, Positive recall **0.00 → 0.30**.
+  gold set): accuracy **0.34 → 0.50**, Positive recall **0.00 → 0.78**.
   Confirms H3 weakness is largely a classifier artefact.
 
 Report + slides: [`../Final/report/DADS7201_Final_Report.pdf`](../Final/report/DADS7201_Final_Report.pdf)
@@ -317,7 +317,8 @@ Midterm/
   therefore **not defensible**; the H3 hypothesis is treated as a
   classifier artefact, not a data one. **Fix implemented in the Final
   project** (see §5): 5-fold CV fine-tune on the same 50 gold posts
-  raises accuracy to **0.50** and Positive recall to **0.30**. A larger
+  raises accuracy to **0.50** and Positive recall to **0.78** (though
+  Cohen κ only moves 0.14 → 0.17). A larger
   labelling budget (200–500 posts) is the natural next step.
 - **Sentiment-stock pairing is post-level, not span-level.** A long post
   mentioning DELTA negatively + GULF positively assigns the same label

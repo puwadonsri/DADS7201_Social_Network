@@ -1,0 +1,136 @@
+{
+  "n_gold_posts": 50,
+  "n_folds": 5,
+  "epochs_per_fold": 3,
+  "baseline": {
+    "accuracy": 0.34,
+    "macro_f1": 0.3097155126140633,
+    "kappa": 0.13838120104438634
+  },
+  "finetuned_cv_mean": {
+    "accuracy_mean": 0.5,
+    "accuracy_std": 0.06324555320336757,
+    "macro_f1_mean": 0.36911976911976907,
+    "kappa_mean": 0.16520606964118761
+  },
+  "finetuned_pooled": {
+    "accuracy": 0.5,
+    "macro_f1": 0.3956989247311828,
+    "kappa": 0.16833000665336006
+  },
+  "per_class_metrics": {
+    "Negative": {
+      "baseline": {
+        "precision": 0.8571428571428571,
+        "recall": 0.375,
+        "f1": 0.5217391304347826,
+        "support": 16
+      },
+      "finetuned": {
+        "precision": 0.4,
+        "recall": 0.375,
+        "f1": 0.3870967741935484,
+        "support": 16
+      }
+    },
+    "Neutral": {
+      "baseline": {
+        "precision": 0.2558139534883721,
+        "recall": 1.0,
+        "f1": 0.4074074074074074,
+        "support": 11
+      },
+      "finetuned": {
+        "precision": 0.25,
+        "recall": 0.09090909090909091,
+        "f1": 0.13333333333333333,
+        "support": 11
+      }
+    },
+    "Positive": {
+      "baseline": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "support": 23
+      },
+      "finetuned": {
+        "precision": 0.5806451612903226,
+        "recall": 0.782608695652174,
+        "f1": 0.6666666666666666,
+        "support": 23
+      }
+    }
+  },
+  "confusion_finetuned": {
+    "Negative": {
+      "Negative": 6,
+      "Neutral": 2,
+      "Positive": 8
+    },
+    "Neutral": {
+      "Negative": 5,
+      "Neutral": 1,
+      "Positive": 5
+    },
+    "Positive": {
+      "Negative": 4,
+      "Neutral": 1,
+      "Positive": 18
+    }
+  },
+  "confusion_baseline": {
+    "Negative": {
+      "Negative": 6,
+      "Neutral": 10,
+      "Positive": 0
+    },
+    "Neutral": {
+      "Negative": 0,
+      "Neutral": 11,
+      "Positive": 0
+    },
+    "Positive": {
+      "Negative": 1,
+      "Neutral": 22,
+      "Positive": 0
+    }
+  },
+  "fold_detail": [
+    {
+      "fold": 1,
+      "n_val": 10,
+      "accuracy": 0.5,
+      "macro_f1": 0.4666666666666666,
+      "kappa": 0.24242424242424243
+    },
+    {
+      "fold": 2,
+      "n_val": 10,
+      "accuracy": 0.6,
+      "macro_f1": 0.4329004329004329,
+      "kappa": 0.31034482758620685
+    },
+    {
+      "fold": 3,
+      "n_val": 10,
+      "accuracy": 0.5,
+      "macro_f1": 0.3333333333333333,
+      "kappa": 0.1071428571428571
+    },
+    {
+      "fold": 4,
+      "n_val": 10,
+      "accuracy": 0.4,
+      "macro_f1": 0.2222222222222222,
+      "kappa": -0.05263157894736836
+    },
+    {
+      "fold": 5,
+      "n_val": 10,
+      "accuracy": 0.5,
+      "macro_f1": 0.3904761904761904,
+      "kappa": 0.21875
+    }
+  ]
+}
