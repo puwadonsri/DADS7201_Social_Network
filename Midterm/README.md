@@ -2,17 +2,9 @@
 
 > Course **DADS7201 — Social Network Analysis**, NIDA.
 >
-> **Submitted (graded):** 2-page A4 report
-> (`report/DADS7201_Midterm_Report_2page.docx`), PDF exported locally.
->
-> **Also documented here (post-submission, not graded):** an H2
-> community-coherence permutation test, an extended LNCS `.tex` / `.pdf`
-> version, and the 12-slide `.pptx`. Sections tagged **§3
-> Post-submission analysis** onward are for follow-up work, not the
-> Midterm grade.
 >
 > Predictive extension is developed in [`../Final/`](../Final/) — see
-> **§5 Follow-up work** at the bottom.
+> ** Follow-up work** at the bottom.
 
 End-to-end SNA pipeline that turns **real Pantip Sinthorn chatter** into a
 weighted co-mention network over the **SET50 H1-2026** constituents, then
@@ -22,7 +14,7 @@ daily data. Adds a **permutation + bootstrap significance layer** and a
 
 ---
 
-## สรุป (ภาษาไทย)
+## Summary
 
 โปรเจกต์ Midterm สร้าง **ไปป์ไลน์ SNA เชิงพรรณนา (descriptive)** ที่แปลง
 ข้อความจริงจากห้องสินธร Pantip ให้เป็น **เครือข่ายการถูกพูดถึงร่วมกัน
@@ -51,9 +43,7 @@ daily data. Adds a **permutation + bootstrap significance layer** and a
 
 > ⚠️ **ข้อควรระวัง:** กลุ่มตัวอย่างหลังกรองเล็ก (96 กระทู้) → ค่า p
 > มีนัยสำคัญแต่การอ้าง effect-size ยังต้องระวัง ส่วนการต่อยอดเชิงทำนาย
-> อยู่ใน [`../Final/`](../Final/) (ดู §5)
-
-รายละเอียดภาษาอังกฤษทั้งหมดอยู่ด้านล่าง
+> อยู่ใน [`../Final/`](../Final/)
 
 ---
 
