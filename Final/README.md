@@ -1,14 +1,8 @@
 # 🚀 Final Project — Predictive Extension of the Midterm SET50 Hype Network
 
-> **DADS7201 — Social Network Analysis**, NIDA · Due **Week 8 (26 Jul 2026)** · Turnitin-checked
->
-> 📄 [`report/DADS7201_Final_Report.pdf`](report/DADS7201_Final_Report.pdf) (4-page LNCS)
-> 📊 [`report/DADS7201_Final_Slides.pptx`](report/DADS7201_Final_Slides.pptx) (14 slides)
-> 📋 Original plan: [`PROJECT_PLAN.md`](PROJECT_PLAN.md)
+> **DADS7201 — Social Network Analysis**, NIDA
 
 ---
-
-## 🎯 ในหนึ่งบรรทัด
 
 **Midterm** บอกว่า *ความสนใจ ≠ พื้นฐาน* — **Final** บอกว่า *ความสนใจพยากรณ์ตัวเองได้* (Path A)
 และ *ช่วยจัดพอร์ตให้ Sharpe ดีขึ้น* (Path B) — แต่ยอมรับข้อจำกัดทุกอย่างตรงไปตรงมา
