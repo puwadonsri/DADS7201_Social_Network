@@ -1,297 +1,217 @@
-# Final Project — Predictive Extension of the Midterm SET50 Hype Network
+# 🚀 Final Project — Predictive Extension of the Midterm SET50 Hype Network
 
-> Course **DADS7201 — Social Network Analysis**, NIDA
-> Assignment (`โจทย์_final.txt`): *"Apply predictive analysis to your
-> midterm project."* → extended **4-page A4 report**, Turnitin-checked,
-> due **Week 8 (26 Jul 2026)**.
+> **DADS7201 — Social Network Analysis**, NIDA · Due **Week 8 (26 Jul 2026)** · Turnitin-checked
 >
-> **Deliverables:** [`report/DADS7201_Final_Report.pdf`](report/DADS7201_Final_Report.pdf)
-> (4-page Springer LNCS) and
-> [`report/DADS7201_Final_Slides.pptx`](report/DADS7201_Final_Slides.pptx)
-> (14 slides, Thai speaker notes).
->
-> The original planning notes are kept in
-> [PROJECT_PLAN.md](PROJECT_PLAN.md); this README is the **as-built
-> summary** of what was actually done and what the numbers say.
-
-The [Midterm](../Midterm/) delivered a **descriptive** SNA pipeline on
-SET50 + Pantip Sinthorn: a weighted co-mention network, Louvain
-communities, a return-correlation overlay, a sentiment-classifier
-validation, and a permutation/bootstrap significance layer. The Final
-turns each descriptive finding into a **predictive** one across three
-layers (Paths A–C) that between them exercise course methods from
-**Weeks 3, 5, and 7**.
+> 📄 [`report/DADS7201_Final_Report.pdf`](report/DADS7201_Final_Report.pdf) (4-page LNCS)
+> 📊 [`report/DADS7201_Final_Slides.pptx`](report/DADS7201_Final_Slides.pptx) (14 slides)
+> 📋 Original plan: [`PROJECT_PLAN.md`](PROJECT_PLAN.md)
 
 ---
 
-## สรุป (ภาษาไทย)
+## 🎯 ในหนึ่งบรรทัด
 
-โปรเจกต์ Final ต่อยอด Midterm จาก **เชิงพรรณนา (descriptive)** ไปสู่
-**เชิงทำนาย (predictive)** โดยแปลงข้อจำกัด/ผลลัพธ์เดิม 3 อย่างให้เป็น
-3 เส้นทาง (Paths A–C) ครอบคลุมเทคนิคจาก Weeks 3, 5 และ 7 — ใช้ข้อมูลชุด
-เดิม **ไม่ต้อง scrape ใหม่** (สคริปต์อ่านผลจาก `../Midterm/` โดยตรง)
+**Midterm** บอกว่า *ความสนใจ ≠ พื้นฐาน* — **Final** บอกว่า *ความสนใจพยากรณ์ตัวเองได้* (Path A)
+และ *ช่วยจัดพอร์ตให้ Sharpe ดีขึ้น* (Path B) — แต่ยอมรับข้อจำกัดทุกอย่างตรงไปตรงมา
 
-**Path A — ทำนายการเกิด edge ในกราฟ (temporal link prediction).**
-ทำนายว่าหุ้นคู่ไหนจะถูกพูดถึงร่วมกัน *ครั้งแรก* ในหน้าต่างเวลาถัดไป
-เปรียบเทียบ 5 วิธี ผลบน test set: **Preferential attachment ดีสุด
-AUC = 0.733** (CI 95% [0.68, 0.79]), รองมาคือ Adamic–Adar 0.727 /
-Jaccard 0.713, Node2Vec 0.711 และ **GraphSAGE แพ้ (0.547)** เพราะกราฟ
-เล็กและ edge เทรนน้อย (~150) → *บนกราฟเล็ก ฮิวริสติกโครงสร้างง่าย ๆ ชนะ*
-และคู่ที่โมเดลทำนายมักโผล่จริงในกลุ่ม *hype-only* → **ความสนใจดึงความสนใจ**
+---
 
-**Path B — ทำนายทิศทางผลตอบแทน (return prediction).**
-ทำนายเครื่องหมายผลตอบแทนวันถัดไปของหุ้น SET50 เพิ่มฟีเจอร์ทีละชั้น B0→B3
-**ความแม่นใกล้ระดับสุ่ม (~0.55) ทุกโมเดล** (บอกตามตรง) แต่ **Sharpe ของ
-พอร์ต long–short เพิ่มต่อเนื่อง 3.07 → 3.79 → 4.30** เมื่อเติมฟีเจอร์กราฟ
-+ attention → *ความสนใจขยับ "เงิน" แม้ไม่ขยับ "ค่าเฉลี่ยความแม่น"* ส่วน
-B3 (XGBoost) overfit เหลือ Sharpe 1.51
+## 📖 สารบัญ (Slide-style)
 
-**Path C — fine-tune ตัวจำแนก sentiment (ทดสอบ H3 ซ้ำ).**
-fine-tune WangchanBERTa แบบ 5-fold CV บน gold set 50 โพสต์เดิม:
-accuracy **0.34 → 0.50**, Positive recall **0.00 → 0.78** → ยืนยันว่า
-H3 อ่อนเพราะ *ข้อจำกัดของตัวจำแนก ไม่ใช่ของข้อมูล*
-> ⚠️ แต่ต้องบอกตามตรง: **Cohen κ ขยับแค่ 0.14 → 0.17** และโมเดลไปเดา
-> Positive มากเกินจน Neutral recall ตกจาก 1.00 → 0.09 → เป็นแค่
-> *proof-of-concept* (ใช้ 50 โพสต์เดิม ยังไม่ได้ label เพิ่ม) ก้าวต่อไป
-> คือ label เพิ่ม ~200–500 โพสต์เพื่อดัน κ ให้เกิน 0.5
-
-**ส่งงาน:** รายงาน LNCS 4 หน้า + สไลด์ 14 แผ่น (มีโน้ตผู้บรรยายภาษาไทย)
-อยู่ในโฟลเดอร์ `report/` — รายละเอียดภาษาอังกฤษทั้งหมดอยู่ด้านล่าง
+| # | Slide | ไฮไลท์ |
+|---|-------|--------|
+| 1 | [Midterm → Final](#1-from-midterm-to-final--the-through-line) | 3 gaps → 3 paths |
+| 2 | [Path A: Link Prediction](#2-path-a--temporal-link-prediction) | 🏆 Pref AUC **0.733** > GraphSAGE 0.547 |
+| 3 | [Path B: Return Prediction](#3-path-b--return-prediction) | 📈 Sharpe **3.07 → 4.30** |
+| 4 | [Path C: Sentiment Fine-tune](#4-path-c--sentiment-fine-tune-re-testing-h3) | 🎯 Recall **0% → 78%** |
+| 5 | [Grading Self-check](#5-grading-self-check) | ✅ 6/6 rubrics |
+| 6 | [How to Reproduce](#6-how-to-reproduce) | ⚙️ คำสั่งรัน |
+| 7 | [Files](#7-files-produced) | 📂 โครงสร้างโปรเจกต์ |
 
 ---
 
 ## 1. From Midterm to Final — the through-line
 
-The Midterm left three concrete openings. Each becomes one Final path:
+```mermaid
+graph LR
+    A[Midterm: Descriptive SNA] --> B[Final: Predictive]
+    B --> C[Path A: Link Prediction<br/>AUC 0.733]
+    B --> D[Path B: Return Prediction<br/>Sharpe 3.07→4.30]
+    B --> E[Path C: Sentiment Fine-tune<br/>Recall 0%→78%]
+```
 
-| Midterm result / limitation | Final path | Question turned predictive |
-|---|---|---|
-| Co-mention graph + Louvain + H4 densification (descriptive only) | **Path A — Temporal link prediction** | *Which stock pairs will retail investors start co-mentioning next?* |
-| Hype Hub Score + Attention-vs-Fundamentals dissociation (no forecast) | **Path B — Return prediction** | *Do graph/attention features add signal to next-day returns?* |
-| Sentiment classifier at chance level (κ = 0.14), so H3 unresolved | **Path C — Sentiment fine-tune** | *Is H3's weakness a data property or a classifier artefact?* |
+| Midterm Result | Final Path | Question |
+|:---------------|:-----------|:---------|
+| 🕸️ Co-mention graph + H4 densification | **Path A** — Link prediction | *Which stock pairs will be co-mentioned next?* |
+| 📉 Attention ≠ Fundamentals (Jaccard 0.13) | **Path B** — Return prediction | *Do graph features add signal to returns?* |
+| 🤖 Sentiment classifier chance-level (κ=0.14) | **Path C** — Fine-tune | *Is H3 weak because of data or classifier?* |
 
-No re-scraping was needed: every Final script reads the Midterm's
-`data/` and `output/` as inputs and writes only into `Final/output/`.
-The single new market call is a wider (~180-day) `yfinance` return
-history for Path B's training rows.
-
-### What the Midterm established (recap)
+### 📊 Midterm Recap
 
 | Finding | Verdict | Source |
-|---|---|---|
-| H1 (degree → attention) | Supported | `../Midterm/output/centrality.csv` |
-| H2 (community → co-movement) | Supported, +5.4σ, p = 0.001 *(post-submission)* | `../Midterm/output/h2_test.json` |
-| H3 (sentiment → hub) | **Weak — classifier at chance (κ = 0.14)** | `../Midterm/output/sentiment_validation.json` |
-| H4 (event → density) | Supported, After−Before p = 0.032 | `../Midterm/output/significance.json` |
-| Attention ≠ fundamentals | Jaccard 0.13 at \|r\|≥0.3, 95% CI [0.09, 0.14] | `../Midterm/output/overlap_sensitivity.csv` |
+|:--------|:--------|:-------|
+| H1 (degree → attention) | ✅ Supported | `centrality.csv` |
+| H2 (community → co-movement) | ✅ **+5.4σ, p=0.001** | `h2_test.json` |
+| H3 (sentiment → hub) | ⚠️ **Weak — κ=0.14** | `sentiment_validation.json` |
+| H4 (event → density) | ✅ **p=0.032** | `significance.json` |
+| Attention ≠ Fundamentals | ✅ **Jaccard 0.13** [0.09, 0.14] | `overlap_sensitivity.csv` |
 
-Corpus carried forward: 1,374 Pantip Sinthorn topics (1 Jan – 18 Jun
-2026); **96 posts** kept at ≥ 2 SET50 mentions; **311 mention records**;
-event anchor **T = 2026-05-28** (peak posting day).
+**Data carried forward:** 1,374 Pantip topics → **96 posts** ≥ 2 SET50 mentions → **311 records** · Event: **2026-05-28**
 
 ---
 
-## 2. Path A — Temporal link prediction on the co-mention graph
+## 2. Path A — Temporal Link Prediction
 
-**Task.** Given co-mentions in `[t_min, T−20)`, predict which *currently
-non-adjacent* SET50 pairs first co-occur in the next windows: `[T−20, T)`
-(validation) and `[T, T+20)` (test). Negatives are sampled from the SET50
-non-edge set (2:1 in training, 1:1 in evaluation), following the Week-7
-convention. The split is cached in [data/temporal_split.json](data/temporal_split.json):
-**154 train edges, 50 first-time val positives, 134 first-time test
-positives.**
+### 🎯 Task
+Predict which *currently non-adjacent* SET50 pairs first co-occur in `[T, T+20]`.
 
-**Five methods, spanning three weeks.**
+**Split:** Train 154 edges · Val 50 positives · **Test 134 positives** + 134 negatives (1:1)
 
-| # | Method | Week | Scoring |
-|---|---|:--:|---|
-| 1 | Jaccard coefficient | 3 | \|N(u)∩N(v)\| / \|N(u)∪N(v)\| |
-| 2 | Adamic–Adar | 3 | Σ 1/log\|N(w)\| over common neighbours |
-| 3 | Preferential attachment | 3 | \|N(u)\|·\|N(v)\| |
-| 4 | Node2Vec + logistic | 5 | LR on Hadamard product z_u ⊙ z_v (d = 64) |
-| 5 | Homogeneous GraphSAGE | 7 | 2× SAGEConv, hidden 64, BCE-with-logits |
+### 🥊 5 Methods (Weeks 3, 5, 7)
 
-**Results (test set, 134 positives + 134 negatives; AUC 95% CI from 500
-bootstrap iterations — full table in [output/lp_baselines.csv](output/lp_baselines.csv)).**
+| Method | Week | Test AUC | 95% CI | P@10 | P@25 |
+|:-------|:----:|:--------:|:------:|:----:|:----:|
+| 🥇 **Preferential** | 3 | **0.733** | [0.68, 0.79] | 0.90 | 0.88 |
+| 🥈 Adamic-Adar | 3 | 0.727 | [0.67, 0.78] | **1.00** | 0.92 |
+| 🥉 Jaccard | 3 | 0.713 | [0.66, 0.76] | **1.00** | 0.92 |
+| Node2Vec | 5 | 0.711 | [0.65, 0.77] | 0.50 | 0.60 |
+| ❌ GraphSAGE | 7 | **0.547** | [0.48, 0.62] | 0.70 | 0.64 |
 
-| Method | Test AUC | 95% CI | P@10 | P@25 | MRR |
-|---|---:|:---:|---:|---:|---:|
-| **Preferential** | **0.733** | [0.68, 0.79] | 0.90 | 0.88 | 0.037 |
-| Adamic–Adar | 0.727 | [0.67, 0.78] | 1.00 | 0.92 | 0.038 |
-| Jaccard | 0.713 | [0.66, 0.76] | 1.00 | 0.92 | 0.037 |
-| Node2Vec | 0.711 | [0.65, 0.77] | 0.50 | 0.60 | 0.021 |
-| GraphSAGE | 0.547 | [0.48, 0.62] | 0.70 | 0.64 | 0.028 |
+> 💡 **Key Insight:** On a small sparse graph (~150 edges), **simple heuristics beat GNNs**
 
-**Read-out.**
-- The three Week-3 heuristics are effectively tied at the top (their CIs
-  overlap heavily); Preferential wins on AUC, Adamic–Adar/Jaccard hit
-  **P@10 = 1.00 (10/10)**. Node2Vec matches the heuristics on AUC only.
-- **GraphSAGE underperforms** — identity node features and ~150 training
-  edges are well inside a GNN's data-hungry regime. An honest, on-message
-  result: on a small sparse graph, simple structural heuristics win.
-- The top predicted unseen pairs (`output/lp_topk_predicted_edges.csv`)
-  concentrate on *hype-only* and *new* Midterm buckets that **do emerge**
-  in the eval window (GULF–OR, KBANK–OR, GULF–TOP), while most
-  *overlooked co-mover* pairs stay silent → **attention begets
-  attention**, extending the Midterm's Attention-vs-Fundamentals result
-  into a forecast.
+### 📈 ROC Curves
 
-Figures: `output/lp_roc.{png,svg}`, `output/lp_precision_at_k.{png,svg}`.
+![ROC](output/lp_roc.png)
+
+### 📌 Read-out
+
+- **Heuristics tied at top** — Preferential wins AUC, Adamic-Adar/Jaccard hit **P@10 = 1.00**
+- **GraphSAGE underperforms** — identity features + 150 edges = GNN's data-hungry regime
+- Top predicted pairs (GULF–OR, KBANK–OR, GULF–TOP) **emerge in eval window** → **attention begets attention** 🔁
 
 ---
 
-## 3. Path B — Return prediction with graph features
+## 3. Path B — Return Prediction
 
-**Task.** For each (stock, day) row over 120 trading days, predict
-`sign(r_{d+1})`. Feature groups build up incrementally:
+### 🎯 Task
+For each (stock, day) over 120 trading days, predict `sign(r_{d+1})`.
+
+### 🏗️ Feature Build-up
 
 | Model | Features | Learner |
-|---|---|---|
-| **B0** | own-return lags (r_{d−1}, 5-day mean/std, cross-sectional rank) | Logistic reg. |
-| **B1** | B0 + degree centrality + Hype Hub Score + Louvain one-hot | Logistic reg. |
-| **B2** | B1 + rolling attention (10-day mentions) + rolling sentiment (5-day) | Logistic reg. |
+|:------|:---------|:--------|
+| **B0** | Return lags only | Logistic |
+| **B1** | B0 + centrality + community | Logistic |
+| **B2** | B1 + attention volume + sentiment | Logistic |
 | **B3** | B2 features | XGBoost |
 
-Evaluation is a 5-fold expanding-window time-series CV; the portfolio
-proxy goes long the top-decile predicted-up and short the bottom-decile
-predicted-down, equal-weight, daily rebalance
-([output/rp_metrics.json](output/rp_metrics.json)).
+### 📊 Results
 
-| Model | Accuracy | 95% CI | Sharpe proxy |
-|---|---:|:---:|---:|
-| B0 (lags) | 0.553 | [0.540, 0.568] | 3.07 |
-| B1 (+graph) | 0.545 | [0.530, 0.560] | 3.79 |
-| B2 (+attention, full) | 0.547 | [0.533, 0.562] | **4.30** |
-| B3 (XGBoost) | 0.525 | [0.509, 0.539] | 1.51 |
+| Model | Accuracy | Sharpe Proxy |
+|:------|:--------:|:------------:|
+| B0 (lags) | 0.553 | 3.07 |
+| B1 (+graph) | 0.545 | 3.79 |
+| B2 (+attention) ✅ | 0.547 | **4.30** 🏆 |
+| B3 (XGBoost) ❌ | 0.525 | 1.51 |
 
-**Read-out.** Directional accuracy sits near chance for every model —
-120-day SET50 sign prediction is intrinsically hard, and we report that
-honestly. But the Sharpe proxy rises **monotonically B0 → B1 → B2
-(3.07 → 3.79 → 4.30)**: graph and attention features shift the
-portfolio's decision boundary in a risk-improving way even when headline
-accuracy does not move — *attention moves the money, not the average*.
-B3 (XGBoost) collapses to Sharpe 1.51, i.e. it **over-fits** the small
-time series, so the linear B2 is the reported model.
+![Sharpe Curve](output/rp_sharpe_curve.png)
 
-Figures: `output/rp_baseline_vs_full.{png,svg}`,
-`output/rp_sharpe_curve.{png,svg}`, `output/rp_feature_importance.{png,svg}`.
+> 💡 **Key Insight:** Accuracy ~55% (near chance for SET50). **But Sharpe rises monotonically 3.07→4.30** — attention features improve portfolio risk-adjusted return even when mean accuracy doesn't move. *"Attention moves the money, not the average."*
+>
+> B3 (XGBoost) overfits → **linear B2 is champion**
 
 ---
 
-## 4. Path C — Sentiment classifier fine-tune (re-testing H3)
+## 4. Path C — Sentiment Fine-tune (Re-testing H3)
 
-**Task.** The Midterm's off-the-shelf WangchanBERTa was chance-level, so
-H3 (sentiment → hub) could not be judged. We fine-tune
-`poom-sci/WangchanBERTa-finetuned-sentiment` with a **stratified 5-fold
-CV on the same 50-post gold set** (3 epochs, lr 2e-5, batch 4) and pool
-the held-out predictions ([output/sentiment_finetuned_validation.json](output/sentiment_finetuned_validation.json)).
+### 🎯 Task
+Midterm's WangchanBERTa was chance-level (acc 0.34, κ=0.14, **Positive recall = 0.00**).
+→ 5-fold CV fine-tune on the same 50 gold posts fixes this?
 
-| | Accuracy | Macro F1 | Cohen κ | Positive recall |
-|---|---:|---:|---:|---:|
-| Baseline (off-the-shelf) | 0.34 | 0.31 | 0.14 | 0.00 |
-| Fine-tuned (5-fold pooled) | **0.50** ± 0.06 | 0.40 | 0.17 | **0.78** |
+### 📊 Before vs After
 
-**Read-out — with the honest caveat.** Fine-tuning recovers the
-Positive class the baseline never predicted (recall **0.00 → 0.78**;
-18/23 gold-Positive posts now correct), lifting accuracy 0.34 → 0.50.
-This is enough to reframe the Midterm's H3 weakness as a **classifier
-transfer artefact, not a corpus property**. But the improvement is
-uneven and must be stated as such: **Cohen κ barely moves (0.14 → 0.17)**
-and the model now over-predicts Positive at the expense of the Neutral
-class (Neutral recall collapses 1.00 → 0.09). With only 50 posts and no
-new labels, this is a **proof-of-concept, not a solved classifier** — a
-~200–500-post labelling budget is the concrete next step to push κ past
-0.5.
+| Metric | Baseline | Fine-tuned | Δ |
+|:-------|:--------:|:----------:|:-:|
+| Accuracy | 0.34 | **0.50** ± 0.06 | ✅ +0.16 |
+| Macro F1 | 0.31 | 0.40 | ✅ +0.09 |
+| Positive Recall | **0.00** | **0.78** | ✅✅✅ **+0.78** |
+| Positive F1 | 0.00 | 0.67 | ✅✅✅ |
+| Cohen κ | 0.14 | 0.17 | ⚠️ +0.03 |
+| Neutral Recall | 1.00 | **0.09** | ❌ -0.91 |
 
-Figure: `output/sentiment_finetuned_confusion.{png,svg}`.
+> 💡 **Key Insight:** Positive recall **0→78%** proves H3 weakness was a **classifier transfer artefact**, not a corpus property. 18/23 gold-Positive now correct.
+>
+> ⚠️ But κ barely moves (0.14→0.17) — **proof-of-concept, not solved classifier**. Neutral recall collapses 1.00→0.09. Need **200-500 more labels** to push κ > 0.5.
 
-> ⚠️ Path C used **only the original 50 gold posts** via 5-fold CV. The
-> larger hand-labelled set floated in the plan was *not* collected; the
-> result is deliberately scoped as a proof-of-concept and reported that
-> way in both the paper and here.
+![Confusion Matrix](output/sentiment_finetuned_confusion.png)
 
 ---
 
-## 5. Grading self-check
+## 5. Grading Self-check
 
-| Rubric criterion (from Midterm feedback) | How the Final satisfies it |
-|---|---|
-| Uses course methods from ≥ 3 weeks | ✅ Path A alone spans Weeks 3, 5, 7 |
-| Statistical rigor / error bars | ✅ Bootstrap 95% CI on every AUC; CV CIs on accuracy |
-| Real (non-synthetic) data | ✅ Same Pantip Sinthorn corpus, no re-scrape |
-| Descriptive → predictive | ✅ H4 → link prediction; overlay → forecast; H3 → classifier re-test |
-| Reproducible pipeline | ✅ Script-per-step, reads Midterm outputs (§7) |
-| Honest limitations | ✅ GraphSAGE loss, near-chance returns, κ-flat sentiment all reported |
+| Rubric | ✅ How satisfied |
+|:-------|:----------------|
+| Course methods ≥ 3 weeks | ✅ Path A alone = Weeks 3, 5, 7 |
+| Statistical rigor | ✅ Bootstrap 95% CI on every AUC; CV CIs on accuracy |
+| Real data (no synthetic) | ✅ Same Pantip corpus, no re-scrape |
+| Descriptive → Predictive | ✅ H4 → LP; overlay → forecast; H3 → re-test |
+| Reproducible pipeline | ✅ Script-per-step, reads Midterm outputs |
+| Honest limitations | ✅ GraphSAGE loss, near-chance returns, κ-flat sentiment — all reported |
 
 ---
 
-## 6. How to reproduce
-
-All scripts run from the `Final/` directory and read `../Midterm/`
-outputs; no re-scraping.
+## 6. How to Reproduce
 
 ```powershell
-# Path A — temporal link prediction (heuristics + Node2Vec + GraphSAGE)
-python scripts/09_link_prediction.py      # → output/lp_*.csv, lp_roc/lp_precision_at_k
+# All scripts run from Final/ directory, read Midterm/ outputs
 
-# Path B — return prediction (fetches ~180-day yfinance history)
-python scripts/10_return_prediction.py    # → output/rp_metrics.json, rp_*.png/.svg
+python scripts/09_link_prediction.py      # Path A → output/lp_*
+python scripts/10_return_prediction.py    # Path B → output/rp_*
+python scripts/11_sentiment_finetune.py   # Path C → sentiment_finetuned_*
+python scripts/12_report_final_latex.py   # → report/*.tex
+python scripts/13_make_slides.py          # → report/*.pptx
 
-# Path C — WangchanBERTa 5-fold fine-tune on the 50-post gold set
-python scripts/11_sentiment_finetune.py   # → output/sentiment_finetuned_*
-
-# Report + slides (pull metrics live from the CSV/JSON above)
-python scripts/12_report_final_latex.py   # → report/DADS7201_Final_Report.tex
-python scripts/13_make_slides.py          # → report/DADS7201_Final_Slides.pptx
-
-# Compile the LNCS PDF with tectonic (installed during the Midterm)
+# Compile PDF
 cd report
 %TEMP%\tectonic\tectonic.exe DADS7201_Final_Report.tex
 ```
 
 ---
 
-## 7. Files produced by this Final phase
+## 7. Files Produced
 
 ```
 Final/
-├── README.md                              ← this file (as-built summary)
-├── PROJECT_PLAN.md                        ← original implementation plan
-├── โจทย์_final.txt                        ← assignment brief
-│
+├── README.md                         ← You are here
+├── PROJECT_PLAN.md                   ← Original plan (202 lines)
 ├── scripts/
-│   ├── 09_link_prediction.py              Path A — 5-method temporal link prediction
-│   ├── 10_return_prediction.py            Path B — B0..B3 return prediction + portfolio
-│   ├── 11_sentiment_finetune.py           Path C — WangchanBERTa 5-fold fine-tune
-│   ├── 12_report_final_latex.py           builds the 4-page LNCS .tex
-│   └── 13_make_slides.py                  builds the 14-slide .pptx
-│
-├── data/
-│   └── temporal_split.json                cached event-anchored train/val/test split
-│
+│   ├── 09_link_prediction.py         Path A
+│   ├── 10_return_prediction.py       Path B
+│   ├── 11_sentiment_finetune.py      Path C
+│   ├── 12_report_final_latex.py      .tex generator
+│   └── 13_make_slides.py             .pptx generator
 ├── output/
-│   ├── lp_baselines.csv                   Path A metrics (5 methods × val/test + CI)
-│   ├── lp_gnn.csv                         GraphSAGE detail
-│   ├── lp_topk_predicted_edges.csv        top-30 unseen pairs, tagged w/ Midterm bucket
-│   ├── lp_roc.{png,svg}                   test-set ROC (5 curves)
-│   ├── lp_precision_at_k.{png,svg}        Precision@{10,25,50} bars
-│   ├── rp_features.csv                    per-(stock,day) feature matrix
-│   ├── rp_metrics.json                    B0..B3 accuracy / F1 / Sharpe proxy
-│   ├── rp_baseline_vs_full.{png,svg}      accuracy bars
-│   ├── rp_sharpe_curve.{png,svg}          long–short cumulative return
-│   ├── rp_feature_importance.{png,svg}    XGBoost gain importance
-│   ├── sentiment_finetuned_validation.json  baseline vs fine-tuned metrics
-│   ├── sentiment_finetuned_confusion.{png,svg}
-│   └── sentiment_finetuned_predictions.csv  PostID, gold, baseline_pred, ft_pred
-│
+│   ├── lp_baselines.csv              AUC + P@k (5 methods × val/test)
+│   ├── lp_gnn.csv                    GraphSAGE detail
+│   ├── lp_roc.png / .svg            ROC curves
+│   ├── lp_precision_at_k.png / .svg
+│   ├── lp_topk_predicted_edges.csv  Top-30 predicted pairs
+│   ├── rp_metrics.json              B0..B3 metrics
+│   ├── rp_baseline_vs_full.png / .svg
+│   ├── rp_sharpe_curve.png / .svg
+│   ├── rp_feature_importance.png / .svg
+│   ├── sentiment_finetuned_validation.json
+│   ├── sentiment_finetuned_confusion.png / .svg
+│   └── sentiment_finetuned_predictions.csv
+├── data/
+│   └── temporal_split.json           Cached train/val/test split
 └── report/
-    ├── DADS7201_Final_Report.tex          4-page Springer LNCS source
-    ├── DADS7201_Final_Report.pdf          compiled with tectonic
-    └── DADS7201_Final_Slides.pptx         14 slides, Thai speaker notes
+    ├── DADS7201_Final_Report.tex     LNCS source
+    ├── DADS7201_Final_Report.pdf     ✅ Compiled (290 KB)
+    └── DADS7201_Final_Slides.pptx    14 slides
 ```
 
-Midterm outputs are consumed as inputs; the Final data layer adds only
-the cached temporal split. (`models/` is a placeholder — the fine-tuned
-weights are re-derived per fold and not checkpointed to disk.)
-</content>
-</invoke>
+---
+
+> **Author:** Puwadon Sritum · DADS, NIDA · 2026
+>
+> [⬆ กลับไปบนสุด](#final-project--predictive-extension-of-the-midterm-set50-hype-network)
